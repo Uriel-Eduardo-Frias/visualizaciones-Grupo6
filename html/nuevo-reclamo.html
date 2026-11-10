@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nuevo reclamo · Portal Ciudadano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
 
+    <!-- Header institucional -->
     <header class="hd">
         <div class="w">
             <a class="logo" href="#">[Municipio] · Portal Ciudadano</a>
@@ -22,95 +22,146 @@
                 <a href="#">Mis trámites</a>
                 <a href="#">Información</a>
             </nav>
-            <a class="btn o s" href="#">Mi perfil</a>
+            <a class="btn-perfil-outline" href="#">Mi perfil</a>
         </div>
     </header>
 
-    <main class="w">
-        <div class="bc"><a href="#">Inicio</a> › <a href="#">Reclamos</a> › Nuevo reclamo</div>
+    <!-- Contenedor principal -->
+    <main class="w main-container">
+        <!-- Breadcrumb -->
+        <nav class="bc" aria-label="Miga de pan">
+            <a href="#">Inicio</a> › <a href="#">Reclamos</a> › <span>Nuevo reclamo</span>
+        </nav>
+
         <h1>Nuevo reclamo</h1>
 
-        <div class="grid">
-            <form class="card stack" id="form-reclamo" action="#" method="post">
+        <div class="grid-layout">
+            <!-- Formulario de reclamo -->
+            <form class="card form-stack" id="form-reclamo" action="#" method="post">
 
+                <!-- Paso 1: Ubicación -->
                 <fieldset>
                     <legend>1. ¿Dónde está el problema?</legend>
-                    <!-- Reemplazar por el mapa real -->
                     <div class="map" role="img" aria-label="Mapa interactivo para marcar la ubicación del reclamo">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="map-icon">
                             <path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z" />
                             <circle cx="12" cy="10" r="2.5" />
                         </svg>
-                        Hacé clic en el mapa para marcar el lugar
+                        <span>Hacé clic en el mapa para marcar el lugar</span>
                     </div>
-                    <div class="row">
-                        <div style="flex:1">
-                            <label class="lb" for="direccion">Dirección</label>
-                            <input class="in" id="direccion" name="direccion" value="Av. [Calle] 1234">
+
+                    <div class="input-group">
+                        <label class="lb" for="direccion">Dirección</label>
+                        <div class="input-with-action">
+                            <input class="in" id="direccion" name="direccion" value="Av. [Calle] 1234" required>
+                            <a href="#" class="link-location" id="btn-ubicacion">Usar mi ubicación</a>
                         </div>
-                        <a href="#"
-                            style="white-space:nowrap;align-self:flex-end;min-height:48px;display:inline-flex;align-items:center">Usar
-                            mi ubicación</a>
                     </div>
                 </fieldset>
 
+                <!-- Paso 2: Categoría -->
                 <fieldset>
                     <legend>2. ¿Qué querés reportar?</legend>
-                    <div class="chips">
-                        <input type="radio" name="categoria" id="c1" value="Alumbrado" checked><label
-                            for="c1">Alumbrado</label>
-                        <input type="radio" name="categoria" id="c2" value="Limpieza"><label for="c2">Limpieza</label>
-                        <input type="radio" name="categoria" id="c3" value="Arbolado"><label for="c3">Arbolado</label>
-                        <input type="radio" name="categoria" id="c4" value="Tránsito"><label for="c4">Tránsito</label>
-                        <input type="radio" name="categoria" id="c5" value="Calles y baches"><label for="c5">Calles y
-                            baches</label>
+                    <div class="chips" role="radiogroup" aria-label="Categoría del reclamo">
+                        <input type="radio" name="categoria" id="c1" value="Alumbrado" checked>
+                        <label for="c1">Alumbrado</label>
+
+                        <input type="radio" name="categoria" id="c2" value="Limpieza">
+                        <label for="c2">Limpieza</label>
+
+                        <input type="radio" name="categoria" id="c3" value="Arbolado">
+                        <label for="c3">Arbolado</label>
+
+                        <input type="radio" name="categoria" id="c4" value="Tránsito">
+                        <label for="c4">Tránsito</label>
+
+                        <input type="radio" name="categoria" id="c5" value="Calles y baches">
+                        <label for="c5">Calles y baches</label>
                     </div>
                 </fieldset>
 
+                <!-- Paso 3: Foto y detalle -->
                 <fieldset>
                     <legend>3. Sumá una foto y un detalle</legend>
-                    <label class="foto"><input type="file" name="foto" id="foto" accept="image/*"><span id="foto-txt">+
-                            Agregar foto</span></label>
-                    <div>
+                    <label class="foto" for="foto">
+                        <input type="file" name="foto" id="foto" accept="image/*">
+                        <span id="foto-txt">+ Agregar foto</span>
+                    </label>
+
+                    <div class="input-group">
                         <label class="lb" for="detalle">Detalle (opcional)</label>
-                        <input class="in" id="detalle" name="detalle">
+                        <input class="in" id="detalle" name="detalle" placeholder="">
                     </div>
                 </fieldset>
 
-                <button class="btn" type="submit">Enviar reclamo</button>
+                <button class="btn btn-primary" type="submit">Enviar reclamo</button>
             </form>
 
-            <aside class="stack">
-                <div class="card">
-                    <h3>Resumen</h3>
-                    <p class="mu">Categoría: <span id="r-cat">Alumbrado</span></p>
+            <!-- Barra lateral informativa -->
+            <aside class="aside-stack">
+                <div class="card card-sidebar">
+                    <h2>Resumen</h2>
+                    <p class="mu">Categoría: <strong id="r-cat">Alumbrado</strong></p>
                     <p class="mu">Ubicación: <span id="r-dir">Av. [Calle] 1234</span></p>
                     <p class="mu">Te avisamos por WhatsApp y email.</p>
                 </div>
-                <div class="card">
-                    <h3>Reclamos cerca tuyo</h3>
-                    <div class="row">
-                        <span>Luminaria apagada<br><span class="mu">a 120 m</span></span>
-                        <a class="btn o s" href="#">Sumarme</a>
+
+                <div class="card card-sidebar">
+                    <h2>Reclamos cerca tuyo</h2>
+                    <div class="nearby-item">
+                        <div class="nearby-info">
+                            <span class="nearby-title">Luminaria apagada</span>
+                            <span class="nearby-dist">a 120 m</span>
+                        </div>
+                        <a class="btn-outline-sm" href="#">Sumarme</a>
                     </div>
                 </div>
             </aside>
         </div>
     </main>
 
+    <!-- Footer institucional -->
     <footer class="ft">
-        <div class="w">
-            <span>Centro de Atención al Vecino · [Dirección] · [Horario] · [Teléfono]</span>
-            <a href="#">Preguntas frecuentes</a>
+        <div class="w footer-grid">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">Portal Ciudadano</span>
+                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Explorá el portal</h3>
+                <div class="footer-links-grid">
+                    <ul class="clean-list">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Trámites</a></li>
+                        <li><a href="#">Reclamos</a></li>
+                    </ul>
+                    <ul class="clean-list">
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Información útil</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Estamos cerca</h3>
+                <ul class="clean-list">
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Accesibilidad</a></li>
+                    <li><a href="#">Ingresar a mi cuenta</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Mantiene el resumen sincronizado con el formulario
+        // Sincronización en vivo entre formulario y tarjeta de resumen
         const f = document.getElementById('form-reclamo');
         f.addEventListener('input', () => {
             document.getElementById('r-cat').textContent = f.categoria.value;
-            document.getElementById('r-dir').textContent = f.direccion.value || '—';
+            document.getElementById('r-dir').textContent = f.direccion.value.trim() || '—';
             const file = f.foto.files[0];
             document.getElementById('foto-txt').textContent = file ? file.name : '+ Agregar foto';
         });
