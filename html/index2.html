@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portal Ciudadano · Municipio de La Matanza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+</head>
+
+<body>
+
+    <!-- Header de usuario autenticado -->
+    <header class="hd">
+        <div class="w">
+            <div class="brand">
+                <a class="logo" href="index2.html">Portal Ciudadano</a>
+                <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+            </div>
+            <nav aria-label="Principal">
+                <a href="index2.html" aria-current="page">Inicio</a>
+                <a href="nuevo-reclamo2.html">Reclamos</a>
+                <a href="mis-reclamos2.html">Mis reclamos</a>
+                <a href="#">Información útil</a>
+            </nav>
+            <div class="user-menu">
+                <a class="btn-perfil" href="mis-reclamos2.html">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Mi perfil
+                </a>
+                <a class="btn-logout" href="index.html" aria-label="Cerrar sesión" title="Cerrar sesión">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero: Bienvenida -->
+        <section class="hero-welcome">
+            <div class="w hero-welcome-grid">
+                <div class="hero-content">
+                    <span class="eyebrow">MÁS CERCA, MÁS SIMPLE</span>
+                    <h1>Bienvenido a La Matanza</h1>
+                    <p class="hero-desc">Realizá tus trámites, hacé tus reclamos y encontrá toda la información municipal en un solo lugar.</p>
+                </div>
+                <div class="hero-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=700&q=80" alt="Plaza y monumento de La Matanza" class="hero-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Servicios -->
+        <section class="section-padding">
+            <div class="w">
+                <header class="section-header">
+                    <h2>Tus servicios, a un paso</h2>
+                    <p class="section-subtitle">Elegí una opción para empezar. Te acompañamos en cada gestión.</p>
+                </header>
+
+                <div class="services-grid">
+                    <!-- Reclamos -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3>Reclamos</h3>
+                        <p>Contanos qué pasa en tu barrio y consultá el estado de tu solicitud.</p>
+                        <a href="nuevo-reclamo2.html" class="service-link">Hacer un reclamo →</a>
+                    </article>
+
+                    <!-- Trámites -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Trámites</h3>
+                        <p>Guiate en las gestiones municipales y consultá qué necesitás para empezar.</p>
+                        <a href="#" class="service-link">Ver trámites →</a>
+                    </article>
+
+                    <!-- Turnos -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <h3>Turnos</h3>
+                        <p>Revisá la atención que necesitás y organizá tu próxima gestión.</p>
+                        <a href="#" class="service-link">Consultar turnos →</a>
+                    </article>
+
+                    <!-- Tasas municipales -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <line x1="2" y1="10" x2="22" y2="10"></line>
+                            </svg>
+                        </div>
+                        <h3>Tasas municipales</h3>
+                        <p>Encontrá orientación para consultar tus tasas o medios de pago.</p>
+                        <a href="#" class="service-link">Consultar tasas →</a>
+                    </article>
+
+                    <!-- Mis gestiones -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3>Mis gestiones</h3>
+                        <p>Reuní tus trámites y reclamos en un lugar. Ingresá a tu cuenta.</p>
+                        <a href="mis-reclamos2.html" class="service-link">Ver mis gestiones →</a>
+                    </article>
+
+                    <!-- Guía de servicios -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                        </div>
+                        <h3>Guía de servicios</h3>
+                        <p>Encontrá información municipal por tema, según lo que necesitás.</p>
+                        <a href="#" class="service-link">Explorar servicios →</a>
+                    </article>
+                </div>
+
+                <!-- Buscador de servicios -->
+                <div class="search-section-box">
+                    <label for="search-tramite" class="search-label">¿Qué necesitás hacer hoy?</label>
+                    <div class="search-bar-inline">
+                        <div class="search-input-icon-wrap">
+                            <svg class="search-lens-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="search" id="search-tramite" class="in-search" placeholder="Buscá un trámite, una noticia o un servicio...">
+                        </div>
+                        <button type="submit" class="btn btn-search">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Noticias y comunidad -->
+        <section class="section-padding bg-alt">
+            <div class="w">
+                <header class="section-header">
+                    <h2>Noticias y comunidad</h2>
+                </header>
+
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-thumbnail"></div>
+                        <div class="news-body">
+                            <h3>Noticia 1</h3>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-thumbnail"></div>
+                        <div class="news-body">
+                            <h3>Noticia 2</h3>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-thumbnail"></div>
+                        <div class="news-body">
+                            <h3>Noticia 3</h3>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="section-footer-link">
+                    <a href="#" class="action-link">Ver todas las noticias →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Oficinas y mapa -->
+        <section class="section-padding">
+            <div class="w">
+                <header class="section-header">
+                    <h2>Encuentra nuestras oficinas</h2>
+                    <p class="section-subtitle">Consultá las ubicaciones y elegí dónde realizar tu gestión presencial.</p>
+                </header>
+
+                <div class="offices-layout">
+                    <!-- Lista de oficinas -->
+                    <div class="offices-card">
+                        <span class="offices-card-title">Nuestras oficinas</span>
+                        <ul class="offices-list">
+                            <li class="office-item active">
+                                <span class="office-num">1</span>
+                                <div class="office-details">
+                                    <strong>Oficina 1</strong>
+                                    <span>Calle</span>
+                                    <small class="mu">Horario de atención</small>
+                                </div>
+                            </li>
+                            <li class="office-item">
+                                <span class="office-num">2</span>
+                                <div class="office-details">
+                                    <strong>Oficina 2</strong>
+                                    <span>Calle</span>
+                                    <small class="mu">Horario de atención</small>
+                                </div>
+                            </li>
+                            <li class="office-item">
+                                <span class="office-num">3</span>
+                                <div class="office-details">
+                                    <strong>Oficina 3</strong>
+                                    <span>Calle</span>
+                                    <small class="mu">Horario de atención</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mapa interactivo -->
+                    <div class="offices-map-box" role="img" aria-label="Mapa de oficinas municipales">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="map-pin-icon">
+                            <path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                        <span>Mapa interactivo de oficinas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Información para tu día a día -->
+        <section class="section-padding bg-alt">
+            <div class="w">
+                <header class="section-header">
+                    <h2>Información para tu día a día</h2>
+                    <p class="section-subtitle">Encontrá orientación municipal por tema.</p>
+                </header>
+
+                <div class="topics-grid">
+                    <article class="topic-card">
+                        <div class="topic-header">
+                            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                            <span class="arrow-up-right">↗</span>
+                        </div>
+                        <h3>Salud y bienestar</h3>
+                        <p>Orientación sobre atención y cuidados de la salud.</p>
+                    </article>
+
+                    <article class="topic-card">
+                        <div class="topic-header">
+                            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                            <span class="arrow-up-right">↗</span>
+                        </div>
+                        <h3>Educación</h3>
+                        <p>Información para acompañar los aprendizajes.</p>
+                    </article>
+
+                    <article class="topic-card">
+                        <div class="topic-header">
+                            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                            </svg>
+                            <span class="arrow-up-right">↗</span>
+                        </div>
+                        <h3>Cultura y deporte</h3>
+                        <p>Conocé propuestas y espacios para participar.</p>
+                    </article>
+
+                    <article class="topic-card">
+                        <div class="topic-header">
+                            <svg class="topic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2a10 10 0 0 0-10 10c0 5.5 10 10 10 10s10-4.5 10-10a10 10 0 0 0-10-10z"></path>
+                            </svg>
+                            <span class="arrow-up-right">↗</span>
+                        </div>
+                        <h3>Ambiente y barrio</h3>
+                        <p>Conocé cómo cuidar tu entorno y los espacios comunes.</p>
+                    </article>
+                </div>
+
+                <div class="section-footer-link">
+                    <a href="#" class="action-link">Ver toda la información útil →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Preguntas frecuentes -->
+        <section class="section-padding">
+            <div class="w faq-grid-layout">
+                <!-- Columna izquierda: Ayuda y soporte -->
+                <div class="faq-intro-col">
+                    <span class="eyebrow">ATENCIÓN Y RESPUESTAS</span>
+                    <h2>Preguntas frecuentes</h2>
+                    <p class="section-subtitle">Encontrá respuestas sobre tu cuenta, los trámites y el seguimiento de tus reclamos.</p>
+
+                    <div class="faq-help-card">
+                        <div class="faq-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3>¿Todavía tenés dudas?</h3>
+                        <p>Si no encontrás la respuesta que buscás, escribinos. Estamos para ayudarte.</p>
+                        <a href="#" class="service-link">Envianos tu consulta →</a>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Acordeón -->
+                <div class="faq-accordion-col">
+                    <details class="faq-item" open>
+                        <summary class="faq-question">
+                            <span>¿Pregunta frecuente 1?</span>
+                            <span class="faq-toggle-icon">−</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Respuesta a la pregunta con las instrucciones o detalles correspondientes al trámite o reclamo.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>¿Pregunta frecuente 2?</span>
+                            <span class="faq-toggle-icon">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Podés hacer el seguimiento directamente ingresando a la sección Mis reclamos con tu usuario.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>¿Pregunta frecuente 3?</span>
+                            <span class="faq-toggle-icon">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Los trámites no tienen costo salvo aquellos que requieran pago de sellado o tasa especial.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>¿Pregunta frecuente 4?</span>
+                            <span class="faq-toggle-icon">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Podés adjuntar fotos y ubicación exacta directamente desde el mapa digital interactivo.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>¿Pregunta frecuente 5?</span>
+                            <span class="faq-toggle-icon">+</span>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Ante emergencias comunicate al Centro de Atención al Vecino o a los teléfonos de guardia municipal.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   
+    <!-- Footer de usuario autenticado -->
+<footer class="ft">
+        <div class="w footer-grid">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">Portal Ciudadano</span>
+                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+                <div class="footer-badge-help"><strong>Sesión iniciada</strong><br>Gestioná tus trámites desde tu cuenta.</div>
+            </div>
+            <div class="footer-col">
+                <h3>Explorá el portal</h3>
+                <div class="footer-links-grid">
+                    <ul class="clean-list">
+                        <li><a href="index2.html">Inicio</a></li>
+                        <li><a href="#">Trámites</a></li>
+                        <li><a href="nuevo-reclamo2.html">Reclamos</a></li>
+                    </ul>
+                    <ul class="clean-list">
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Información útil</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Tu cuenta</h3>
+                <ul class="clean-list">
+                    <li><a href="mis-reclamos2.html">Mis reclamos</a></li>
+                    <li><a href="#">Ayuda y accesibilidad</a></li>
+                    <li><a class="link-logout" href="index.html">Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="w footer-subbottom">Portal Ciudadano · Municipio de La Matanza</div>
+    </footer>
+
+</body>
+</html>

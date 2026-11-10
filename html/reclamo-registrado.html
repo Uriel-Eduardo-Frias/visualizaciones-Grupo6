@@ -8,26 +8,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
 </head>
 
 <body>
 
     <header class="hd">
         <div class="w">
-            <a class="logo" href="#">[Municipio] · Portal Ciudadano</a>
+            <div class="brand">
+                <a class="logo" href="index.html">Portal Ciudadano</a>
+                <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+            </div>
             <nav aria-label="Principal">
-                <a href="#">Inicio</a>
-                <a href="#">Trámites y servicios</a>
-                <a href="#" aria-current="page">Reclamos</a>
-                <a href="#">Mis trámites</a>
-                <a href="#">Información</a>
+                <a href="index.html">Inicio</a>
+                <a href="nuevo-reclamo.html" aria-current="page">Reclamos</a>
+                <a href="mis-reclamos.html">Mis reclamos</a>
+                <a href="#">Información útil</a>
             </nav>
-            <a class="btn o s" href="#">Mi perfil</a>
+            <a class="btn-ingresar" href="index2.html">Ingresar</a>
         </div>
     </header>
 
     <main class="w">
-        <div class="bc"><a href="#">Inicio</a> › <a href="#">Reclamos</a> › Reclamo registrado</div>
+        <div class="bc"><a href="index.html">Inicio</a> › <a href="nuevo-reclamo.html">Reclamos</a> › Reclamo registrado</div>
 
         <div class="ok-wrap">
             <section class="card ok-card" aria-labelledby="titulo">
@@ -51,17 +54,36 @@
                 <p class="aviso" role="status">Te avisamos por email cada vez que cambie el estado de tu reclamo.</p>
 
                 <div class="acciones">
-                    <a class="btn" href="#">Ver mis solicitudes</a>
-                    <a class="btn o" href="#">Volver al inicio</a>
+                    <a class="btn" href="mis-reclamos.html">Ver mis solicitudes</a>
+                    <a class="btn o" href="index.html">Volver al inicio</a>
                 </div>
             </section>
         </div>
     </main>
 
     <footer class="ft">
-        <div class="w">
-            <span>Centro de Atención al Vecino · [Dirección] · [Horario] · [Teléfono]</span>
-            <a href="#">Preguntas frecuentes</a>
+        <div class="w footer-grid">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">Portal Ciudadano</span>
+                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Explorá el portal</h3>
+                <ul class="clean-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nuevo-reclamo.html">Reclamos</a></li>
+                    <li><a href="mis-reclamos.html">Mis reclamos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Estamos cerca</h3>
+                <ul class="clean-list">
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Accesibilidad</a></li>
+                    <li><a href="index2.html">Ingresar a mi cuenta</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 

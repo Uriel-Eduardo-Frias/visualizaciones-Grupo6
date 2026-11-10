@@ -7,6 +7,7 @@
     <title>Nuevo reclamo · Portal Ciudadano</title>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
 </head>
 
 <body>
@@ -14,15 +15,17 @@
     <!-- Header institucional -->
     <header class="hd">
         <div class="w">
-            <a class="logo" href="#">[Municipio] · Portal Ciudadano</a>
+            <div class="brand">
+                <a class="logo" href="index.html">Portal Ciudadano</a>
+                <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+            </div>
             <nav aria-label="Principal">
-                <a href="#">Inicio</a>
-                <a href="#">Trámites y servicios</a>
-                <a href="#" aria-current="page">Reclamos</a>
-                <a href="#">Mis trámites</a>
-                <a href="#">Información</a>
+                <a href="index.html">Inicio</a>
+                <a href="nuevo-reclamo.html" aria-current="page">Reclamos</a>
+                <a href="mis-reclamos.html">Mis reclamos</a>
+                <a href="#">Información útil</a>
             </nav>
-            <a class="btn-perfil-outline" href="#">Mi perfil</a>
+            <a class="btn-ingresar" href="index2.html">Ingresar</a>
         </div>
     </header>
 
@@ -30,14 +33,14 @@
     <main class="w main-container">
         <!-- Breadcrumb -->
         <nav class="bc" aria-label="Miga de pan">
-            <a href="#">Inicio</a> › <a href="#">Reclamos</a> › <span>Nuevo reclamo</span>
+            <a href="index.html">Inicio</a> › <a href="nuevo-reclamo.html">Reclamos</a> › <span>Nuevo reclamo</span>
         </nav>
 
         <h1>Nuevo reclamo</h1>
 
         <div class="grid-layout">
             <!-- Formulario de reclamo -->
-            <form class="card form-stack" id="form-reclamo" action="#" method="post">
+            <form class="card form-stack" id="form-reclamo" action="reclamo-registrado.html" method="get">
 
                 <!-- Paso 1: Ubicación -->
                 <fieldset>
@@ -120,41 +123,41 @@
         </div>
     </main>
 
-    <!-- Footer institucional -->
-    <footer class="ft">
-        <div class="w footer-grid">
-            <div class="footer-col brand-col">
-                <span class="footer-logo">Portal Ciudadano</span>
-                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
-                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
-            </div>
+    <!-- FOOTER: Visitante -->
+<footer class="ft">
+    <div class="w footer-grid">
+        <div class="footer-col brand-col">
+            <span class="footer-logo">Portal Ciudadano</span>
+            <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+            <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+        </div>
 
-            <div class="footer-col">
-                <h3>Explorá el portal</h3>
-                <div class="footer-links-grid">
-                    <ul class="clean-list">
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Trámites</a></li>
-                        <li><a href="#">Reclamos</a></li>
-                    </ul>
-                    <ul class="clean-list">
-                        <li><a href="#">Noticias</a></li>
-                        <li><a href="#">Información útil</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h3>Estamos cerca</h3>
+        <div class="footer-col">
+            <h3>Explorá el portal</h3>
+            <div class="footer-links-grid">
                 <ul class="clean-list">
-                    <li><a href="#">Preguntas frecuentes</a></li>
-                    <li><a href="#">Accesibilidad</a></li>
-                    <li><a href="#">Ingresar a mi cuenta</a></li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="#">Trámites</a></li>
+                    <li><a href="nuevo-reclamo.html">Reclamos</a></li>
+                </ul>
+                <ul class="clean-list">
+                    <li><a href="#">Noticias</a></li>
+                    <li><a href="#">Información útil</a></li>
+                    <li><a href="#">Contacto</a></li>
                 </ul>
             </div>
         </div>
-    </footer>
+
+        <div class="footer-col">
+            <h3>Estamos cerca</h3>
+            <ul class="clean-list">
+                <li><a href="#">Preguntas frecuentes</a></li>
+                <li><a href="#">Accesibilidad</a></li>
+                <li><a href="index2.html">Ingresar a mi cuenta</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 
     <script>
         // Sincronización en vivo entre formulario y tarjeta de resumen
@@ -164,6 +167,15 @@
             document.getElementById('r-dir').textContent = f.direccion.value.trim() || '—';
             const file = f.foto.files[0];
             document.getElementById('foto-txt').textContent = file ? file.name : '+ Agregar foto';
+        });
+        f.addEventListener('submit', event => {
+            event.preventDefault();
+            const destination = new URL(f.action);
+            destination.search = new URLSearchParams({
+                categoria: f.categoria.value,
+                direccion: f.direccion.value.trim()
+            }).toString();
+            location.assign(destination.href);
         });
     </script>
 </body>
