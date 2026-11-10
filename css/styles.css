@@ -1,0 +1,331 @@
+:root {
+    --verde: #087451;
+    /* botones y letras */
+    --verde-hover: #06604A;
+    --verde-osc: #073E32;
+    /* footer */
+    --verde-claro: #E4F2EC;
+    --verde-borde: #9CCBB9;
+    --tinta: #12202F;
+    --gris: #44566A;
+    --linea: #D5DEE8;
+    --fondo: #F4F7FA;
+    --blanco: #fff;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--tinta);
+    font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.4
+}
+
+a {
+    color: var(--verde)
+}
+
+:focus-visible {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px
+}
+
+.w {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px
+}
+
+/* Header */
+.hd {
+    background: var(--blanco);
+    border-bottom: 1px solid var(--linea)
+}
+
+.hd .w {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 72px;
+    flex-wrap: wrap
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--verde);
+    text-decoration: none
+}
+
+.hd nav {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap
+}
+
+.hd nav a {
+    padding: 12px 14px;
+    min-height: 44px;
+    color: var(--tinta);
+    text-decoration: none
+}
+
+.hd nav a[aria-current] {
+    color: var(--verde);
+    font-weight: 700;
+    border-bottom: 3px solid var(--verde)
+}
+
+/* Botones */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+    border-radius: 10px;
+    border: 2px solid var(--verde);
+    background: var(--verde);
+    color: var(--blanco);
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.btn:hover {
+    background: var(--verde-hover);
+    border-color: var(--verde-hover)
+}
+
+.btn.o {
+    background: var(--blanco);
+    color: var(--verde)
+}
+
+.btn.o:hover {
+    background: var(--verde-claro)
+}
+
+.btn.s {
+    min-height: 44px;
+    padding: 0 14px
+}
+
+/* Estructura */
+.bc {
+    padding-top: 20px;
+    font-size: 15px;
+    color: var(--gris)
+}
+
+h1 {
+    margin: 20px 0 16px;
+    font-size: 32px
+}
+
+h2 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--verde)
+}
+
+h3 {
+    margin: 0 0 8px;
+    font-size: 17px
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start
+}
+
+.card {
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: 14px;
+    padding: 20px
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+legend {
+    padding: 0;
+    margin-bottom: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--verde)
+}
+
+.mu {
+    margin: 4px 0 0;
+    color: var(--gris);
+    font-size: 15px
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px
+}
+
+.lb {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 6px
+}
+
+.in {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+    border: 1px solid #6B7A89;
+    border-radius: 10px;
+    background: var(--blanco);
+    color: var(--tinta);
+    font: inherit
+}
+
+/* Mapa (reemplazar por Leaflet, Google Maps, etc.) */
+.map {
+    height: 260px;
+    border-radius: 12px;
+    border: 1px solid var(--verde-borde);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--verde);
+    font-size: 14px;
+    font-weight: 700;
+    background: repeating-linear-gradient(0deg, #CFE3D9 0 1px, transparent 1px 32px), repeating-linear-gradient(90deg, #CFE3D9 0 1px, transparent 1px 32px), #E9F3EE
+}
+
+.map svg {
+    width: 44px;
+    height: 44px;
+    fill: #fff;
+    stroke: currentColor;
+    stroke-width: 2
+}
+
+/* Categorías: radios con aspecto de chip */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px
+}
+
+.chips input {
+    position: absolute;
+    opacity: 0
+}
+
+.chips label {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid #6B7A89;
+    border-radius: 999px;
+    background: var(--blanco);
+    cursor: pointer
+}
+
+.chips input:checked+label {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: var(--blanco);
+    font-weight: 700
+}
+
+.chips input:focus-visible+label {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px
+}
+
+/* Foto */
+.foto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    border: 2px dashed var(--verde);
+    border-radius: 12px;
+    background: var(--verde-claro);
+    color: var(--verde);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0 14px;
+    text-align: center
+}
+
+.foto input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px
+}
+
+.foto:focus-within {
+    outline: 3px solid var(--verde);
+    outline-offset: 2px
+}
+
+/* Footer */
+.ft {
+    margin-top: 40px;
+    padding: 28px 0;
+    background: var(--verde-osc);
+    color: var(--blanco);
+    font-size: 15px
+}
+
+.ft .w {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap
+}
+
+.ft a {
+    color: var(--blanco)
+}
+
+.ft a:focus-visible {
+    outline-color: var(--blanco)
+}
+
+@media (max-width:900px) {
+    .grid {
+        grid-template-columns: 1fr
+    }
+
+    .hd nav {
+        order: 3;
+        width: 100%
+    }
+}
