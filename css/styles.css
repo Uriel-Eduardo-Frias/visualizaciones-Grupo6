@@ -400,3 +400,97 @@ a {
         overflow-x: auto;
     }
 }
+/* Reclamo registrado */
+.ok-wrap {
+    max-width: 640px;
+    margin: 24px auto 0
+}
+
+.ok-card {
+    text-align: center;
+    padding: 36px 32px
+}
+
+.ok-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--verde-claro);
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.ok-icon svg {
+    width: 38px;
+    height: 38px;
+    fill: none;
+    stroke: var(--verde);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round
+}
+
+.ok-card h1 {
+    margin: 0 0 8px
+}
+
+.nro {
+    display: inline-block;
+    margin: 18px 0 24px;
+    padding: 10px 24px;
+    border-radius: 10px;
+    background: var(--verde-claro);
+    color: var(--verde-osc);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: .5px
+}
+
+.kv {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--linea);
+    text-align: left
+}
+
+.kv:last-child {
+    border-bottom: 0
+}
+
+.kv span {
+    color: var(--gris)
+}
+
+.kv b {
+    text-align: right
+}
+
+.estado {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 999px;
+    background: #E3E9EE;
+    color: var(--gris);
+    font-size: 14px;
+    font-weight: 700
+}
+
+.aviso {
+    margin: 20px 0 24px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--verde-claro);
+    color: var(--verde-osc);
+    text-align: left
+}
+
+.acciones {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap
+}
