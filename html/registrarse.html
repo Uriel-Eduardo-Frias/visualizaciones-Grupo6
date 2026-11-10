@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crear cuenta · Portal Ciudadano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+    <link rel="stylesheet" href="../css/acceso.css">
+    <script src="../js/auth.js" defer></script>
+</head>
+
+<body>
+    <header class="hd">
+        <div class="w">
+            <div class="brand">
+                <a class="logo" href="index.html">Portal Ciudadano</a>
+                <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+            </div>
+            <a class="auth-header-link" href="index.html">Volver al inicio</a>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <section class="card auth-card" aria-labelledby="auth-title">
+            <h1 id="auth-title">Creá tu cuenta</h1>
+            <p class="auth-intro">Registrate para hacer reclamos y consultar tus gestiones.</p>
+
+            <form class="auth-form" data-auth-form="register">
+                <div class="input-group">
+                    <label class="lb" for="nombre">Nombre y apellido</label>
+                    <input class="in" id="nombre" name="nombre" autocomplete="name" required>
+                </div>
+                <div class="input-group">
+                    <label class="lb" for="email">Correo electrónico</label>
+                    <input class="in" id="email" name="email" type="email" autocomplete="email" required>
+                </div>
+                <div class="input-group">
+                    <label class="lb" for="password">Contraseña</label>
+                    <input class="in" id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+                </div>
+                <div class="input-group">
+                    <label class="lb" for="confirm-password">Confirmar contraseña</label>
+                    <input class="in" id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" required>
+                </div>
+                <button class="btn" type="submit">Crear cuenta</button>
+            </form>
+
+            <p class="auth-note">Este sitio es una demostración estática: los datos no se envían ni guardan en un servidor. No uses una contraseña real.</p>
+            <p class="auth-message" data-auth-message role="status" aria-live="polite" hidden></p>
+            <p class="auth-switch">¿Ya tenés cuenta? <a data-login-link href="login.html">Ingresá</a></p>
+        </section>
+    </main>
+
+    <footer class="ft">
+        <div class="w footer-grid">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">Portal Ciudadano</span>
+                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Explorá el portal</h3>
+                <ul class="clean-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="login.html?next=nuevo-reclamo2.html">Reclamos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Tu cuenta</h3>
+                <ul class="clean-list">
+                    <li><a href="login.html">Ingresar</a></li>
+                    <li><a href="registrarse.html">Registrarse</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+/* Estilos compartidos para iniciar sesión y registrarse. */
+.auth-main {
+    display: grid;
+    flex: 1;
+    place-items: center;
+    padding: 48px 24px 64px;
+    background: var(--fondo-alt);
+}
+
+.auth-card {
+    width: min(100%, 480px);
+    padding: 36px;
+}
+
+.auth-card h1 {
+    margin: 0 0 8px;
+    color: var(--tinta);
+    font-size: 30px;
+}
+
+.auth-intro {
+    margin: 0 0 24px;
+    color: var(--gris);
+}
+
+.auth-form {
+    display: grid;
+    gap: 16px;
+}
+
+.auth-form .input-group {
+    gap: 7px;
+}
+
+.auth-form .btn {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.auth-note {
+    margin: 20px 0 0;
+    padding: 12px 14px;
+    border: 1px solid var(--verde-borde);
+    border-radius: 8px;
+    background: var(--verde-hero);
+    color: var(--tinta);
+    font-size: 13px;
+}
+
+.auth-message {
+    margin: 16px 0 0;
+    padding: 12px 14px;
+    border: 1px solid #D99B42;
+    border-radius: 8px;
+    background: #FFF6E5;
+    color: #68400A;
+}
+
+.auth-switch {
+    margin: 20px 0 0;
+    text-align: center;
+}
+
+.auth-header-link {
+    color: var(--verde-primario);
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .auth-main {
+        padding: 32px 16px 48px;
+    }
+
+    .auth-card {
+        padding: 28px 20px;
+    }
+}

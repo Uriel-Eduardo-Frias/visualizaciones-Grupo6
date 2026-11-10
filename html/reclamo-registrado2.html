@@ -9,9 +9,10 @@
         rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
+    <script src="../js/auth.js" defer></script>
 </head>
 
-<body>
+<body data-auth-required data-auth-next="reclamo-registrado2.html">
 
     <header class="hd">
         <div class="w">
@@ -33,7 +34,7 @@
                     </svg>
                     Mi perfil
                 </a>
-                <a class="btn-logout" href="index.html" aria-label="Cerrar sesión" title="Cerrar sesión">
+                <a class="btn-logout" href="index.html" data-logout aria-label="Cerrar sesión" title="Cerrar sesión">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                         <polyline points="16 17 21 12 16 7"></polyline>
@@ -89,7 +90,6 @@
                 <div class="footer-links-grid">
                     <ul class="clean-list">
                         <li><a href="index2.html">Inicio</a></li>
-                        <li><a href="#">Trámites</a></li>
                         <li><a href="nuevo-reclamo2.html">Reclamos</a></li>
                     </ul>
                     <ul class="clean-list">
@@ -104,7 +104,7 @@
                 <ul class="clean-list">
                     <li><a href="mis-reclamos2.html">Mis reclamos</a></li>
                     <li><a href="#">Ayuda y accesibilidad</a></li>
-                    <li><a class="link-logout" href="index.html">Cerrar sesión</a></li>
+                    <li><a class="link-logout" href="index.html" data-logout>Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>

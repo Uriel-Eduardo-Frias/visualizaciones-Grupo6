@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
+    <script src="../js/auth.js" defer></script>
 </head>
 
 <body>
@@ -22,14 +23,13 @@
 
             <nav aria-label="Principal">
                 <a href="index.html" aria-current="page">Inicio</a>
-                <a href="#">Trámites</a>
-                <a href="nuevo-reclamo.html">Reclamos</a>
+                <a href="login.html?next=nuevo-reclamo2.html">Reclamos</a>
                 <a href="#">Noticias</a>
                 <a href="#">Información útil</a>
                 <a href="#">Contacto</a>
             </nav>
 
-            <a class="btn-ingresar" href="index2.html">
+            <a class="btn-ingresar" href="login.html">
                 Ingresar
             </a>
         </div>
@@ -68,7 +68,7 @@
                         </div>
                         <h3>Reclamos</h3>
                         <p>Contanos qué pasa en tu barrio y consultá el estado de tu solicitud.</p>
-                        <a href="nuevo-reclamo.html" class="service-link">Hacer un reclamo →</a>
+                        <a href="login.html?next=nuevo-reclamo2.html" class="service-link">Hacer un reclamo →</a>
                     </article>
 
                     <!-- Trámites -->
@@ -121,7 +121,7 @@
                         </div>
                         <h3>Mis gestiones</h3>
                         <p>Reuní tus trámites y reclamos en un lugar. Ingresá a tu cuenta.</p>
-                        <a href="mis-reclamos.html" class="service-link">Ver mis gestiones →</a>
+                        <a href="login.html?next=mis-reclamos2.html" class="service-link">Ver mis gestiones →</a>
                     </article>
 
                     <!-- Guía de servicios -->
@@ -397,8 +397,7 @@
             <div class="footer-links-grid">
                 <ul class="clean-list">
                     <li><a href="index.html">Inicio</a></li>
-                    <li><a href="#">Trámites</a></li>
-                    <li><a href="nuevo-reclamo.html">Reclamos</a></li>
+                    <li><a href="login.html?next=nuevo-reclamo2.html">Reclamos</a></li>
                 </ul>
                 <ul class="clean-list">
                     <li><a href="#">Noticias</a></li>
@@ -413,7 +412,7 @@
             <ul class="clean-list">
                 <li><a href="#">Preguntas frecuentes</a></li>
                 <li><a href="#">Accesibilidad</a></li>
-                <li><a href="index2.html">Ingresar a mi cuenta</a></li>
+                <li><a href="login.html">Ingresar a mi cuenta</a></li>
             </ul>
         </div>
     </div>
