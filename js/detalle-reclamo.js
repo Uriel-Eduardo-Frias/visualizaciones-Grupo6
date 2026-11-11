@@ -93,8 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('detalle-fecha').textContent =
         'Presentado el ' + fechaFormateada;
 
-    document.getElementById('detalle-estado').textContent =
-        reclamo.estado || 'Recibido';
+    actualizarEstadoVisual(reclamo.estado || 'Recibido');
 
     document.getElementById('detalle-categoria').textContent =
         reclamo.categoria || 'Sin categoría';
@@ -114,3 +113,44 @@ document.addEventListener('DOMContentLoaded', () => {
             : 'No se adjuntó una fotografía a este reclamo.';
 
 });
+
+
+function actualizarEstadoVisual(estado) {
+
+    const contenedor = document.getElementById('contenedor-estado');
+    const texto = document.getElementById('detalle-estado');
+    const icono = contenedor?.querySelector('.icono-estado');
+
+    if (!contenedor || !texto || !icono) return;
+
+    const estados = {
+        'recibido': {
+            clase: 'recibido',
+            icono: '✓'
+        },
+        'derivado': {
+            clase: 'derivado',
+            icono: '◷'
+        },
+        'en proceso': {
+            clase: 'en-proceso',
+            icono: '◷'
+        },
+        'resuelto': {
+            clase: 'resuelto',
+            icono: '✓'
+        }
+    };
+
+    const normalizado = (estado || 'Recibido').trim().toLowerCase();
+    const configuracion = estados[normalizado];
+
+    if (!configuracion) return;
+
+    contenedor.className = 'estado-etiqueta ' + configuracion.clase;
+
+    texto.textContent = estado;
+    icono.textContent = configuracion.icono;
+
+    contenedor.setAttribute('aria-label', 'Estado actual: ' + estado);
+}

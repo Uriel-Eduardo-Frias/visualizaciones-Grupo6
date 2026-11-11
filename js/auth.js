@@ -5,7 +5,8 @@
         'index2.html',
         'mis-reclamos2.html',
         'nuevo-reclamo2.html',
-        'reclamo-registrado2.html'
+        'reclamo-registrado2.html',
+        
     ]);
 
     const currentPage = location.pathname.split('/').pop();

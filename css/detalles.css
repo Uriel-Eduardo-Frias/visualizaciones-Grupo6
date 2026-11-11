@@ -181,7 +181,6 @@
   justify-content: space-between;
   padding: 28px;
   position: relative;
-  align-self: stretch;
   width: 100%;
   flex: 0 0 auto;
   background-color: #ffffff;
@@ -222,7 +221,7 @@
   color: #073e32;
   font-size: 28px;
   letter-spacing: 0;
-  line-height: 40.6px;
+  line-height: 1.6px;
 }
 
 .detalle-del-reclamo .text-wrapper-5 {
@@ -233,7 +232,7 @@
   color: #52665e;
   font-size: 14px;
   letter-spacing: 0;
-  line-height: 20.3px;
+  line-height: 1.3px;
 }
 
 .detalle-del-reclamo .estado-actual {
@@ -464,21 +463,19 @@
 }
 
 .detalle-del-reclamo .div-6 {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
 }
 
 .detalle-del-reclamo .indicador-y {
-  display: flex;
-  flex-direction: column;
-  width: 24px;
-  align-items: center;
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    flex: 0 0 24px;
+    position: relative;
 }
 
 .detalle-del-reclamo .estado-complete {
@@ -503,10 +500,11 @@
 }
 
 .detalle-del-reclamo .div-7 {
-  position: relative;
-  width: 2px;
-  height: 71px;
-  background-color: #94bba6;
+    display: block;
+    flex: 1 0 40px;
+    width: 2px;
+    min-height: 40px;
+    background-color: #94bba6;
 }
 
 .detalle-del-reclamo .div-8 {
@@ -784,7 +782,7 @@
   }
 
   .detalle-del-reclamo .secciones {
-    gap: 12spx;
+    gap: 12px;
   }
 
   .detalle-del-reclamo .datos-y-seguimiento {
@@ -797,6 +795,8 @@
   }
 
 }
+  
+@media (max-width: 600px) {
   .detalle-del-reclamo .secciones {
     order: 3;
     width: 100%;
@@ -824,6 +824,7 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+}
 
 
 
@@ -920,4 +921,86 @@
 
 .historial-reclamo .div-6 {
     width: 100%;
+}
+
+.detalle-del-reclamo .presentacin-del {
+    padding: 28px 80px 24px;
+    gap: 16px;
+}
+
+.detalle-del-reclamo .informacin-y {
+    padding: 24px 80px 40px;
+    gap: 20px;
+}
+
+.detalle-del-reclamo .presentacin-del,
+.detalle-del-reclamo .informacin-y {
+    background-color: #f4f7f5;
+}
+
+
+.detalle-del-reclamo .resumen-del-reclamo,
+.detalle-del-reclamo .informacin-del,
+.detalle-del-reclamo .seguimiento-del {
+    border: 1px solid #dfe7e2;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #063d3108;
+}
+
+/* Diseño general */
+.estado-etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Estado recibido */
+.estado-etiqueta.recibido {
+    background-color: #ddf0e6;
+    color: #087451;
+}
+
+/* Estado derivado */
+.estado-etiqueta.derivado {
+    background-color: #fff2cc;
+    color: #76520B;
+}
+
+/* Estado en proceso */
+.estado-etiqueta.en-proceso {
+    background-color: #ddf0e6;
+    color: #087451;
+}
+
+/* Estado resuelto */
+.estado-etiqueta.resuelto {
+    background-color: #087451;
+    color: #ffffff;
+}
+
+/* Icono */
+.estado-etiqueta .icono-estado {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Estado derivado */
+#contenedor-estado.derivado {
+    background-color: #fff2cc;
+    color: #76520B;
+}
+
+#contenedor-estado.derivado .text-wrapper-2,
+#contenedor-estado.derivado .icono-estado {
+    color: #76520B;
+}
+
+#contenedor-estado.resuelto,
+#contenedor-estado.resuelto .text-wrapper-2,
+#contenedor-estado.resuelto .icono-estado {
+    color: #ffffff;
 }
