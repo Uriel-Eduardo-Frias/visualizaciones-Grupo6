@@ -426,10 +426,12 @@ legend {
 
 .filter-pills {
     display: flex;
+    align-items: center;
     gap: 8px;
 }
 
 .pill {
+    box-sizing: border-box;
     background: var(--blanco);
     color: var(--tinta);
     border: 1px solid var(--linea);
@@ -438,7 +440,9 @@ legend {
     padding: 7px 18px;
     border-radius: 999px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .pill:hover {
@@ -449,7 +453,6 @@ legend {
     background: var(--verde-primario);
     color: var(--blanco);
     border-color: var(--verde-primario);
-    font-weight: 700;
 }
 
 .search-wrap {
@@ -1145,6 +1148,42 @@ legend {
     font-size: 13px;
     color: var(--gris-medio);
     line-height: 1.5;
+}
+
+.claims-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+/* Reclamo */
+.claims-table th:nth-child(1),
+.claims-table td:nth-child(1) {
+    width: 30%;
+}
+
+/* Área */
+.claims-table th:nth-child(2),
+.claims-table td:nth-child(2) {
+    width: 25%;
+}
+
+/* Enviado */
+.claims-table th:nth-child(3),
+.claims-table td:nth-child(3) {
+    width: 15%;
+}
+
+/* Estado */
+.claims-table th:nth-child(4),
+.claims-table td:nth-child(4) {
+    width: 20%;
+}
+
+/* Acción */
+.claims-table th:nth-child(5),
+.claims-table td:nth-child(5) {
+    width: 10%;
 }
 
 /* ==========================================================================

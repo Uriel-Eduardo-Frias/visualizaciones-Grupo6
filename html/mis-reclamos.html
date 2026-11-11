@@ -5,10 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mis reclamos · Portal Ciudadano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
     <script src="../js/auth.js" defer></script>
+    <script src="../js/mis-reclamos.js" defer></script>
 </head>
 
 <body data-auth-required data-auth-next="mis-reclamos2.html" data-authenticated-page="mis-reclamos2.html">
@@ -56,7 +58,8 @@
             </div>
 
             <div class="search-wrap">
-                <input type="search" class="search-input" placeholder="Buscar por número de reclamo" aria-label="Buscar reclamo">
+                <input type="search" class="search-input" id="buscar-reclamo"
+                    placeholder="Buscar por categoría o asunto" aria-label="Buscar reclamo por categoría o asunto">
             </div>
         </div>
 
@@ -72,7 +75,7 @@
                         <th scope="col"><span class="sr-only">Detalle</span></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="lista-reclamos">
                     <tr>
                         <td class="item-title">Luminaria apagada</td>
                         <td>Alumbrado Público</td>
@@ -106,40 +109,41 @@
         </div>
     </main>
 
-  <!-- FOOTER: Visitante -->
-<footer class="ft">
-    <div class="w footer-grid">
-        <div class="footer-col brand-col">
-            <span class="footer-logo">Portal Ciudadano</span>
-            <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
-            <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
-        </div>
+    <!-- FOOTER: Visitante -->
+    <footer class="ft">
+        <div class="w footer-grid">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">Portal Ciudadano</span>
+                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+            </div>
 
-        <div class="footer-col">
-            <h3>Explorá el portal</h3>
-            <div class="footer-links-grid">
+            <div class="footer-col">
+                <h3>Explorá el portal</h3>
+                <div class="footer-links-grid">
+                    <ul class="clean-list">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="login.html?next=nuevo-reclamo2.html">Reclamos</a></li>
+                    </ul>
+                    <ul class="clean-list">
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Información útil</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Estamos cerca</h3>
                 <ul class="clean-list">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="login.html?next=nuevo-reclamo2.html">Reclamos</a></li>
-                </ul>
-                <ul class="clean-list">
-                    <li><a href="#">Noticias</a></li>
-                    <li><a href="#">Información útil</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Accesibilidad</a></li>
+                    <li><a href="login.html">Ingresar a mi cuenta</a></li>
                 </ul>
             </div>
         </div>
-
-        <div class="footer-col">
-            <h3>Estamos cerca</h3>
-            <ul class="clean-list">
-                <li><a href="#">Preguntas frecuentes</a></li>
-                <li><a href="#">Accesibilidad</a></li>
-                <li><a href="login.html">Ingresar a mi cuenta</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 </body>
+
 </html>

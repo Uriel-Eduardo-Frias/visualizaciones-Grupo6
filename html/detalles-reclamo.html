@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Detalle y seguimiento de un reclamo del Portal Ciudadano del Municipio de La Matanza">
+    <title>Detalle del reclamo | Portal Ciudadano</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+
+    <link rel="stylesheet" href="../css/gdetalles.css">
+    <link rel="stylesheet" href="../css/detalles.css">
+
+
+    <script src="../js/auth.js" defer></script>
+    <script src="../js/detalle-reclamo.js" defer></script>
+    <script src="../js/seguimiento-reclamo.js" defer></script>
+
+</head>
+
+<body>
+    <div class="detalle-del-reclamo">
+        <div class="div">
+            <header class="hd">
+                <div class="w">
+                    <div class="brand">
+                        <a class="logo" href="index.html">Portal Ciudadano</a>
+                        <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+                    </div>
+
+                    <nav aria-label="Principal">
+                        <a href="index.html">Inicio</a>
+                        <a href="login.html?next=nuevo-reclamo2.html">Reclamos</a>
+                        <a href="login.html?next=mis-reclamos2.html" aria-current="page">Mis reclamos</a>
+                        <a href="#">Información útil</a>
+                        <a href="#">Contacto</a>
+                    </nav>
+
+                    <a class="btn-ingresar" href="login.html">
+                        Ingresar
+                    </a>
+                </div>
+            </header>
+            <main id="contenido-principal">
+                <section class="presentacin-del" aria-labelledby="titulo-pagina">
+                    <a class="volver-a-mis" href="mis-reclamos2.html">
+                        <span class="div-2" aria-hidden="true">
+                            <img class="img" src="../iconos/arrow-left.svg" alt="">
+                        </span>
+                        <span class="text-wrapper-2">Volver a mis reclamos</span>
+                    </a>
+                    <div class="div-3">
+                        <h1 class="text-wrapper-3" id="titulo-pagina">Detalle del reclamo</h1>
+                        <p class="p">Consultá la información y el seguimiento de tu reclamo.</p>
+                    </div>
+                    <article class="resumen-del-reclamo" aria-labelledby="titulo-reclamo">
+                        <div class="div-4">
+                            <span class="RECLAMO-RC">
+                                RECLAMO <span id="detalle-numero">RC-2026-004871</span>
+                            </span>
+                            <h2 class="text-wrapper-4" id="titulo-reclamo">Luminaria apagada</h2>
+
+                            <p class="text-wrapper-5" id="detalle-fecha">
+                                Presentado el 28 oct 2026 · 09:14
+                            </p>
+                        </div>
+                        <div class="estado-actual">
+                            <span class="text-wrapper-6">Estado actual</span>
+                            <span class="en-proceso" role="status" aria-label="Estado actual: En proceso">
+                                <span class="div-2" aria-hidden="true">
+                                    <img class="vector-2" src="img/vector-6.svg" alt="">
+                                    <img class="vector-3" src="img/vector-4.svg" alt="">
+                                </span>
+                                <span class="text-wrapper-2" id="detalle-estado">En proceso</span>
+                            </span>
+                        </div>
+                    </article>
+                </section>
+                <section class="informacin-y" aria-label="Información y seguimiento del reclamo">
+                    <div class="datos-y-seguimiento">
+                        <article class="informacin-del" aria-labelledby="informacion-reclamo">
+                            <h2 class="text-wrapper-7" id="informacion-reclamo">Información del reclamo</h2>
+                            <div class="div-5">
+                                <div class="div-4">
+                                    <span class="text-wrapper-8">Categoría</span>
+                                    <span class="categora-alumbrado">
+                                        <span class="text-wrapper-9" id="detalle-categoria">Alumbrado</span>
+                                    </span>
+                                </div>
+                                <div class="div-4">
+                                    <span class="text-wrapper-8">Área responsable</span>
+                                    <span class="text-wrapper-10" id="detalle-area">Alumbrado Público</span>
+                                </div>
+                            </div>
+                            <div class="separador" role="separator"></div>
+                            <div class="div-3">
+                                <span class="text-wrapper-8">Dirección del incidente</span>
+                                <p class="text-wrapper-10" id="detalle-direccion">
+                                    Av. Brig. Gral. Juan Manuel de Rosas 3250, San Justo
+                                </p>
+                            </div>
+                            <div class="separador" role="separator"></div>
+                            <div class="descripcin-del">
+                                <span class="text-wrapper-8">Descripción del problema</span>
+                                <p class="text-wrapper-11" id="detalle-descripcion">
+                                    La luminaria de la vereda está apagada desde hace tres noches.
+                                </p>
+                            </div>
+                            <div class="separador" role="separator"></div>
+                            <div class="div-3">
+                                <span class="text-wrapper-8">Fotografía adjunta</span>
+                                <p class="text-wrapper-12" id="detalle-foto">
+                                    No se adjuntó una fotografía a este reclamo.
+                                </p>
+                            </div>
+                        </article>
+                        <article class="seguimiento-del" aria-labelledby="seguimiento-reclamo">
+                            <h2 class="text-wrapper-7" id="seguimiento-reclamo">Seguimiento del reclamo</h2>
+                            <p class="text-wrapper-13" id="ultima-actualizacion">
+                                Última actualización
+                            </p>
+                            <div id="seguimiento-lista" class="historial-reclamo" role="list"
+                                aria-label="Historial del reclamo">
+                            </div>
+                        </article>
+                    </div>
+                    <a class="volver-a-mis-2" href="mis-reclamos2.html">
+                        <span class="div-2" aria-hidden="true">
+                            <img class="img" src="img/vector-5.svg" alt="">
+                        </span>
+                        <span class="text-wrapper-18">Volver a mis reclamos</span>
+                    </a>
+                </section>
+            </main>
+            <footer class="ft">
+                <div class="w footer-grid">
+                    <div class="footer-col brand-col">
+                        <span class="footer-logo">Portal Ciudadano</span>
+                        <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                        <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3>Explorá el portal</h3>
+                        <div class="footer-links-grid">
+                            <ul class="clean-list">
+                                <li><a href="index.html">Inicio</a></li>
+                                <li><a href="login.html?next=nuevo-reclamo2.html">Reclamos</a></li>
+                            </ul>
+                            <ul class="clean-list">
+                                <li><a href="#">Noticias</a></li>
+                                <li><a href="#">Información útil</a></li>
+                                <li><a href="#">Contacto</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3>Estamos cerca</h3>
+                        <ul class="clean-list">
+                            <li><a href="#">Preguntas frecuentes</a></li>
+                            <li><a href="#">Accesibilidad</a></li>
+                            <li><a href="login.html">Ingresar a mi cuenta</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
