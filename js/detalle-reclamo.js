@@ -102,7 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
         reclamo.categoria || 'Sin asignar';
 
     document.getElementById('detalle-direccion').textContent =
-        reclamo.direccion || 'Sin dirección';
+        [reclamo.direccion, reclamo.barrio, reclamo.localidad || reclamo.ciudad]
+            .filter(Boolean)
+            .join(', ') || 'Sin ubicación';
 
     document.getElementById('detalle-descripcion').textContent =
         reclamo.detalle || 'No se agregó una descripción.';

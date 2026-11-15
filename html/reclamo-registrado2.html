@@ -66,7 +66,8 @@
                 <div>
                     <div class="kv"><span>Categoría</span><b id="r-cat">Alumbrado</b></div>
                     <div class="kv"><span>Ubicación</span><b id="r-dir">Av. [Calle] 1234</b></div>
-                    <div class="kv"><span>Coordenadas</span><b id="r-coord">No disponibles</b></div>
+                    <div class="kv"><span>Localidad</span><b id="r-localidad">No especificada</b></div>
+                    <div class="kv"><span>Barrio</span><b id="r-barrio">No especificado</b></div>
                     <div class="kv"><span>Enviado</span><b id="r-fecha">28 oct, 09:14</b></div>
                     <div class="kv"><span>Estado</span><b><span class="estado">Recibido</span></b></div>
                 </div>
@@ -124,10 +125,11 @@
         }
         if (p.get('categoria')) document.getElementById('r-cat').textContent = p.get('categoria');
         if (p.get('direccion')) document.getElementById('r-dir').textContent = p.get('direccion');
-        if (p.has('latitud') && p.has('longitud')) {
-            document.getElementById('r-coord').textContent =
-                p.get('latitud') + ', ' + p.get('longitud');
+        if (p.get('localidad') || p.get('ciudad')) {
+            document.getElementById('r-localidad').textContent =
+                p.get('localidad') || p.get('ciudad');
         }
+        if (p.get('barrio')) document.getElementById('r-barrio').textContent = p.get('barrio');
         const d = new Date();
         const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
         document.getElementById('r-fecha').textContent =

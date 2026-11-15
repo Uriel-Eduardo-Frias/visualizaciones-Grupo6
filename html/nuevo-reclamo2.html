@@ -64,7 +64,7 @@
             <!-- Formulario de reclamo -->
             <form class="card form-stack" id="form-reclamo" action="reclamo-registrado2.html" method="get">
 
-                <!-- Paso 1: Ubicación -->
+                <!-- Paso 1: Asunto -->
                 <fieldset>
 
                     <legend>1. Asunto del problema</legend>
@@ -77,10 +77,6 @@
 
                     <legend>2. ¿Dónde está el problema?</legend>
                     <div class="map" id="mapa-reclamo" aria-label="Mapa interactivo: seleccioná el lugar del reclamo"></div>
-                    <div class="map-coordinates" aria-live="polite">
-                        <span>Latitud: <output id="reclamo-latitud">Sin seleccionar</output></span>
-                        <span>Longitud: <output id="reclamo-longitud">Sin seleccionar</output></span>
-                    </div>
                     <p class="map-message" id="mapa-mensaje" role="status" aria-live="polite">Hacé clic en el mapa para marcar el lugar del problema.</p>
 
                     <div class="input-group">
@@ -89,6 +85,10 @@
                             <input class="in" id="direccion" name="direccion" placeholder="Av. [Calle] 1234" required>
                             <button type="button" class="link-location" id="btn-ubicacion">Usar mi ubicación</button>
                         </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="lb" for="ubicacion-localidad">Localidad y barrio</label>
+                        <input class="in" id="ubicacion-localidad" placeholder="Se completa al seleccionar el punto en el mapa" readonly aria-describedby="mapa-mensaje">
                     </div>
                 </fieldset>
 
@@ -137,7 +137,7 @@
                     <h2>Resumen</h2>
                     <p class="mu">Categoría: <strong id="r-cat">Alumbrado</strong></p>
                     <p class="mu">Ubicación: <span id="r-dir">Av. [Calle] 1234</span></p>
-                    <p class="mu">Coordenadas: <span id="r-coord">Sin seleccionar</span></p>
+                    <p class="mu">Localidad y barrio: <span id="r-localidad">Sin seleccionar</span></p>
                     <p class="mu">Te avisamos por WhatsApp y email.</p>
                 </div>
 
@@ -196,9 +196,14 @@
 
         // Sincronización en vivo entre formulario y tarjeta de resumen
         const f = document.getElementById('form-reclamo');
-        const latitudInput = document.getElementById('reclamo-latitud');
-        const longitudInput = document.getElementById('reclamo-longitud');
+        const localidadInput = document.getElementById('ubicacion-localidad');
         let coordenadas = null;
+        let localidadSeleccionada = '';
+        let barrioSeleccionado = '';
+        let busquedaId = 0;
+        let temporizadorBusqueda = null;
+        let solicitudActiva = null;
+        let ultimaBusqueda = 0;
 
         f.addEventListener('input', () => {
             document.getElementById('r-cat').textContent =
@@ -206,10 +211,6 @@
 
             document.getElementById('r-dir').textContent =
                 f.direccion.value.trim() || '—';
-
-            document.getElementById('r-coord').textContent = coordenadas
-                ? coordenadas.lat.toFixed(6) + ', ' + coordenadas.lng.toFixed(6)
-                : 'Sin seleccionar';
 
             const file = f.foto.files[0];
 
@@ -220,9 +221,9 @@
         f.addEventListener('submit', event => {
             event.preventDefault();
 
-            if (!coordenadas) {
+            if (!coordenadas || !localidadSeleccionada || !barrioSeleccionado) {
                 document.getElementById('mapa-mensaje').textContent =
-                    'Seleccioná en el mapa dónde está el problema o usá tu ubicación.';
+                    'Seleccioná en el mapa un punto con localidad y barrio identificables.';
                 document.getElementById('mapa-reclamo').focus();
                 return;
             }
@@ -244,6 +245,8 @@
                     numero: numero,
                     categoria: categoria,
                     direccion: direccion,
+                    localidad: localidadSeleccionada,
+                    barrio: barrioSeleccionado,
                     latitud: coordenadas.lat,
                     longitud: coordenadas.lng,
                     asunto: asunto,
@@ -279,9 +282,9 @@
                 destination.search = new URLSearchParams({
                     categoria: categoria,
                     direccion: direccion,
+                    localidad: localidadSeleccionada,
+                    barrio: barrioSeleccionado,
                     asunto: asunto,
-                    latitud: coordenadas.lat,
-                    longitud: coordenadas.lng,
                     numero: numero
                 }).toString();
 
@@ -299,14 +302,71 @@
             }
         });
 
-        window.addEventListener('portal:ubicacion-reclamo', event => {
+        window.addEventListener('portal:ubicacion-reclamo', async event => {
             coordenadas = event.detail;
-            latitudInput.textContent = coordenadas.lat.toFixed(6);
-            longitudInput.textContent = coordenadas.lng.toFixed(6);
-            document.getElementById('r-coord').textContent =
-                coordenadas.lat.toFixed(6) + ', ' + coordenadas.lng.toFixed(6);
+            localidadSeleccionada = '';
+            barrioSeleccionado = '';
+            localidadInput.value = '';
+            document.getElementById('r-localidad').textContent = 'Buscando...';
             document.getElementById('mapa-mensaje').textContent =
-                'Ubicación seleccionada. Podés mover el marcador para ajustarla.';
+                'Buscando la localidad y el barrio...';
+
+            const idActual = ++busquedaId;
+            window.clearTimeout(temporizadorBusqueda);
+            if (solicitudActiva) solicitudActiva.abort();
+
+            const demora = Math.max(0, 1000 - (Date.now() - ultimaBusqueda));
+            temporizadorBusqueda = window.setTimeout(async () => {
+                const controller = new AbortController();
+                solicitudActiva = controller;
+                ultimaBusqueda = Date.now();
+
+                try {
+                    const url = new URL('https://nominatim.openstreetmap.org/reverse');
+                    url.search = new URLSearchParams({
+                        format: 'jsonv2',
+                        lat: coordenadas.lat,
+                        lon: coordenadas.lng,
+                        zoom: '14',
+                        addressdetails: '1'
+                    }).toString();
+
+                    const response = await fetch(url.href, {
+                        headers: { 'Accept-Language': 'es' },
+                        signal: controller.signal
+                    });
+                    if (!response.ok) {
+                        throw new Error('El servicio de búsqueda respondió con un error.');
+                    }
+
+                    const resultado = await response.json();
+                    if (idActual !== busquedaId) return;
+
+                    const direccion = resultado.address || {};
+                    const localidad = direccion.city || direccion.town ||
+                        direccion.village || direccion.municipality ||
+                        direccion.city_district;
+                    const barrio = direccion.neighbourhood || direccion.suburb ||
+                        direccion.quarter || direccion.residential || direccion.hamlet;
+
+                    if (!localidad || !barrio) {
+                        throw new Error('No se encontraron localidad y barrio para el punto.');
+                    }
+
+                    localidadSeleccionada = localidad;
+                    barrioSeleccionado = barrio;
+                    localidadInput.value = barrio + ', ' + localidad;
+                    document.getElementById('r-localidad').textContent =
+                        localidadInput.value;
+                    document.getElementById('mapa-mensaje').textContent =
+                        'Ubicación seleccionada. Podés mover el marcador para ajustarla.';
+                } catch (error) {
+                    if (error.name === 'AbortError' || idActual !== busquedaId) return;
+                    console.error('Error al identificar la localidad y el barrio:', error);
+                    document.getElementById('mapa-mensaje').textContent =
+                        'No se pudo identificar la localidad y el barrio. Probá seleccionando otro punto del mapa.';
+                }
+            }, demora);
         });
 
     </script>

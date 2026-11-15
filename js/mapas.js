@@ -89,7 +89,7 @@
             const name = office.querySelector('strong').textContent;
             const address = office.dataset.address;
             const marker = L.marker(coordinates).addTo(map)
-                .bindPopup(`<strong>${name}</strong><br>${address}<br>Latitud: ${coordinates[0].toFixed(6)}<br>Longitud: ${coordinates[1].toFixed(6)}`);
+                .bindPopup(`<strong>${name}</strong><br>${address}`);
 
             office.addEventListener('click', () => {
                 offices.forEach(item => {
