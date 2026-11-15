@@ -9,7 +9,10 @@
         rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="../js/auth.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="../js/mapas.js" defer></script>
 </head>
 
 <body data-auth-required data-auth-next="nuevo-reclamo2.html">
@@ -73,19 +76,18 @@
                 <fieldset>
 
                     <legend>2. ¿Dónde está el problema?</legend>
-                    <div class="map" role="img" aria-label="Mapa interactivo para marcar la ubicación del reclamo">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" class="map-icon">
-                            <path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z" />
-                            <circle cx="12" cy="10" r="2.5" />
-                        </svg>
-                        <span>Hacé clic en el mapa para marcar el lugar</span>
+                    <div class="map" id="mapa-reclamo" aria-label="Mapa interactivo: seleccioná el lugar del reclamo"></div>
+                    <div class="map-coordinates" aria-live="polite">
+                        <span>Latitud: <output id="reclamo-latitud">Sin seleccionar</output></span>
+                        <span>Longitud: <output id="reclamo-longitud">Sin seleccionar</output></span>
                     </div>
+                    <p class="map-message" id="mapa-mensaje" role="status" aria-live="polite">Hacé clic en el mapa para marcar el lugar del problema.</p>
 
                     <div class="input-group">
                         <label class="lb" for="direccion">Dirección</label>
                         <div class="input-with-action">
                             <input class="in" id="direccion" name="direccion" placeholder="Av. [Calle] 1234" required>
-                            <a href="#" class="link-location" id="btn-ubicacion">Usar mi ubicación</a>
+                            <button type="button" class="link-location" id="btn-ubicacion">Usar mi ubicación</button>
                         </div>
                     </div>
                 </fieldset>
@@ -135,6 +137,7 @@
                     <h2>Resumen</h2>
                     <p class="mu">Categoría: <strong id="r-cat">Alumbrado</strong></p>
                     <p class="mu">Ubicación: <span id="r-dir">Av. [Calle] 1234</span></p>
+                    <p class="mu">Coordenadas: <span id="r-coord">Sin seleccionar</span></p>
                     <p class="mu">Te avisamos por WhatsApp y email.</p>
                 </div>
 
@@ -193,6 +196,9 @@
 
         // Sincronización en vivo entre formulario y tarjeta de resumen
         const f = document.getElementById('form-reclamo');
+        const latitudInput = document.getElementById('reclamo-latitud');
+        const longitudInput = document.getElementById('reclamo-longitud');
+        let coordenadas = null;
 
         f.addEventListener('input', () => {
             document.getElementById('r-cat').textContent =
@@ -200,6 +206,10 @@
 
             document.getElementById('r-dir').textContent =
                 f.direccion.value.trim() || '—';
+
+            document.getElementById('r-coord').textContent = coordenadas
+                ? coordenadas.lat.toFixed(6) + ', ' + coordenadas.lng.toFixed(6)
+                : 'Sin seleccionar';
 
             const file = f.foto.files[0];
 
@@ -209,6 +219,13 @@
 
         f.addEventListener('submit', event => {
             event.preventDefault();
+
+            if (!coordenadas) {
+                document.getElementById('mapa-mensaje').textContent =
+                    'Seleccioná en el mapa dónde está el problema o usá tu ubicación.';
+                document.getElementById('mapa-reclamo').focus();
+                return;
+            }
 
             try {
                 // Generar número de reclamo
@@ -227,6 +244,8 @@
                     numero: numero,
                     categoria: categoria,
                     direccion: direccion,
+                    latitud: coordenadas.lat,
+                    longitud: coordenadas.lng,
                     asunto: asunto,
                     detalle: detalle,
                     foto: archivo ? archivo.name : '',
@@ -261,6 +280,8 @@
                     categoria: categoria,
                     direccion: direccion,
                     asunto: asunto,
+                    latitud: coordenadas.lat,
+                    longitud: coordenadas.lng,
                     numero: numero
                 }).toString();
 
@@ -278,6 +299,15 @@
             }
         });
 
+        window.addEventListener('portal:ubicacion-reclamo', event => {
+            coordenadas = event.detail;
+            latitudInput.textContent = coordenadas.lat.toFixed(6);
+            longitudInput.textContent = coordenadas.lng.toFixed(6);
+            document.getElementById('r-coord').textContent =
+                coordenadas.lat.toFixed(6) + ', ' + coordenadas.lng.toFixed(6);
+            document.getElementById('mapa-mensaje').textContent =
+                'Ubicación seleccionada. Podés mover el marcador para ajustarla.';
+        });
 
     </script>
 </body>

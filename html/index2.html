@@ -8,7 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="../js/auth.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="../js/mapas.js" defer></script>
 </head>
 
 <body data-auth-required data-auth-next="index2.html">
@@ -211,50 +214,53 @@
         <section class="section-padding">
             <div class="w">
                 <header class="section-header">
-                    <h2>Encuentra nuestras oficinas</h2>
-                    <p class="section-subtitle">Consultá las ubicaciones y elegí dónde realizar tu gestión presencial.</p>
+                    <h2>Sedes municipales de La Matanza</h2>
+                    <p class="section-subtitle">Consultá las municipalidades y delegaciones para elegir dónde realizar tu gestión presencial.</p>
                 </header>
 
                 <div class="offices-layout">
                     <!-- Lista de oficinas -->
                     <div class="offices-card">
-                        <span class="offices-card-title">Nuestras oficinas</span>
+                        <span class="offices-card-title">Municipalidades y delegaciones</span>
                         <ul class="offices-list">
-                            <li class="office-item active">
-                                <span class="office-num">1</span>
-                                <div class="office-details">
-                                    <strong>Oficina 1</strong>
-                                    <span>Calle</span>
-                                    <small class="mu">Horario de atención</small>
-                                </div>
+                            <li>
+                                <button class="office-item active" type="button" data-office data-lat="-34.677156"
+                                    data-lng="-58.560483" data-address="Almafuerte, San Justo" aria-pressed="true">
+                                    <span class="office-num">1</span>
+                                    <span class="office-details">
+                                        <strong>Palacio Municipal · San Justo</strong>
+                                        <span class="office-address">Almafuerte, San Justo</span>
+                                        <small class="mu">Latitud: -34.677156 · Longitud: -58.560483</small>
+                                    </span>
+                                </button>
                             </li>
-                            <li class="office-item">
-                                <span class="office-num">2</span>
-                                <div class="office-details">
-                                    <strong>Oficina 2</strong>
-                                    <span>Calle</span>
-                                    <small class="mu">Horario de atención</small>
-                                </div>
+                            <li>
+                                <button class="office-item" type="button" data-office data-lat="-34.654665"
+                                    data-lng="-58.554986" data-address="Humboldt, Ramos Mejía" aria-pressed="false">
+                                    <span class="office-num">2</span>
+                                    <span class="office-details">
+                                        <strong>Delegación Municipal · Ramos Mejía</strong>
+                                        <span class="office-address">Humboldt, Ramos Mejía</span>
+                                        <small class="mu">Latitud: -34.654665 · Longitud: -58.554986</small>
+                                    </span>
+                                </button>
                             </li>
-                            <li class="office-item">
-                                <span class="office-num">3</span>
-                                <div class="office-details">
-                                    <strong>Oficina 3</strong>
-                                    <span>Calle</span>
-                                    <small class="mu">Horario de atención</small>
-                                </div>
+                            <li>
+                                <button class="office-item" type="button" data-office data-lat="-34.791456"
+                                    data-lng="-58.629674" data-address="Sunchales, González Catán" aria-pressed="false">
+                                    <span class="office-num">3</span>
+                                    <span class="office-details">
+                                        <strong>Delegación Municipal · González Catán</strong>
+                                        <span class="office-address">Sunchales, González Catán</span>
+                                        <small class="mu">Latitud: -34.791456 · Longitud: -58.629674</small>
+                                    </span>
+                                </button>
                             </li>
                         </ul>
                     </div>
 
                     <!-- Mapa interactivo -->
-                    <div class="offices-map-box" role="img" aria-label="Mapa de oficinas municipales">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" class="map-pin-icon">
-                            <path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z" />
-                            <circle cx="12" cy="10" r="2.5" />
-                        </svg>
-                        <span>Mapa interactivo de oficinas</span>
-                    </div>
+                    <div class="offices-map-box" id="mapa-oficinas" aria-label="Mapa interactivo de oficinas municipales"></div>
                 </div>
             </div>
         </section>
