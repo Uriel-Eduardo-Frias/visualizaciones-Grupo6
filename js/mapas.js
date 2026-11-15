@@ -19,14 +19,17 @@
         let marker = null;
         const message = document.getElementById('mapa-mensaje');
 
-        const selectLocation = (latlng) => {
+        const updateMarker = latlng => {
             if (marker) {
                 marker.setLatLng(latlng);
             } else {
                 marker = L.marker(latlng, { draggable: true }).addTo(map);
                 marker.on('dragend', () => selectLocation(marker.getLatLng()));
             }
+        };
 
+        const selectLocation = latlng => {
+            updateMarker(latlng);
             const coordinates = {
                 lat: Number(latlng.lat.toFixed(6)),
                 lng: Number(latlng.lng.toFixed(6))
@@ -35,6 +38,20 @@
                 detail: coordinates
             }));
         };
+
+        window.addEventListener('portal:centrar-ubicacion-reclamo', event => {
+            const { lat, lng } = event.detail;
+            const location = L.latLng(lat, lng);
+            map.setView(location, 17);
+            updateMarker(location);
+        });
+
+        window.addEventListener('portal:limpiar-ubicacion-reclamo', () => {
+            if (marker) {
+                map.removeLayer(marker);
+                marker = null;
+            }
+        });
 
         map.on('click', event => selectLocation(event.latlng));
 

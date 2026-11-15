@@ -88,7 +88,7 @@
                     </div>
                     <div class="input-group">
                         <label class="lb" for="ubicacion-localidad">Localidad y barrio</label>
-                        <input class="in" id="ubicacion-localidad" placeholder="Se completa al seleccionar el punto en el mapa" readonly aria-describedby="mapa-mensaje">
+                        <input class="in" id="ubicacion-localidad" placeholder="Se completa al ingresar la dirección o seleccionar un punto en el mapa" readonly aria-describedby="mapa-mensaje">
                     </div>
                 </fieldset>
 
@@ -196,6 +196,7 @@
 
         // Sincronización en vivo entre formulario y tarjeta de resumen
         const f = document.getElementById('form-reclamo');
+        const direccionInput = document.getElementById('direccion');
         const localidadInput = document.getElementById('ubicacion-localidad');
         let coordenadas = null;
         let localidadSeleccionada = '';
@@ -203,7 +204,18 @@
         let busquedaId = 0;
         let temporizadorBusqueda = null;
         let solicitudActiva = null;
+        let busquedaDireccionId = 0;
+        let temporizadorDireccion = null;
+        let solicitudDireccion = null;
         let ultimaBusqueda = 0;
+
+        const obtenerLocalidadYBarrio = direccion => ({
+            localidad: direccion.city || direccion.town || direccion.village ||
+                direccion.municipality || direccion.city_district ||
+                direccion.county || direccion.state_district,
+            barrio: direccion.neighbourhood || direccion.suburb ||
+                direccion.quarter || direccion.residential || direccion.hamlet
+        });
 
         f.addEventListener('input', () => {
             document.getElementById('r-cat').textContent =
@@ -216,6 +228,93 @@
 
             document.getElementById('foto-txt').textContent =
                 file ? file.name : '+ Agregar foto';
+        });
+
+        direccionInput.addEventListener('input', () => {
+            const consulta = direccionInput.value.trim();
+            const idActual = ++busquedaDireccionId;
+            busquedaId++;
+            window.clearTimeout(temporizadorDireccion);
+            window.clearTimeout(temporizadorBusqueda);
+            if (solicitudDireccion) solicitudDireccion.abort();
+            if (solicitudActiva) solicitudActiva.abort();
+
+            coordenadas = null;
+            localidadSeleccionada = '';
+            barrioSeleccionado = '';
+            localidadInput.value = '';
+            document.getElementById('r-localidad').textContent =
+                consulta ? 'Buscando...' : 'Sin seleccionar';
+            window.dispatchEvent(new CustomEvent('portal:limpiar-ubicacion-reclamo'));
+
+            if (consulta.length < 5) {
+                document.getElementById('mapa-mensaje').textContent =
+                    consulta ? 'Ingresá una dirección más completa para buscarla.' :
+                        'Hacé clic en el mapa para marcar el lugar del problema.';
+                return;
+            }
+
+            document.getElementById('mapa-mensaje').textContent =
+                'Buscando la localidad y el barrio de la dirección...';
+            const demora = Math.max(700, 1000 - (Date.now() - ultimaBusqueda));
+            temporizadorDireccion = window.setTimeout(async () => {
+                const controller = new AbortController();
+                solicitudDireccion = controller;
+                ultimaBusqueda = Date.now();
+
+                try {
+                    const url = new URL('https://nominatim.openstreetmap.org/search');
+                    url.search = new URLSearchParams({
+                        format: 'jsonv2',
+                        q: consulta + ', La Matanza, Buenos Aires, Argentina',
+                        addressdetails: '1',
+                        limit: '1',
+                        countrycodes: 'ar'
+                    }).toString();
+
+                    const response = await fetch(url.href, {
+                        headers: { 'Accept-Language': 'es' },
+                        signal: controller.signal
+                    });
+                    if (!response.ok) {
+                        throw new Error('El servicio de búsqueda respondió con un error.');
+                    }
+
+                    const resultados = await response.json();
+                    if (idActual !== busquedaDireccionId) return;
+                    if (!resultados.length) {
+                        throw new Error('No se encontró la dirección.');
+                    }
+
+                    const resultado = resultados[0];
+                    const { localidad, barrio } =
+                        obtenerLocalidadYBarrio(resultado.address || {});
+                    const lat = Number(resultado.lat);
+                    const lng = Number(resultado.lon);
+
+                    if (!localidad || !barrio || !Number.isFinite(lat) || !Number.isFinite(lng)) {
+                        throw new Error('No se encontraron localidad y barrio para la dirección.');
+                    }
+
+                    coordenadas = { lat, lng };
+                    localidadSeleccionada = localidad;
+                    barrioSeleccionado = barrio;
+                    localidadInput.value = barrio + ', ' + localidad;
+                    document.getElementById('r-localidad').textContent =
+                        localidadInput.value;
+                    window.dispatchEvent(new CustomEvent('portal:centrar-ubicacion-reclamo', {
+                        detail: coordenadas
+                    }));
+                    document.getElementById('mapa-mensaje').textContent =
+                        'Dirección localizada. Podés mover el marcador para ajustarla.';
+                } catch (error) {
+                    if (error.name === 'AbortError' || idActual !== busquedaDireccionId) return;
+                    console.error('Error al identificar la localidad y el barrio:', error);
+                    document.getElementById('r-localidad').textContent = 'Sin seleccionar';
+                    document.getElementById('mapa-mensaje').textContent =
+                        'No se pudo identificar la localidad y el barrio. Revisá la dirección o seleccioná el punto en el mapa.';
+                }
+            }, demora);
         });
 
         f.addEventListener('submit', event => {
@@ -306,6 +405,9 @@
             coordenadas = event.detail;
             localidadSeleccionada = '';
             barrioSeleccionado = '';
+            busquedaDireccionId++;
+            window.clearTimeout(temporizadorDireccion);
+            if (solicitudDireccion) solicitudDireccion.abort();
             localidadInput.value = '';
             document.getElementById('r-localidad').textContent = 'Buscando...';
             document.getElementById('mapa-mensaje').textContent =
@@ -342,12 +444,8 @@
                     const resultado = await response.json();
                     if (idActual !== busquedaId) return;
 
-                    const direccion = resultado.address || {};
-                    const localidad = direccion.city || direccion.town ||
-                        direccion.village || direccion.municipality ||
-                        direccion.city_district;
-                    const barrio = direccion.neighbourhood || direccion.suburb ||
-                        direccion.quarter || direccion.residential || direccion.hamlet;
+                    const { localidad, barrio } =
+                        obtenerLocalidadYBarrio(resultado.address || {});
 
                     if (!localidad || !barrio) {
                         throw new Error('No se encontraron localidad y barrio para el punto.');
