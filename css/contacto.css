@@ -10,6 +10,9 @@ body {
 
     color: #222;
 }
+.contacto-color{
+ background-color: #eaf4ee;
+}
 
 h1{
     display: flex;
@@ -26,7 +29,7 @@ h1{
     background-color: white;
     width: 95%;
     max-width: 1300px;
-    margin: 80px auto 0;
+    margin: 20px auto 0;
     padding: 40px 30px;
     border-radius: 6px;
     min-height: 600px;
@@ -86,48 +89,6 @@ h1{
     outline: none;
 }
 
-/* CAPTCHA */
-
-.captcha {
-    margin-top: 40px;
-}
-
-.captcha > label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.captcha p {
-    font-size: 17px;
-    margin-bottom: 10px;
-}
-
-.verificacion {
-    width: 380px;
-    height: 75px;
-    border: 1px solid #ccc;
-    background-color: #fafafa;
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    gap: 15px;
-}
-
-.verificacion input {
-    width: 30px;
-    height: 30px;
-}
-
-.verificacion label {
-    font-size: 16px;
-}
-
-.logo-captcha {
-    margin-left: auto;
-    font-size: 35px;
-    color: #4285f4;
-}
-
 /* BOTÓN */
 
 button {
@@ -142,6 +103,34 @@ button {
 
 button:hover {
     background-color: #40ae98;
+}
+.vias-contacto{
+    padding-top: 30px;
+}
+.datos-contacto{
+    padding-top:10px;
+    font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+    color: #222;
+}
+.social-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+/* Estilo base de los íconos */
+.social-icon {
+    width: 40px; 
+    height: 40px;
+    border-radius: 20%; 
+    transition: all 0.3s ease; 
+
+}
+
+/* Efecto al pasar el cursor o seleccionar (Hover / Focus) */
+.social-icon:hover,
+.social-icon:focus {
+    /* Crea un resplandor verde alrededor del logo */
+    box-shadow: 0 0 12px 3px #125d30; 
 }
 
 /* DISEÑO RESPONSIVE */

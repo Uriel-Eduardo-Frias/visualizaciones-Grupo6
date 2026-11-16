@@ -40,7 +40,10 @@
     </header>
         <!-- Contenedor principal -->
     <main class="w main-container">
-        <h1>Contacto</h1>
+        <div class="contacto-color">
+            <h1>Contacto</h1>
+        </div>
+        
         <div class="contenedor">
         <p class="descripcion">
             Completá los siguientes campos para ponerte en contacto con el
@@ -74,34 +77,28 @@
                 <textarea id="consulta" name="consulta" required></textarea>
             </div>
 
-            <div class="captcha">
-
-                <label>CAPTCHA</label>
-
-                <p>
-                    Esta pregunta es para comprobar si usted es un visitante
-                    humano y prevenir envíos de spam automatizado.
-                </p>
-
-                <div class="verificacion">
-                    <input type="checkbox" id="robot">
-                    <label for="robot">No soy un robot</label>
-                    <span class="logo-captcha">↻</span>
-                </div>
-
-            </div>
-
             <button type="submit">ENVIAR CONSULTA</button>
 
         </form>
         </div>
-        <div>
+        <div class="vias-contacto">
             <h2>Vias de contacto de la Municipalidad de La Matanza</h2>
-            <p><strong>Dirección:</strong>Almafuerte 3050,San Justo [1754] Bs.As. Argentina</p>
-            <p><strong>Teléfono:</strong>011 46510101</p>
-            <p><strong>Atención:</strong>Lunes a Viernes de 08:00 a 14:00 hs.</p>
-            <p><strong>Email:</strong>matanzaresponde@lamatanza.gov.ar</p>
-            <p><strong>Nuestras Redes:</strong></p>
+            <div class="datos-contacto">
+            <p><strong>Dirección:</strong> Almafuerte 3050,San Justo [1754] Bs.As. Argentina</p>
+            <p><strong>Teléfono:</strong> 011 46510101</p>
+            <p><strong>Atención:</strong> Lunes a Viernes de 08:00 a 14:00 hs.</p>
+            <p><strong>Email:</strong> matanzaresponde@lamatanza.gov.ar</p>
+            <p><strong>Nuestras Redes: </strong></p>
+            <div class="social-container">
+            <a href="#" class="social-link">
+           <img src="../iconos/facebook.png" alt="Facebook" class="social-icon">
+             </a>
+             <a href="#" class="social-link">
+           <img src="../iconos/instagram.png" alt="Instagram" class="social-icon">
+             </a>
+            </div>
+            </div>
+         
         </div>
         
     </main>
