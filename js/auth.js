@@ -7,6 +7,7 @@
         'nuevo-reclamo2.html',
         'reclamo-registrado2.html',
         'noticias_comunidad.html',
+        'informacion-util2.html',
         'contacto2.html',
     ]);
 
