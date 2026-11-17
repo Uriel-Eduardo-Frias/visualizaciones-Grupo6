@@ -77,6 +77,16 @@ h1{
     border-color: #40ae98;
 }
 
+.campo.is-invalid label {
+    color: #b42318;
+}
+
+.campo.is-invalid input,
+.campo.is-invalid textarea {
+    border-color: #b42318;
+    box-shadow: 0 0 0 1px #b42318;
+}
+
 /* CAMPO CONSULTA */
 
 .consulta textarea {

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/header-footer.css">
     <link rel="stylesheet" href="../css/contacto.css">
     <script src="../js/auth.js" defer></script>
-    <script src="../js/mis-reclamos.js" defer></script>
+    <script src="../js/contacto.js" defer></script>
 </head>
 
 <body >
@@ -38,8 +38,12 @@
         </div>
 
     </header>
-        <!-- Contenedor principal -->
+
     <main class="w main-container">
+        <nav class="bc" aria-label="Miga de pan">
+            <a href="index.html">Inicio</a> › <span aria-current="page">Contacto</span>
+        </nav>
+
         <div class="contacto-color">
             <h1>Contacto</h1>
         </div>
@@ -51,30 +55,33 @@
             A la brevedad tu consulta será respondida.
         </p>
 
-        <form action="#" method="post">
+        <form class="contacto-form" data-contact-form action="#" method="post">
 
             <div class="campos-superiores">
 
                 <div class="campo">
                     <label for="nombre">NOMBRE</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre" autocomplete="name" minlength="2" required>
                 </div>
 
                 <div class="campo">
                     <label for="email">E-MAIL</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
                 </div>
 
                 <div class="campo">
                     <label for="telefono">TELÉFONO</label>
-                    <input type="tel" id="telefono" name="telefono" required>
+                    <input type="tel" id="telefono" name="telefono" autocomplete="tel" minlength="8"
+                        maxlength="20" pattern="(?=(?:\D*\d){8,})[+]?[0-9 ()-]{8,20}"
+                        title="Ingresá al menos 8 dígitos; podés usar +, espacios, paréntesis o guiones."
+                        required>
                 </div>
 
             </div>
 
             <div class="campo consulta">
                 <label for="consulta">CONSULTA</label>
-                <textarea id="consulta" name="consulta" required></textarea>
+                <textarea id="consulta" name="consulta" minlength="10" required></textarea>
             </div>
 
             <button type="submit">ENVIAR CONSULTA</button>
