@@ -45,72 +45,84 @@
         </div>
     </header>
 
-    <main class="w main-container">
-        <nav class="bc" aria-label="Miga de pan">
-            <a href="index2.html">Inicio</a> › <span aria-current="page">Contacto</span>
+    <main>
+  <section class="presentacin-de" aria-labelledby="titulo-principal">
+        <nav class="ruta-de-navegacin" aria-label="Migas de pan">
+            <a class="text-wrapper-3" href="index2.html">Inicio</a>
+            <span class="text-wrapper-4" aria-hidden="true">/</span>
+            <span class="text-wrapper-4" aria-current="page">Contacto</span>
         </nav>
-
-        <div class="contacto-color">
-            <h1>Contacto</h1>
+        <div class="ttulo-y-descripcin">
+        <h1 class="t-tulo-principal" id="titulo-principal">Contacto</h1>
+            <p class="descripci-n">
+            Contactanos cuando lo necesites.Nuestro formulario está las 24 horas disponible.
+             Las ideas y consultas no tienen horario. Escribinos cuando lo necesites: estamos para escuchar y ayudarte.
+         </p>
         </div>
-
+        </section>
+        <div class="w main-container">
         <div class="contenedor">
-            <p class="descripcion">
-                Completá los siguientes campos para ponerte en contacto con el
-                <strong>Municipio de La Matanza, provincia de Buenos Aires.</strong>
-                A la brevedad tu consulta será respondida.
-            </p>
+        <p class="descripcion">
+            Completá los siguientes campos para ponerte en contacto con el
+            <strong>Municipio de La Matanza, provincia de Buenos Aires.</strong>
+            A la brevedad tu consulta será respondida.
+        </p>
 
-            <form class="contacto-form" data-contact-form action="#" method="post">
-                <div class="campos-superiores">
-                    <div class="campo">
-                        <label for="nombre">NOMBRE</label>
-                        <input type="text" id="nombre" name="nombre" autocomplete="name" minlength="2" required>
-                    </div>
+        <form class="contacto-form" data-contact-form action="#" method="post">
 
-                    <div class="campo">
-                        <label for="email">E-MAIL</label>
-                        <input type="email" id="email" name="email" autocomplete="email" required>
-                    </div>
+            <div class="campos-superiores">
 
-                    <div class="campo">
-                        <label for="telefono">TELÉFONO</label>
-                        <input type="tel" id="telefono" name="telefono" autocomplete="tel" minlength="8"
-                            maxlength="20" pattern="(?=(?:\D*\d){8,})[+]?[0-9 ()-]{8,20}"
-                            title="Ingresá al menos 8 dígitos; podés usar +, espacios, paréntesis o guiones."
-                            required>
-                    </div>
+                <div class="campo">
+                    <label for="nombre">NOMBRE</label>
+                    <input type="text" id="nombre" name="nombre" autocomplete="name" minlength="2" required>
                 </div>
 
-                <div class="campo consulta">
-                    <label for="consulta">CONSULTA</label>
-                    <textarea id="consulta" name="consulta" minlength="10" required></textarea>
+                <div class="campo">
+                    <label for="email">E-MAIL</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
                 </div>
 
-                <button type="submit">ENVIAR CONSULTA</button>
-            </form>
-        </div>
-
-        <div class="vias-contacto">
-            <h2>Vías de contacto de la Municipalidad de La Matanza</h2>
-            <div class="datos-contacto">
-                <p><strong>Dirección:</strong> Almafuerte 3050, San Justo [1754] Bs.As. Argentina</p>
-                <p><strong>Teléfono:</strong> 011 46510101</p>
-                <p><strong>Atención:</strong> Lunes a Viernes de 08:00 a 14:00 hs.</p>
-                <p><strong>Email:</strong> matanzaresponde@lamatanza.gov.ar</p>
-                <p><strong>Nuestras Redes: </strong></p>
-                <div class="social-container">
-                    <a href="#" class="social-link">
-                        <img src="../iconos/facebook.png" alt="Facebook" class="social-icon">
-                    </a>
-                    <a href="#" class="social-link">
-                        <img src="../iconos/instagram.png" alt="Instagram" class="social-icon">
-                    </a>
+                <div class="campo">
+                    <label for="telefono">TELÉFONO</label>
+                    <input type="tel" id="telefono" name="telefono" autocomplete="tel" minlength="8"
+                        maxlength="20" pattern="(?=(?:\D*\d){8,})[+]?[0-9 ()-]{8,20}"
+                        title="Ingresá al menos 8 dígitos; podés usar +, espacios, paréntesis o guiones."
+                        required>
                 </div>
+
             </div>
+
+            <div class="campo consulta">
+                <label for="consulta">CONSULTA</label>
+                <textarea id="consulta" name="consulta" minlength="10" required></textarea>
+            </div>
+
+            <button type="submit">ENVIAR CONSULTA</button>
+
+        </form>
+        </div>
+        <div class="vias-contacto">
+            <h2>Vias de contacto de la Municipalidad de La Matanza</h2>
+            <div class="datos-contacto">
+            <p><strong>Dirección:</strong> Almafuerte 3050,San Justo [1754] Bs.As. Argentina</p>
+            <p><strong>Teléfono:</strong> 011 46510101</p>
+            <p><strong>Atención:</strong> Lunes a Viernes de 08:00 a 14:00 hs.</p>
+            <p><strong>Email:</strong> matanzaresponde@lamatanza.gov.ar</p>
+            <p><strong>Nuestras Redes: </strong></p>
+            <div class="social-container">
+            <a href="#" class="social-link">
+           <img src="../iconos/facebook.png" alt="Facebook" class="social-icon">
+             </a>
+             <a href="#" class="social-link">
+           <img src="../iconos/instagram.png" alt="Instagram" class="social-icon">
+             </a>
+            </div>
+            </div>
+         
+        </div>
         </div>
     </main>
-
+    <!-- FOOTER: Visitante-->
     <footer class="ft">
         <div class="w footer-grid">
             <div class="footer-col brand-col">

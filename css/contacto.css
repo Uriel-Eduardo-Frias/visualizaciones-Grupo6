@@ -15,13 +15,76 @@ body {
 }
 
 h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding-top: 10px;
-    margin-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 10px;
    
+}
+.presentacin-de {
+   display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 40px 80px 48px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    background-color: #eaf4ee;
+}
+.text-wrapper-3 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: "Atkinson Hyperlegible-Bold", Helvetica;
+    font-weight: 700;
+    color: #086f4b;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: 22px;
+    white-space: nowrap;
+}
+.text-wrapper-4 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: "Atkinson Hyperlegible-Regular", Helvetica;
+    font-weight: 400;
+    color: #52665e;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: 22px;
+    white-space: nowrap;
+}
+.ttulo-y-descripcin {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+.t-tulo-principal {
+    position: relative;
+    align-self: stretch;
+    margin-top: -1px;
+    font-family: "Atkinson Hyperlegible-Bold", Helvetica;
+    font-weight: 700;
+    color: #152520;
+    font-size: 44px;
+    letter-spacing: 0;
+    line-height: 53px;
+}
+.descripci-n {
+    position: relative;
+    align-self: stretch;
+    font-family: "Atkinson Hyperlegible-Regular", Helvetica;
+    font-weight: 400;
+    color: #52665e;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: 30px;
 }
 /* CONTENEDOR DEL FORMULARIO */
 
