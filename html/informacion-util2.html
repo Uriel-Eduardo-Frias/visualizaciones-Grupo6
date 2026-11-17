@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Información útil | Portal Ciudadano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+    <link rel="stylesheet" href="../css/informacion-util.css">
+    <script src="../js/auth.js" defer></script>
+    <script src="../js/informacion-util.js" defer></script>
+</head>
+
+<body data-auth-required data-auth-next="informacion_util2.html">
+
+    <!-- Header de usuario autenticado -->
+    <header class="hd">
+        <div class="w">
+            <div class="brand">
+                <a class="logo" href="index2.html">Portal Ciudadano</a>
+                <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+            </div>
+            <nav aria-label="Principal">
+                <a href="index2.html">Inicio</a>
+                <a href="nuevo-reclamo2.html">Reclamos</a>
+                <a href="mis-reclamos2.html">Mis reclamos</a>
+                <a href="noticias_comunidad.html">Noticias</a>
+                <a href="informacion-util2.html" aria-current="page">Información útil</a>
+                <a href="contacto2.html">Contacto</a>
+            </nav>
+            <div class="user-menu">
+                <a class="btn-perfil" href="mis-reclamos2.html">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    Mi perfil
+                </a>
+                <a class="btn-logout" href="index.html" data-logout aria-label="Cerrar sesión" title="Cerrar sesión">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+        <div class="emergencias" role="region" aria-label="Teléfonos de emergencia">
+            <div class="w">
+                <span class="emergencias-titulo">TELÉFONOS DE EMERGENCIA:</span>
+                <span class="emergencias-item">Policía 911</span>
+                <span class="emergencias-item">Bomberos 100</span>
+                <span class="emergencias-item">Emergencias Médicas 107</span>
+                <span class="emergencias-item">Violencia de Género 144</span>
+                <span class="emergencias-item">Atención Ciudadana 147</span>
+            </div>
+        </div>
+
+        <main class="info-util">
+            <section class="iu-hero" aria-labelledby="titulo-principal">
+                <div class="w">
+                    <nav class="iu-migas" aria-label="Migas de pan">
+                        <a href="index2.html">Inicio</a>
+                        <span aria-hidden="true">/</span>
+                        <span aria-current="page">Información útil</span>
+                    </nav>
+                    <h1 id="titulo-principal">Información útil</h1>
+                    <p>Todo lo que necesitás saber de tu día a día en el Portal Ciudadano.</p>
+                </div>
+            </section>
+
+            <section class="iu-contenido" aria-labelledby="titulo-listado">
+                <div class="w">
+                    <nav class="iu-filtros" aria-label="Filtrar información por tema">
+                    <button class="iu-chip" type="button" data-filter="todas" aria-pressed="true">Todas</button>
+                    <button class="iu-chip" type="button" data-filter="salud" aria-pressed="false">Salud y bienestar</button>
+                    <button class="iu-chip" type="button" data-filter="ambiente" aria-pressed="false">Ambiente y barrio</button>
+                    <button class="iu-chip" type="button" data-filter="transporte" aria-pressed="false">Transporte y movilidad</button>
+                    <button class="iu-chip" type="button" data-filter="educacion" aria-pressed="false">Educación y cultura</button>
+                    <button class="iu-chip" type="button" data-filter="servicios" aria-pressed="false">Servicios y trámites</button>
+                    </nav>
+
+                    <div class="iu-resumen">
+                        <h2 id="titulo-listado">Temas de interés</h2>
+                        <span class="iu-cantidad" id="info-cantidad" aria-live="polite">6 temas</span>
+                    </div>
+
+                    <div class="iu-grilla">
+                    <article class="iu-card" data-categoria="salud">
+                        <img src="../img/centro-salud.webp" alt="Fachada del Centro de Salud Dr. Sakamoto, Municipio de La Matanza" loading="lazy">
+                        <div class="iu-card-cuerpo">
+                            <div class="iu-card-meta">
+                                <span class="iu-categoria">Salud y bienestar</span>
+                                <span class="iu-tema">Hospitales y CAPS</span>
+                            </div>
+                            <h3>Hospitales y Centros de Atención Primaria (CAPS)</h3>
+                            <p>Encontrá el centro de salud más cercano a tu barrio, hospitales municipales y salitas de atención con sus horarios y especialidades.</p>
+                            <a class="iu-link" href="#">Ver información →</a>
+                        </div>
+                    </article>
+                    <article class="iu-card" data-categoria="salud">
+                        <img src="../img/farmacias-turno.webp" alt="Farmacia en una esquina de La Matanza" loading="lazy">
+                        <div class="iu-card-cuerpo">
+                            <div class="iu-card-meta">
+                                <span class="iu-categoria">Salud y bienestar</span>
+                                <span class="iu-tema">Farmacias de turno</span>
+                            </div>
+                            <h3>Farmacias de turno en La Matanza</h3>
+                            <p>Consultá el listado actualizado diariamente con las farmacias que están de guardia en cada localidad del municipio.</p>
+                            <a class="iu-link" href="#">Ver información →</a>
+                        </div>
+                    </article>
+                    <article class="iu-card" data-categoria="ambiente">
+                        <img src="../img/recoleccion-residuos.webp" alt="Camión de recolección de residuos del municipio en una calle del barrio" loading="lazy">
+                        <div class="iu-card-cuerpo">
+                            <div class="iu-card-meta">
+                                <span class="iu-categoria">Ambiente y barrio</span>
+                                <span class="iu-tema">Residuos</span>
+                            </div>
+                            <h3>Cronograma de recolección de residuos y reciclaje</h3>
+                            <p>Conocé los días y horarios del servicio de recolección en tu zona y ubicá los Puntos Verdes para llevar materiales reciclables.</p>
+                            <a class="iu-link" href="#">Ver información →</a>
+                        </div>
+                    </article>
+                    <article class="iu-card" data-categoria="transporte">
+                        <img src="../img/colectivos-transito.webp" alt="Colectivo de la línea 620 y vecinos esperando en la parada" loading="lazy">
+                        <div class="iu-card-cuerpo">
+                            <div class="iu-card-meta">
+                                <span class="iu-categoria">Transporte y movilidad</span>
+                                <span class="iu-tema">Tránsito y transporte</span>
+                            </div>
+                            <h3>Recorridos de colectivos y cortes de tránsito</h3>
+                            <p>Información sobre líneas de colectivos locales, paradas, terminales SUBE y el estado del tránsito con cortes por obras en tiempo real.</p>
+                            <a class="iu-link" href="#">Ver información →</a>
+                        </div>
+                    </article>
+                    <article class="iu-card" data-categoria="educacion">
+                        <img src="../img/jardines-municipales.webp" alt="Niños y niñas en una sala de un Jardín Municipal" loading="lazy">
+                        <div class="iu-card-cuerpo">
+                            <div class="iu-card-meta">
+                                <span class="iu-categoria">Educación y cultura</span>
+                                <span class="iu-tema">Jardines y talleres</span>
+                            </div>
+                            <h3>Jardines Municipales y talleres culturales</h3>
+                            <p>Buscá vacantes en los Jardines de Infantes Municipales, inscribite a talleres gratuitos y participá de las actividades culturales abiertas.</p>
+                            <a class="iu-link" href="#">Ver información →</a>
+                        </div>
+                    </article>
+                    <article class="iu-card" data-categoria="servicios">
+                        <img src="../img/atencion-vecino.webp" alt="Personal del centro de Atención al Vecino atendiendo consultas" loading="lazy">
+                        <div class="iu-card-cuerpo">
+                            <div class="iu-card-meta">
+                                <span class="iu-categoria">Servicios y trámites</span>
+                                <span class="iu-tema">Atención vecinal</span>
+                            </div>
+                            <h3>Contactos útiles y atención al vecino</h3>
+                            <p>Directorio de teléfonos de asistencia (como el 147), delegaciones municipales y canales para reportar problemas de servicios públicos.</p>
+                            <a class="iu-link" href="#">Ver información →</a>
+                        </div>
+                    </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    <!-- Footer de usuario autenticado -->
+    <footer class="ft">
+        <div class="w footer-grid">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">Portal Ciudadano</span>
+                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+                <div class="footer-badge-help"><strong>Sesión iniciada</strong><br>Gestioná tus trámites desde tu cuenta.</div>
+            </div>
+            <div class="footer-col">
+                <h3>Explorá el portal</h3>
+                <div class="footer-links-grid">
+                    <ul class="clean-list">
+                        <li><a href="index2.html">Inicio</a></li>
+                        <li><a href="nuevo-reclamo2.html">Reclamos</a></li>
+                    </ul>
+                    <ul class="clean-list">
+                        <li><a href="noticias_comunidad.html">Noticias</a></li>
+                        <li><a href="informacion-util2.html">Información útil</a></li>
+                        <li><a href="contacto2.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Tu cuenta</h3>
+                <ul class="clean-list">
+                    <li><a href="mis-reclamos2.html">Mis reclamos</a></li>
+                    <li><a href="#">Ayuda y accesibilidad</a></li>
+                    <li><a class="link-logout" href="index.html" data-logout>Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="w footer-subbottom">Portal Ciudadano · Municipio de La Matanza</div>
+    </footer>
+
+</body>
+</html>
