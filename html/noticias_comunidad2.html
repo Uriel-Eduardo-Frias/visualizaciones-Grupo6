@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Noticias y comunidad | Portal Ciudadano</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+    <link rel="stylesheet" href="../css/noticias.css">
+    <script src="../js/noticias.js" defer></script>
+</head>
+
+<body>
+    <div class="noticias-y-comunidad">
+        <header class="hd">
+            <div class="w">
+                <div class="brand">
+                    <a class="logo" href="index.html">Portal Ciudadano</a>
+                    <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+                </div>
+                <nav aria-label="Principal">
+                    <a href="index.html">Inicio</a>
+                    <a href="login.html?next=nuevo-reclamo2.html">Reclamos</a>
+                    <a href="noticias_comunidad2.html" aria-current="page">Noticias</a>
+                    <a href="contacto.html">Contacto</a>
+                    <a href="#">Información útil</a>
+                </nav>
+                <a class="btn-ingresar" href="login.html">Ingresar</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="presentacin-de" aria-labelledby="titulo-principal">
+                <nav class="ruta-de-navegacin" aria-label="Migas de pan">
+                    <a class="text-wrapper-3" href="index.html">Inicio</a>
+                    <span class="text-wrapper-4" aria-hidden="true">/</span>
+                    <span class="text-wrapper-4" aria-current="page">Noticias y comunidad</span>
+                </nav>
+                <div class="ttulo-y-descripcin">
+                    <h1 class="t-tulo-principal" id="titulo-principal">Noticias y comunidad</h1>
+                    <p class="descripci-n">
+                        Conocé las últimas novedades, actividades y acciones del Municipio de La Matanza
+                    </p>
+                </div>
+            </section>
+
+            <section class="categoras-y-listado" aria-labelledby="titulo-noticias">
+                <nav class="filtros-por-categora" aria-label="Filtrar noticias por categoría">
+                    <button class="todas-seleccionado" type="button" data-filter="todas" aria-pressed="true">
+                        <span class="categor-a">Todas</span>
+                    </button>
+                    <button class="categor-a-wrapper" type="button" data-filter="salud" aria-pressed="false">
+                        <span class="categor-a-2">Salud</span>
+                    </button>
+                    <button class="categor-a-wrapper" type="button" data-filter="educacion" aria-pressed="false">
+                        <span class="categor-a-2">Educación</span>
+                    </button>
+                    <button class="categor-a-wrapper" type="button" data-filter="seguridad" aria-pressed="false">
+                        <span class="categor-a-2">Seguridad</span>
+                    </button>
+                    <button class="categor-a-wrapper" type="button" data-filter="obras" aria-pressed="false">
+                        <span class="categor-a-2">Obras y servicios</span>
+                    </button>
+                    <button class="categor-a-wrapper" type="button" data-filter="comunidad" aria-pressed="false">
+                        <span class="categor-a-2">Comunidad</span>
+                    </button>
+                </nav>
+
+                <div class="resumen-del-listado">
+                    <h2 class="text-wrapper-5" id="titulo-noticias">Últimas noticias</h2>
+                    <span class="cantidad">6 noticias</span>
+                </div>
+                <div class="noticias-fila">
+                    <article class="div-2 noticia salud">
+                        <img class="foto-ilustrativa" src="../img/jornada-vacunacion.jpeg"
+                            alt="Jornada de salud y vacunación en La Matanza">
+                        <div class="detalle-de-noticia">
+                            <div class="categora-y-fecha">
+                                <span class="categor-a-3">Salud</span>
+                                <time class="fecha-de-publicaci-n" datetime="2026-11-12">12 nov 2026</time>
+                            </div>
+                            <h3 class="t-tulo-de-noticia">Jornada de salud y vacunación en La Matanza: cronograma de noviembre.</h3>
+                            <p class="descripci-n-breve">Conocé los días, horarios y lugares donde se realizarán las jornadas de vacunación y atención médica gratuita.</p>
+                            <a class="leer-noticia" href="#">Leer noticia →</a>
+                        </div>
+                    </article>
+                    <article class="div-2 noticia salud">
+                        <img class="foto-ilustrativa" src="../img/campaña-dengue.jpeg"
+                            alt="Campaña contra el dengue en un barrio de La Matanza">
+                        <div class="detalle-de-noticia">
+                            <div class="categora-y-fecha">
+                                <span class="categor-a-3">Salud</span>
+                                <time class="fecha-de-publicaci-n" datetime="2026-11-10">10 nov 2026</time>
+                            </div>
+                            <h3 class="t-tulo-de-noticia">Campaña contra el Dengue 2026: nuevas acciones y estrategias de prevención.</h3>
+                            <p class="descripci-n-breve">Información para prevenir el dengue y acompañar las acciones de cuidado en cada barrio.</p>
+                            <a class="leer-noticia" href="#">Leer noticia →</a>
+                        </div>
+                    </article>
+                    <article class="div-2 noticia comunidad">
+                        <img class="foto-ilustrativa" src="../img/tramites-servicios.jpeg"
+                            alt="Orientación sobre trámites y servicios para vecinos">
+                        <div class="detalle-de-noticia">
+                            <div class="categora-y-fecha">
+                                <span class="categor-a-3">Comunidad</span>
+                                <time class="fecha-de-publicaci-n" datetime="2026-11-08">8 nov 2026</time>
+                            </div>
+                            <h3 class="t-tulo-de-noticia">Trámites y servicios más cerca de tu casa: llega un nuevo Accediendo a Derechos.</h3>
+                            <p class="descripci-n-breve">Un espacio de orientación y acompañamiento para acercar las gestiones municipales a los vecinos.</p>
+                            <a class="leer-noticia" href="#">Leer noticia →</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="noticias-fila">
+                    <article class="div-2 noticia comunidad">
+                        <img class="foto-ilustrativa"
+                            src="../img/actividades deportivas y recreativas para los vecinos.jpeg"
+                            alt="Actividad deportiva y recreativa para vecinos">
+                        <div class="detalle-de-noticia">
+                            <div class="categora-y-fecha">
+                                <span class="categor-a-3">Comunidad</span>
+                                <time class="fecha-de-publicaci-n" datetime="2026-11-06">6 nov 2026</time>
+                            </div>
+                            <h3 class="t-tulo-de-noticia">Nuevas actividades deportivas y recreativas para los vecinos.</h3>
+                            <p class="descripci-n-breve">Propuestas para moverse, compartir y disfrutar de los espacios deportivos del municipio.</p>
+                            <a class="leer-noticia" href="#">Leer noticia →</a>
+                        </div>
+                    </article>
+                    <article class="div-2 noticia obras">
+                        <img class="foto-ilustrativa"
+                            src="../img/Mejoras en espacios públicos y mantenimiento de plazas.jpg"
+                            alt="Mejoras y mantenimiento de una plaza">
+                        <div class="detalle-de-noticia">
+                            <div class="categora-y-fecha">
+                                <span class="categor-a-3">Obras y servicios</span>
+                                <time class="fecha-de-publicaci-n" datetime="2026-11-04">4 nov 2026</time>
+                            </div>
+                            <h3 class="t-tulo-de-noticia">Mejoras en espacios públicos y mantenimiento de plazas.</h3>
+                            <p class="descripci-n-breve">Tareas de puesta en valor para que los espacios verdes sean lugares de encuentro y disfrute.</p>
+                            <a class="leer-noticia" href="#">Leer noticia →</a>
+                        </div>
+                    </article>
+                    <article class="div-2 noticia educacion">
+                        <img class="foto-ilustrativa"
+                            src="../img/Inscripciones y propuestas educativas para la comunidad.jpeg"
+                            alt="Personas participando en una actividad educativa">
+                        <div class="detalle-de-noticia">
+                            <div class="categora-y-fecha">
+                                <span class="categor-a-3">Educación</span>
+                                <time class="fecha-de-publicaci-n" datetime="2026-11-02">2 nov 2026</time>
+                            </div>
+                            <h3 class="t-tulo-de-noticia">Inscripciones y propuestas educativas para la comunidad.</h3>
+                            <p class="descripci-n-breve">Conocé las opciones de formación y los espacios de aprendizaje disponibles en La Matanza.</p>
+                            <a class="leer-noticia" href="#">Leer noticia →</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="ft">
+            <div class="w footer-grid">
+                <div class="footer-col brand-col">
+                    <span class="footer-logo">Portal Ciudadano</span>
+                    <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                    <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Explorá el portal</h3>
+                    <div class="footer-links-grid">
+                        <ul class="clean-list">
+                            <li><a href="index.html">Inicio</a></li>
+                            <li><a href="login.html?next=nuevo-reclamo2.html">Reclamos</a></li>
+                        </ul>
+                        <ul class="clean-list">
+                            <li><a href="noticias_comunidad2.html">Noticias</a></li>
+                            <li><a href="#">Información útil</a></li>
+                            <li><a href="contacto.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Estamos cerca</h3>
+                    <ul class="clean-list">
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="#">Accesibilidad</a></li>
+                        <li><a href="login.html">Ingresar a mi cuenta</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
