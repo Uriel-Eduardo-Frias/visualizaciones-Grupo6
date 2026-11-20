@@ -10,15 +10,7 @@ body {
 
     color: #222;
 }
-.contacto-color{
- background-color: #eaf4ee;
-}
 
-h1{
-    padding-top: 10px;
-    padding-bottom: 10px;
-   
-}
 .presentacin-de {
    display: flex;
     flex-direction: column;
@@ -68,7 +60,7 @@ h1{
 .t-tulo-principal {
     position: relative;
     align-self: stretch;
-    margin-top: -1px;
+    margin-top: 10px;
     font-family: "Atkinson Hyperlegible-Bold", Helvetica;
     font-weight: 700;
     color: #152520;
