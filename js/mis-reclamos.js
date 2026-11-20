@@ -10,28 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
             asunto: 'Luminaria apagada',
             categoria: 'Alumbrado',
             fecha: '2026-10-28',
-            estado: 'En proceso'
+            estado: 'En proceso',
+            solicitante: 'Vecino/a 1'
         },
         {
             numero: 'DEMO002',
             asunto: 'Bache en la calzada',
             categoria: 'Calles y baches',
             fecha: '2026-10-25',
-            estado: 'Derivado'
+            estado: 'Derivado',
+            solicitante: 'Vecino/a 2'
         },
         {
             numero: 'DEMO003',
             asunto: 'Poda de árbol',
             categoria: 'Arbolado',
             fecha: '2026-11-02',
-            estado: 'Recibido'
+            estado: 'Recibido',
+            solicitante: 'Vecino/a 3'
         },
         {
             numero: 'DEMO004',
             asunto: 'Recolección de residuos',
             categoria: 'Limpieza',
             fecha: '2026-10-12',
-            estado: 'Resuelto'
+            estado: 'Resuelto',
+            solicitante: 'Vecino/a 4'
         }
     ];
 
@@ -193,6 +197,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tdEstado.appendChild(badge);
 
+        const celdas = [tdReclamo, tdArea, tdFecha, tdEstado];
+
+        if (lista.dataset.publica === 'true') {
+            const tdSolicitante = document.createElement('td');
+            tdSolicitante.textContent = reclamo.solicitante || 'Vos';
+            celdas.push(tdSolicitante);
+        }
+
         // Acción
         const tdAccion = document.createElement('td');
         tdAccion.className = 'action';
@@ -206,13 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tdAccion.appendChild(enlace);
 
         // Agregar celdas a la fila
-        fila.append(
-            tdReclamo,
-            tdArea,
-            tdFecha,
-            tdEstado,
-            tdAccion
-        );
+        celdas.push(tdAccion);
+        fila.append(...celdas);
 
         return fila;
     }

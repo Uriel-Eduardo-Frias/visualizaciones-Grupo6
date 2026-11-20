@@ -3,6 +3,7 @@
     const pendingClaimKey = 'portal-ciudadano-demo-pending-claim';
     const protectedPages = new Set([
         'index2.html',
+        'reclamos2.html',
         'mis-reclamos2.html',
         'nuevo-reclamo2.html',
         'reclamo-registrado2.html',

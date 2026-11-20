@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reclamos · Portal Ciudadano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+    <script src="../js/auth.js" defer></script>
+    <script src="../js/mis-reclamos.js" defer></script>
+</head>
+
+<body>
+    <header class="hd">
+        <div class="w">
+            <div class="brand">
+                <a class="logo" href="index.html">Portal Ciudadano</a>
+                <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+            </div>
+            <nav aria-label="Principal">
+                <a href="index.html">Inicio</a>
+                <a href="reclamos.html" aria-current="page">Reclamos</a>
+                <a href="noticias_comunidad2.html">Noticias</a>
+                <a href="informacion-util.html">Información útil</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <a class="btn-ingresar" href="login.html">Ingresar</a>
+        </div>
+    </header>
+
+    <section class="hero-bar">
+        <div class="w">
+            <nav class="bc" aria-label="Miga de pan">
+                <a href="index.html">Inicio</a> › <span>Reclamos</span>
+            </nav>
+            <h1>Reclamos</h1>
+        </div>
+    </section>
+
+    <main class="w main-content">
+        <header class="section-header">
+            <p class="section-subtitle">Consultá reclamos de ejemplo de otros vecinos y los que enviaste desde este navegador.</p>
+        </header>
+
+        <div class="toolbar">
+            <div class="filter-pills" role="tablist" aria-label="Filtrar reclamos">
+                <button type="button" class="pill active" role="tab" aria-selected="true">Todos</button>
+                <button type="button" class="pill" role="tab" aria-selected="false">Activos</button>
+                <button type="button" class="pill" role="tab" aria-selected="false">Resueltos</button>
+            </div>
+            <div class="search-wrap">
+                <input type="search" class="search-input" id="buscar-reclamo"
+                    placeholder="Buscar por categoría o asunto" aria-label="Buscar reclamo por categoría o asunto">
+            </div>
+        </div>
+
+        <div class="table-card">
+            <table class="claims-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Reclamo</th>
+                        <th scope="col">Área</th>
+                        <th scope="col">Enviado</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Solicitante</th>
+                        <th scope="col"><span class="sr-only">Detalle</span></th>
+                    </tr>
+                </thead>
+                <tbody id="lista-reclamos" data-publica="true"></tbody>
+            </table>
+        </div>
+
+        <div class="section-footer-link">
+            <a class="btn" href="login.html?next=nuevo-reclamo2.html">Hacer reclamo</a>
+        </div>
+    </main>
+
+    <footer class="ft">
+        <div class="w footer-grid">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">Portal Ciudadano</span>
+                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Explorá el portal</h3>
+                <div class="footer-links-grid">
+                    <ul class="clean-list">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="reclamos.html">Reclamos</a></li>
+                    </ul>
+                    <ul class="clean-list">
+                        <li><a href="noticias_comunidad2.html">Noticias</a></li>
+                        <li><a href="informacion-util.html">Información útil</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Estamos cerca</h3>
+                <ul class="clean-list">
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Accesibilidad</a></li>
+                    <li><a href="login.html">Ingresar a mi cuenta</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
