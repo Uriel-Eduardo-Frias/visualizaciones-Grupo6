@@ -50,6 +50,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return td;
     }
 
+    function celdaArea(reclamo) {
+        const td = document.createElement('td');
+        const contenedor = document.createElement('div');
+        contenedor.className = 'area-cell';
+
+        const icono = document.createElement('span');
+        icono.className = 'area-icon';
+        if (reclamo.fotoUrl) {
+            const imagen = document.createElement('img');
+            imagen.src = reclamo.fotoUrl;
+            imagen.alt = '';
+            imagen.addEventListener('error', () => icono.removeChild(imagen));
+            icono.appendChild(imagen);
+        }
+
+        const texto = document.createElement('span');
+        texto.textContent = P.areaDe(reclamo.categoria);
+        contenedor.append(icono, texto);
+        td.appendChild(contenedor);
+        return td;
+    }
+
+    function celdaCategoria(reclamo) {
+        const td = document.createElement('td');
+        const etiqueta = document.createElement('span');
+        etiqueta.className = 'category-pill';
+        etiqueta.textContent = reclamo.categoria || 'Sin categoría';
+        td.appendChild(etiqueta);
+        return td;
+    }
+
     function celdaApoyos(reclamo) {
         const td = document.createElement('td');
         const contenedor = document.createElement('div');
@@ -87,16 +118,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function crearFila(reclamo) {
         const fila = document.createElement('tr');
+        const asunto = String(reclamo.asunto || reclamo.categoria || '').trim();
         const celdas = [
-            celda(reclamo.asunto || reclamo.categoria, 'item-title'),
-            celda(reclamo.categoria || 'Sin categoría'),
-            celda(P.formatearFecha(reclamo.fecha, { day: 'numeric', month: 'short' })),
-            celdaEstado(reclamo),
+            celda(asunto, 'item-title'),
         ];
 
         if (modo === 'mis') {
+            celdas.push(celda(reclamo.categoria || 'Sin categoría'));
+            celdas.push(celda(P.formatearFecha(reclamo.fecha, { day: 'numeric', month: 'short' })));
+            celdas.push(celdaEstado(reclamo));
             celdas.push(celdaParticipacion(reclamo));
         } else {
+            celdas.push(celdaArea(reclamo));
+            celdas.push(celdaCategoria(reclamo));
+            celdas.push(celda(P.formatearFecha(reclamo.fecha, { day: 'numeric', month: 'short' })));
+            celdas.push(celdaEstado(reclamo));
             celdas.push(celda(P.nombreSolicitante(reclamo)));
             if (columnas >= 7) celdas.push(celdaApoyos(reclamo));
         }

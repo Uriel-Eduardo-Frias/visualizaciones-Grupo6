@@ -63,11 +63,12 @@ table.claims-table--mis th:nth-child(6), table.claims-table--mis td:nth-child(6)
 
 table.claims-table--publica th:nth-child(1), table.claims-table--publica td:nth-child(1) { width: 22%; }
 table.claims-table--publica th:nth-child(2), table.claims-table--publica td:nth-child(2) { width: 15%; }
-table.claims-table--publica th:nth-child(3), table.claims-table--publica td:nth-child(3) { width: 10%; }
-table.claims-table--publica th:nth-child(4), table.claims-table--publica td:nth-child(4) { width: 13%; }
-table.claims-table--publica th:nth-child(5), table.claims-table--publica td:nth-child(5) { width: 14%; }
-table.claims-table--publica th:nth-child(6), table.claims-table--publica td:nth-child(6) { width: 18%; }
-table.claims-table--publica th:nth-child(7), table.claims-table--publica td:nth-child(7) { width: 8%; }
+table.claims-table--publica th:nth-child(3), table.claims-table--publica td:nth-child(3) { width: 12%; }
+table.claims-table--publica th:nth-child(4), table.claims-table--publica td:nth-child(4) { width: 10%; }
+table.claims-table--publica th:nth-child(5), table.claims-table--publica td:nth-child(5) { width: 12%; }
+table.claims-table--publica th:nth-child(6), table.claims-table--publica td:nth-child(6) { width: 12%; }
+table.claims-table--publica th:nth-child(7), table.claims-table--publica td:nth-child(7) { width: 11%; }
+table.claims-table--publica th:nth-child(8), table.claims-table--publica td:nth-child(8) { width: 6%; }
 
 /* Etiqueta de participación (distinta de los badges de estado) */
 .tag-part {
@@ -137,4 +138,138 @@ td.estado-vacio {
 
 .encabezado-lista .section-subtitle {
     flex: 1 1 320px;
+}
+
+/* Cabecera tipo portal de reclamos: referencia visual verde claro + imagen */
+.reclamos-hero {
+    background: var(--verde-hero);
+}
+
+.reclamos-hero .w {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.9fr) minmax(420px, 1.55fr);
+    align-items: stretch;
+    gap: 32px;
+}
+
+.reclamos-hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 188px;
+}
+
+.reclamos-hero-copy h1 {
+    margin: 4px 0 18px;
+    color: var(--tinta);
+}
+
+.reclamos-hero-image {
+    min-height: 188px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #dce9e2 url("../img/bache.jpg") center / cover no-repeat;
+}
+
+.reclamos-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Lista pública con aspecto más compacto y visual */
+.claims-table--publica th,
+.claims-table--mis th {
+    color: #52665e;
+    font-size: 12px;
+    letter-spacing: 0;
+}
+
+.claims-table--publica td,
+.claims-table--mis td {
+    height: 72px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.claims-table--publica tbody tr,
+.claims-table--mis tbody tr {
+    transition: background 0.15s ease;
+}
+
+.claims-table--publica tbody tr:hover,
+.claims-table--mis tbody tr:hover {
+    background: #f8fbf9;
+}
+
+.area-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.area-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 8px;
+    background: #edf4f0;
+    overflow: hidden;
+}
+
+.area-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.category-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 4px 12px;
+    border: 1px solid #d8e4de;
+    border-radius: 999px;
+    background: #fff;
+    color: #52665e;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.btn-outline-sm.is-adherido,
+.btn-outline-sm.is-adherido:hover {
+    background: #edf4f0;
+    color: var(--verde-primario);
+}
+
+@media (max-width: 900px) {
+    .reclamos-hero .w {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .reclamos-hero-copy {
+        min-height: 120px;
+    }
+
+    .reclamos-hero-image {
+        min-height: 210px;
+    }
+}
+
+@media (max-width: 600px) {
+    .reclamos-hero-image {
+        min-height: 150px;
+    }
+
+    .encabezado-lista {
+        align-items: stretch;
+    }
+
+    .encabezado-lista .btn {
+        width: 100%;
+    }
 }

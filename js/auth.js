@@ -162,11 +162,11 @@
 
     /* ---------- Reclamos y adhesiones ---------- */
     const FOTOS = {
-        alumbrado: '../img/reclamos/luminaria.svg',
-        calles: '../img/reclamos/bache.svg',
-        arbolado: '../img/reclamos/arbol.svg',
-        limpieza: '../img/reclamos/basural.svg',
-        transito: '../img/reclamos/semaforo.svg',
+        alumbrado: '../img/luminaria.svg',
+        calles: '../img/bache.svg',
+        arbolado: '../img/arbol.svg',
+        limpieza: '../img/basural.svg',
+        transito: '../img/semaforo.svg',
     };
 
     const AREAS = {
@@ -246,8 +246,14 @@
     ];
 
     function reclamosGuardados() {
-        const lista = leerJSON(CLAVES.reclamos, []);
+        const listaGuardada = leerJSON(CLAVES.reclamos, []);
+        const lista = listaGuardada.filter(reclamo => {
+            const asunto = String(reclamo.asunto || '').trim().toLowerCase();
+            const detalle = String(reclamo.detalle || '').trim().toLowerCase();
+            return asunto !== 'a' && asunto !== 'asa' && detalle !== 'a' && detalle !== 'asa';
+        });
         let huboCambios = false;
+        if (lista.length !== listaGuardada.length) huboCambios = true;
         lista.forEach((reclamo, i) => {
             if (!reclamo.numero) { reclamo.numero = `RC-${Date.now()}-${i}`; huboCambios = true; }
             if (!reclamo.estado) { reclamo.estado = 'Recibido'; huboCambios = true; }
