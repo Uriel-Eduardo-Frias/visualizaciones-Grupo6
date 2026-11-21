@@ -340,7 +340,7 @@
     }
 
     function pintarSumarme(boton, adherido) {
-        boton.textContent = adherido ? 'Sumado ✓' : 'Sumarme';
+        boton.textContent = adherido ? 'Dejar de apoyar' : 'Apoyar';
         boton.classList.toggle('is-sumado', adherido);
     }
 

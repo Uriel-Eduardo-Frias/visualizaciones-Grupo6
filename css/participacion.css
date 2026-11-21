@@ -61,13 +61,13 @@ table.claims-table--mis th:nth-child(4), table.claims-table--mis td:nth-child(4)
 table.claims-table--mis th:nth-child(5), table.claims-table--mis td:nth-child(5) { width: 18%; }
 table.claims-table--mis th:nth-child(6), table.claims-table--mis td:nth-child(6) { width: 12%; }
 
-table.claims-table--publica th:nth-child(1), table.claims-table--publica td:nth-child(1) { width: 22%; }
-table.claims-table--publica th:nth-child(2), table.claims-table--publica td:nth-child(2) { width: 15%; }
-table.claims-table--publica th:nth-child(3), table.claims-table--publica td:nth-child(3) { width: 12%; }
-table.claims-table--publica th:nth-child(4), table.claims-table--publica td:nth-child(4) { width: 10%; }
-table.claims-table--publica th:nth-child(5), table.claims-table--publica td:nth-child(5) { width: 12%; }
+table.claims-table--publica th:nth-child(1), table.claims-table--publica td:nth-child(1) { width: 21%; }
+table.claims-table--publica th:nth-child(2), table.claims-table--publica td:nth-child(2) { width: 14%; }
+table.claims-table--publica th:nth-child(3), table.claims-table--publica td:nth-child(3) { width: 11%; }
+table.claims-table--publica th:nth-child(4), table.claims-table--publica td:nth-child(4) { width: 9%; }
+table.claims-table--publica th:nth-child(5), table.claims-table--publica td:nth-child(5) { width: 11%; }
 table.claims-table--publica th:nth-child(6), table.claims-table--publica td:nth-child(6) { width: 12%; }
-table.claims-table--publica th:nth-child(7), table.claims-table--publica td:nth-child(7) { width: 11%; }
+table.claims-table--publica th:nth-child(7), table.claims-table--publica td:nth-child(7) { width: 16%; }
 table.claims-table--publica th:nth-child(8), table.claims-table--publica td:nth-child(8) { width: 6%; }
 
 /* Etiqueta de participación (distinta de los badges de estado) */
@@ -113,7 +113,9 @@ table.claims-table--publica th:nth-child(8), table.claims-table--publica td:nth-
 
 .apoyos .btn-outline-sm {
     min-height: 32px;
-    padding: 0 12px;
+    padding: 0 8px;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 /* Estado vacío */
@@ -239,8 +241,8 @@ td.estado-vacio {
     white-space: nowrap;
 }
 
-.btn-outline-sm.is-adherido,
-.btn-outline-sm.is-adherido:hover {
+.btn-outline-sm.is-sumado,
+.btn-outline-sm.is-sumado:hover {
     background: #edf4f0;
     color: var(--verde-primario);
 }

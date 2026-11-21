@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const enlace = document.createElement('a');
             enlace.className = 'btn-outline-sm';
             enlace.href = 'login.html?next=reclamos2.html';
-            enlace.textContent = 'Sumarme';
+            enlace.textContent = 'Apoyar';
             contenedor.appendChild(enlace);
         }
 
