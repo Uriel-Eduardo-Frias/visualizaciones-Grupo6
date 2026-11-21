@@ -124,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
 
         if (modo === 'mis') {
+            celdas.push(celdaArea(reclamo));
             celdas.push(celdaCategoria(reclamo));
             celdas.push(celda(P.formatearFecha(reclamo.fecha, { day: 'numeric', month: 'short' })));
             celdas.push(celdaEstado(reclamo));

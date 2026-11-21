@@ -38,20 +38,21 @@
         </div>
     </header>
 
-    <section class="hero-bar reclamos-hero">
+    <section class="hero-bar">
         <div class="w">
-            <div class="reclamos-hero-copy">
-                <nav class="bc" aria-label="Miga de pan">
-                    <a href="index2.html">Inicio</a> › <span>Mis reclamos</span>
-                </nav>
-                <h1>Mis reclamos</h1>
-                <a class="btn s" href="nuevo-reclamo2.html">+ Hacer un reclamo</a>
-            </div>
-            <div class="reclamos-hero-image" role="img" aria-label="Gestión vecinal en la calle"></div>
+            <nav class="bc" aria-label="Miga de pan">
+                <a href="index2.html">Inicio</a> › <span>Mis reclamos</span>
+            </nav>
+            <h1>Mis reclamos</h1>
         </div>
     </section>
 
     <main class="w main-content">
+        <header class="section-header encabezado-lista">
+            <p class="section-subtitle">Consultá el estado de los reclamos que hiciste y a los que te sumaste.</p>
+            <a class="btn s" href="nuevo-reclamo2.html">Hacer un reclamo</a>
+        </header>
+
         <div class="filtros">
             <div class="filtro-campo">
                 <span class="lb" id="lbl-participacion">Mostrar</span>
@@ -102,6 +103,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Reclamo</th>
+                        <th scope="col">Área</th>
                         <th scope="col">Categoría</th>
                         <th scope="col">Enviado</th>
                         <th scope="col">Estado</th>
