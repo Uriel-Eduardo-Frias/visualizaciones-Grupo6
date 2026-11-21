@@ -365,7 +365,8 @@
 }
 
 .user-dropdown a,
-.user-dropdown .item-salir {
+.user-dropdown .item-salir,
+.user-dropdown .item-eliminar {
     display: flex;
     align-items: center;
     width: 100%;
@@ -397,6 +398,16 @@
     border-top: 1px solid var(--linea);
     border-radius: 0 0 8px 8px;
     color: #9B2C2C;
+}
+
+.user-dropdown .item-eliminar {
+    margin-top: 6px;
+    border-top: 1px solid var(--linea);
+    color: #9B2C2C;
+}
+
+.user-dropdown .item-eliminar:hover {
+    background: #FCE8E6;
 }
 
 /* ==========================================================================

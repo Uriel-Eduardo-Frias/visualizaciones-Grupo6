@@ -161,6 +161,38 @@
         return { ok: true };
     }
 
+    function eliminarCuenta(documento) {
+        const usuarios = leerJSON(CLAVES.usuarios, {});
+        if (!usuarios || typeof usuarios !== 'object' || Array.isArray(usuarios) || !usuarios[documento]) {
+            throw new Error('No encontramos la cuenta que querés eliminar.');
+        }
+
+        const adhesiones = leerJSON(CLAVES.adhesiones, {});
+        const reclamos = leerJSON(CLAVES.reclamos, []);
+        if (!adhesiones || typeof adhesiones !== 'object' || Array.isArray(adhesiones) || !Array.isArray(reclamos)) {
+            throw new Error('No se pudieron leer los datos asociados a tu cuenta.');
+        }
+        const numerosEliminados = new Set(
+            reclamos.filter(reclamo => reclamo.autor === documento).map(reclamo => reclamo.numero)
+        );
+
+        delete usuarios[documento];
+        delete adhesiones[documento];
+        Object.keys(adhesiones).forEach(otroDocumento => {
+            if (!Array.isArray(adhesiones[otroDocumento])) {
+                throw new Error('No se pudieron leer las adhesiones de las cuentas.');
+            }
+            adhesiones[otroDocumento] = adhesiones[otroDocumento]
+                .filter(numero => !numerosEliminados.has(numero));
+        });
+
+        guardarJSON(CLAVES.reclamos, reclamos.filter(reclamo => reclamo.autor !== documento));
+        guardarJSON(CLAVES.adhesiones, adhesiones);
+        guardarJSON(CLAVES.usuarios, usuarios);
+        sessionStorage.removeItem(CLAVES.sesion);
+        sessionStorage.removeItem(CLAVES.reclamoPendiente);
+    }
+
     /* ---------- Reclamos y adhesiones ---------- */
     const FOTOS = {
         alumbrado: '../img/luminaria.svg',
@@ -486,20 +518,21 @@
                     </div>
                     <a href="perfil.html">Mi perfil</a>
                     <a href="mis-reclamos2.html">Mis reclamos</a>
+                    <button class="item-eliminar" type="button" data-delete-account>Eliminar cuenta</button>
                     <button class="item-salir" type="button" data-logout>Cerrar sesión</button>
                 </div>`;
             menu.hidden = false;
 
             const nombreCompleto = `${persona.nombre} ${persona.apellido}`.trim();
-            menu.querySelector('.user-trigger-name').textContent = nombreCompleto;
+            menu.querySelector('.user-trigger-name').textContent = persona.nombre;
             menu.querySelector('[data-menu-nombre]').textContent = nombreCompleto;
             menu.querySelector('[data-menu-doc]').textContent =
                 `${persona.tipoDocumento} ${formatearDocumento(persona.tipoDocumento, persona.documento)}`;
 
             const boton = menu.querySelector('.user-trigger');
             const panel = menu.querySelector('.user-dropdown');
-            boton.setAttribute('aria-label', `Abrir el menú de ${nombreCompleto}`);
-            boton.title = nombreCompleto;
+            boton.setAttribute('aria-label', `Abrir el menú de ${persona.nombre}`);
+            boton.title = persona.nombre;
 
             menu.querySelectorAll('.user-dropdown a').forEach(enlace => {
                 if (enlace.getAttribute('href') === paginaActual) enlace.setAttribute('aria-current', 'page');
@@ -511,6 +544,20 @@
             };
 
             boton.addEventListener('click', () => alternar(panel.hidden));
+            menu.querySelector('[data-delete-account]').addEventListener('click', () => {
+                const confirmar = window.confirm(
+                    '¿Eliminar tu cuenta? También se borrarán tus reclamos y adhesiones. Esta acción no se puede deshacer.'
+                );
+                if (!confirmar) return;
+
+                try {
+                    eliminarCuenta(persona.documento);
+                    location.replace('index.html');
+                } catch (error) {
+                    console.error('No se pudo eliminar la cuenta:', error);
+                    window.alert('No se pudo eliminar tu cuenta. Intentá nuevamente.');
+                }
+            });
             document.addEventListener('click', evento => {
                 if (!menu.contains(evento.target)) alternar(false);
             });
