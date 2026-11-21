@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ingresar · Portal Ciudadano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
     <link rel="stylesheet" href="../css/acceso.css">
@@ -19,7 +20,6 @@
                 <a class="logo" href="index.html">Portal Ciudadano</a>
                 <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
             </div>
-            <a class="auth-header-link" href="index.html">Volver al inicio</a>
         </div>
     </header>
 
@@ -30,19 +30,23 @@
 
             <form class="auth-form" data-auth-form="login">
                 <div class="input-group">
-                    <label class="lb" for="email">Correo electrónico</label>
-                    <input class="in" id="email" name="email" type="email" autocomplete="email" required>
+                    <label class="lb" for="documento">DNI o CUIL</label>
+                    <input class="in" id="documento" name="documento" inputmode="numeric" autocomplete="username"
+                        maxlength="13" aria-describedby="ayuda-documento" data-solo-numeros required>
+                    <p class="field-hint" id="ayuda-documento">El mismo número con el que te registraste, sin puntos ni
+                        guiones.</p>
                 </div>
                 <div class="input-group">
                     <label class="lb" for="password">Contraseña</label>
-                    <input class="in" id="password" name="password" type="password" autocomplete="current-password" required>
+                    <input class="in" id="password" name="password" type="password" autocomplete="current-password"
+                        required>
                 </div>
                 <button class="btn" type="submit">Ingresar</button>
             </form>
 
-            <p class="auth-note">Este sitio es una demostración estática: el acceso no se valida contra un servidor. No ingreses una contraseña real.</p>
             <p class="auth-message" data-auth-message role="status" aria-live="polite" hidden></p>
-            <p class="auth-switch">¿Todavía no tenés cuenta? <a data-register-link href="registrarse.html">Registrate</a></p>
+            <p class="auth-switch">¿Todavía no tenés cuenta? <a data-register-link
+                    href="registrarse.html">Registrate</a></p>
         </section>
     </main>
 

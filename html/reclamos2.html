@@ -9,6 +9,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
+    <link rel="stylesheet" href="../css/participacion.css">
     <script src="../js/auth.js" defer></script>
     <script src="../js/mis-reclamos.js" defer></script>
 </head>
@@ -23,7 +24,6 @@
             <nav aria-label="Principal">
                 <a href="index2.html">Inicio</a>
                 <a href="reclamos2.html" aria-current="page">Reclamos</a>
-                <a href="mis-reclamos2.html">Mis reclamos</a>
                 <a href="noticias_comunidad.html">Noticias</a>
                 <a href="informacion-util2.html">Información útil</a>
                 <a href="contacto2.html">Contacto</a>
@@ -60,8 +60,9 @@
     </section>
 
     <main class="w main-content">
-        <header class="section-header">
-            <p class="section-subtitle">Consultá reclamos de ejemplo de otros vecinos y los que enviaste desde este navegador.</p>
+        <header class="section-header encabezado-lista">
+            <p class="section-subtitle">Mirá los reclamos de otros vecinos y sumate a los que también te afectan.</p>
+            <a class="btn" href="nuevo-reclamo2.html">Hacer un reclamo</a>
         </header>
 
         <div class="toolbar">
@@ -77,7 +78,7 @@
         </div>
 
         <div class="table-card">
-            <table class="claims-table">
+            <table class="claims-table claims-table--publica">
                 <thead>
                     <tr>
                         <th scope="col">Reclamo</th>
@@ -85,15 +86,12 @@
                         <th scope="col">Enviado</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Solicitante</th>
+                        <th scope="col">Vecinos sumados</th>
                         <th scope="col"><span class="sr-only">Detalle</span></th>
                     </tr>
                 </thead>
                 <tbody id="lista-reclamos" data-publica="true"></tbody>
             </table>
-        </div>
-
-        <div class="section-footer-link">
-            <a class="btn" href="nuevo-reclamo2.html">Hacer reclamo</a>
         </div>
     </main>
 

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi perfil · Portal Ciudadano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+    <link rel="stylesheet" href="../css/acceso.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+    <script src="../js/auth.js" defer></script>
+    <script src="../js/perfil.js" defer></script>
+</head>
+
+<body data-auth-required data-auth-next="perfil.html">
+
+    <header class="hd">
+        <div class="w">
+            <div class="brand">
+                <a class="logo" href="index2.html">Portal Ciudadano</a>
+                <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
+            </div>
+            <nav aria-label="Principal">
+                <a href="index2.html">Inicio</a>
+                <a href="reclamos2.html">Reclamos</a>
+                <a href="noticias_comunidad.html">Noticias</a>
+                <a href="informacion-util2.html">Información útil</a>
+                <a href="contacto2.html">Contacto</a>
+            </nav>
+            <!-- auth.js reemplaza este bloque por el menú desplegable -->
+            <div class="user-menu">
+                <a class="btn-perfil" href="perfil.html">Mi perfil</a>
+                <a class="btn-logout" href="index.html" data-logout aria-label="Cerrar sesión"
+                    title="Cerrar sesión">Salir</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-bar">
+        <div class="w">
+            <nav class="bc" aria-label="Miga de pan">
+                <a href="index2.html">Inicio</a> › <span>Mi perfil</span>
+            </nav>
+            <h1>Mi perfil</h1>
+        </div>
+    </section>
+
+    <main class="w main-content">
+        <div class="grid-layout">
+            <form class="perfil-form" id="form-perfil" novalidate>
+
+                <section class="card" aria-labelledby="t-personales">
+                    <h2 class="perfil-titulo" id="t-personales">Datos personales</h2>
+                    <p class="perfil-ayuda">Son los datos que cargaste al registrarte y no se pueden editar desde acá.
+                    </p>
+                    <dl class="datos-lista">
+                        <div>
+                            <dt>Documento</dt>
+                            <dd id="p-documento"></dd>
+                        </div>
+                        <div>
+                            <dt>Fecha de nacimiento</dt>
+                            <dd id="p-nacimiento"></dd>
+                        </div>
+                        <div>
+                            <dt>Nombre</dt>
+                            <dd id="p-nombre"></dd>
+                        </div>
+                        <div>
+                            <dt>Apellido</dt>
+                            <dd id="p-apellido"></dd>
+                        </div>
+                        <div>
+                            <dt>Sexo (según documento)</dt>
+                            <dd id="p-sexo"></dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="card" aria-labelledby="t-domicilio">
+                    <h2 class="perfil-titulo" id="t-domicilio">Domicilio</h2>
+                    <p class="perfil-ayuda">Si completás tu domicilio, la calle, el número y el código postal son
+                        obligatorios.</p>
+                    <div class="campos">
+                        <div class="input-group span-2">
+                            <label class="lb" for="calle">Calle</label>
+                            <input class="in" id="calle" name="calle" autocomplete="address-line1"
+                                aria-describedby="error-calle">
+                            <p class="field-error" id="error-calle" data-error-for="calle" hidden></p>
+                        </div>
+                        <div class="input-group">
+                            <label class="lb" for="numero">Número</label>
+                            <input class="in" id="numero" name="numero" inputmode="numeric" maxlength="6"
+                                aria-describedby="error-numero">
+                            <p class="field-error" id="error-numero" data-error-for="numero" hidden></p>
+                        </div>
+                        <div class="input-group">
+                            <label class="lb" for="codigoPostal">Código postal</label>
+                            <input class="in" id="codigoPostal" name="codigoPostal" autocomplete="postal-code"
+                                maxlength="8" aria-describedby="error-codigoPostal">
+                            <p class="field-error" id="error-codigoPostal" data-error-for="codigoPostal" hidden></p>
+                        </div>
+                        <div class="input-group">
+                            <label class="lb" for="piso">Piso <span class="opcional">(opcional)</span></label>
+                            <input class="in" id="piso" name="piso" maxlength="4">
+                        </div>
+                        <div class="input-group">
+                            <label class="lb" for="departamento">Departamento <span
+                                    class="opcional">(opcional)</span></label>
+                            <input class="in" id="departamento" name="departamento" maxlength="4">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card" aria-labelledby="t-contacto">
+                    <h2 class="perfil-titulo" id="t-contacto">Datos de contacto</h2>
+                    <p class="perfil-ayuda">Ingresa un medio para contactarte cuando cambie el estado de tus reclamos.
+                    </p>
+                    <div class="campos">
+                        <div class="input-group span-2">
+                            <label class="lb" for="email">Correo electrónico</label>
+                            <input class="in" id="email" name="email" type="email" autocomplete="email"
+                                aria-describedby="error-email">
+                            <p class="field-error" id="error-email" data-error-for="email" hidden></p>
+                        </div>
+                        <div class="input-group span-2">
+                            <label class="lb" for="telefono">Teléfono móvil <span
+                                    class="opcional">(opcional)</span></label>
+                            <input class="in" id="telefono" name="telefono" type="tel" inputmode="tel"
+                                autocomplete="tel" aria-describedby="ayuda-telefono error-telefono">
+                            <p class="field-hint" id="ayuda-telefono">Con código de área. Por ejemplo: 11 5555 1234.</p>
+                            <p class="field-error" id="error-telefono" data-error-for="telefono" hidden></p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="perfil-acciones">
+                    <button class="btn" type="submit">Guardar cambios</button>
+                    <p class="perfil-estado" id="perfil-estado" role="status" aria-live="polite" hidden></p>
+                </div>
+            </form>
+
+            <aside class="aside-stack">
+                <section class="card card-sidebar perfil-reclamos" aria-labelledby="t-reclamos">
+                    <h2 id="t-reclamos">Tus reclamos</h2>
+                    <p class="mu">Seguí el estado de los reclamos que hiciste y de los que te sumaste.</p>
+                    <dl class="resumen-cifras">
+                        <div>
+                            <dt>Reclamos que hice</dt>
+                            <dd id="p-cant-propios">0</dd>
+                        </div>
+                        <div>
+                            <dt>Reclamos a los que me sumé</dt>
+                            <dd id="p-cant-adheridos">0</dd>
+                        </div>
+                    </dl>
+                    <p class="mu" id="p-reclamos-vacio" hidden>Todavía no hiciste ni te sumaste a ningún reclamo.</p>
+                    <a class="btn" href="mis-reclamos2.html">Ir a mis reclamos</a>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="ft">
+        <div class="w footer-grid">
+            <div class="footer-col brand-col">
+                <span class="footer-logo">Portal Ciudadano</span>
+                <span class="footer-sublogo">MUNICIPIO DE LA MATANZA</span>
+                <p>Un punto de encuentro para las gestiones y la información de tu municipio.</p>
+                <div class="footer-badge-help"><strong>Sesión iniciada</strong><br>Gestioná tus trámites desde tu
+                    cuenta.</div>
+            </div>
+            <div class="footer-col">
+                <h3>Explorá el portal</h3>
+                <div class="footer-links-grid">
+                    <ul class="clean-list">
+                        <li><a href="index2.html">Inicio</a></li>
+                        <li><a href="reclamos2.html">Reclamos</a></li>
+                    </ul>
+                    <ul class="clean-list">
+                        <li><a href="noticias_comunidad.html">Noticias</a></li>
+                        <li><a href="informacion-util2.html">Información útil</a></li>
+                        <li><a href="contacto2.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Tu cuenta</h3>
+                <ul class="clean-list">
+                    <li><a href="perfil.html">Mi perfil</a></li>
+                    <li><a href="mis-reclamos2.html">Mis reclamos</a></li>
+                    <li><a class="link-logout" href="index.html" data-logout>Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="w footer-subbottom">Portal Ciudadano · Municipio de La Matanza</div>
+    </footer>
+
+</body>
+
+</html>

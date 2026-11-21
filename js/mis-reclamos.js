@@ -1,227 +1,208 @@
-
+/* Lista de reclamos. Sirve para dos pantallas:
+   - Pública (reclamos.html / reclamos2.html): todos los reclamos, con botón "Sumarme".
+   - Personal (mis-reclamos2.html, tbody con data-modo="mis"): los que hice y a los que me sumé. */
 document.addEventListener('DOMContentLoaded', () => {
-
+    const P = window.Portal;
     const lista = document.getElementById('lista-reclamos');
+    if (!P || !lista) return;
 
-    // Reclamos de demostración
-    const reclamosDemo = [
-        {
-            numero: 'DEMO001',
-            asunto: 'Luminaria apagada',
-            categoria: 'Alumbrado',
-            fecha: '2026-10-28',
-            estado: 'En proceso',
-            solicitante: 'Vecino/a 1'
-        },
-        {
-            numero: 'DEMO002',
-            asunto: 'Bache en la calzada',
-            categoria: 'Calles y baches',
-            fecha: '2026-10-25',
-            estado: 'Derivado',
-            solicitante: 'Vecino/a 2'
-        },
-        {
-            numero: 'DEMO003',
-            asunto: 'Poda de árbol',
-            categoria: 'Arbolado',
-            fecha: '2026-11-02',
-            estado: 'Recibido',
-            solicitante: 'Vecino/a 3'
-        },
-        {
-            numero: 'DEMO004',
-            asunto: 'Recolección de residuos',
-            categoria: 'Limpieza',
-            fecha: '2026-10-12',
-            estado: 'Resuelto',
-            solicitante: 'Vecino/a 4'
-        }
-    ];
-
-    // Recuperar reclamos del usuario
-    let reclamos = JSON.parse(
-        localStorage.getItem('misReclamos') || '[]'
-    );
-
-    // Asignar número y estado a reclamos antiguos
-    let huboCambios = false;
-
-    reclamos.forEach((reclamo, index) => {
-
-        if (!reclamo.numero) {
-            reclamo.numero = `RC-${Date.now()}-${index}`;
-            huboCambios = true;
-        }
-
-        if (!reclamo.estado) {
-            reclamo.estado = 'Recibido';
-            huboCambios = true;
-        }
-
-    });
-
-    // Guardar modificaciones
-    if (huboCambios) {
-        localStorage.setItem('misReclamos', JSON.stringify(reclamos));
-    }
-
-    // Mostrar reclamos de demostración
-    reclamosDemo.forEach(reclamo => {
-        lista.appendChild(crearFila(reclamo));
-    });
-
-    // Mostrar reclamos del usuario
-    reclamos.forEach(reclamo => {
-        lista.prepend(crearFila(reclamo));
-    });
-
-
-    // Buscador y filtros
-    const botones = document.querySelectorAll('.filter-pills .pill');
+    const modo = lista.dataset.modo === 'mis' ? 'mis' : 'publica';
+    const usuario = P.usuarioActual();
+    const columnas = lista.closest('table').querySelectorAll('thead th').length;
     const buscador = document.getElementById('buscar-reclamo');
+    const resumen = document.getElementById('resumen-resultados');
+    const selectEstado = document.getElementById('filtro-estado');
+    const selectCategoria = document.getElementById('filtro-categoria');
 
-    function aplicarFiltros() {
+    const filtros = { participacion: 'todos', estado: 'todos', categoria: 'todas', texto: '' };
 
-        const botonActivo = document.querySelector(
-            '.filter-pills .pill.active'
-        );
+    const obtenerReclamos = () => {
+        if (modo === 'mis') return usuario ? P.reclamosDelUsuario(usuario.documento) : [];
+        return P.todosLosReclamos();
+    };
 
-        const filtroActivo = botonActivo
-            ? botonActivo.textContent.trim().toLowerCase()
-            : 'todos';
+    /* ---------- Construcción de filas ---------- */
+    const celda = (texto, clase) => {
+        const td = document.createElement('td');
+        if (clase) td.className = clase;
+        td.textContent = texto;
+        return td;
+    };
 
-        const busqueda = buscador
-            ? buscador.value.trim().toLowerCase()
-            : '';
-
-        const filas = lista.querySelectorAll('tr');
-
-        filas.forEach(fila => {
-
-            const asunto = fila.cells[0].textContent.toLowerCase();
-            const categoria = fila.cells[1].textContent.toLowerCase();
-
-            const estado = fila.querySelector('.badge')
-                ?.textContent.trim().toLowerCase() || '';
-
-            const coincideBusqueda =
-                asunto.includes(busqueda) ||
-                categoria.includes(busqueda);
-
-            let coincideEstado = true;
-
-            if (filtroActivo === 'activos') {
-                coincideEstado = estado !== 'resuelto';
-            }
-
-            if (filtroActivo === 'resueltos') {
-                coincideEstado = estado === 'resuelto';
-            }
-
-            fila.style.display =
-                coincideBusqueda && coincideEstado ? '' : 'none';
-        });
-    }
-
-    // Eventos de los botones
-    botones.forEach(boton => {
-
-        boton.addEventListener('click', () => {
-
-            botones.forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-selected', 'false');
-            });
-
-            boton.classList.add('active');
-            boton.setAttribute('aria-selected', 'true');
-
-            aplicarFiltros();
-        });
-
-    });
-
-    // Evento del buscador
-    if (buscador) {
-        buscador.addEventListener('input', aplicarFiltros);
-    }
-
-
-    // Función para crear una fila
-    function crearFila(reclamo) {
-
-        const fila = document.createElement('tr');
-
-        // Asunto
-        const tdReclamo = document.createElement('td');
-        tdReclamo.className = 'item-title';
-        tdReclamo.textContent = reclamo.asunto || reclamo.categoria;
-
-        // Categoría
-        const tdArea = document.createElement('td');
-        tdArea.textContent = reclamo.categoria || 'Sin categoría';
-
-        // Fecha
-        const tdFecha = document.createElement('td');
-
-        const fecha = new Date(reclamo.fecha);
-
-        tdFecha.textContent = !isNaN(fecha)
-            ? fecha.toLocaleDateString('es-AR', {
-                day: 'numeric',
-                month: 'short',
-                timeZone: 'UTC'
-            })
-            : 'Sin fecha';
-
-        // Estado
-        const tdEstado = document.createElement('td');
+    function celdaEstado(reclamo) {
+        const td = document.createElement('td');
         const badge = document.createElement('span');
+        const nombre = reclamo.estado || 'Recibido';
+        const clases = { 'recibido': 'badge-recibido', 'en proceso': 'badge-proceso', 'derivado': 'badge-derivado', 'resuelto': 'badge-resuelto' };
+        badge.className = `badge ${clases[nombre.toLowerCase()] || ''}`.trim();
+        badge.textContent = nombre;
+        td.appendChild(badge);
+        return td;
+    }
 
-        const estado = (reclamo.estado || 'Recibido').toLowerCase();
+    function celdaParticipacion(reclamo) {
+        const td = document.createElement('td');
+        const etiqueta = document.createElement('span');
+        const propio = reclamo.participacion === 'propio';
+        etiqueta.className = `tag-part ${propio ? 'tag-propio' : 'tag-adherido'}`;
+        etiqueta.textContent = propio ? 'Lo hice yo' : 'Me sumé';
+        td.appendChild(etiqueta);
+        return td;
+    }
 
-        badge.className = 'badge';
+    function celdaApoyos(reclamo) {
+        const td = document.createElement('td');
+        const contenedor = document.createElement('div');
+        contenedor.className = 'apoyos';
 
-        if (estado === 'recibido') {
-            badge.classList.add('badge-recibido');
-        } else if (estado === 'en proceso') {
-            badge.classList.add('badge-proceso');
-        } else if (estado === 'derivado') {
-            badge.classList.add('badge-derivado');
-        } else if (estado === 'resuelto') {
-            badge.classList.add('badge-resuelto');
+        const cantidad = document.createElement('span');
+        cantidad.className = 'apoyos-cant';
+        cantidad.dataset.cant = reclamo.numero;
+        cantidad.textContent = P.cantidadApoyos(reclamo);
+        contenedor.appendChild(cantidad);
+
+        if (usuario && reclamo.autor === usuario.documento) {
+            const propio = document.createElement('span');
+            propio.className = 'apoyos-propio';
+            propio.textContent = 'Tu reclamo';
+            contenedor.appendChild(propio);
+        } else if (usuario) {
+            const boton = document.createElement('button');
+            boton.type = 'button';
+            boton.className = 'btn-outline-sm';
+            boton.dataset.sumarme = reclamo.numero;
+            P.pintarSumarme(boton, P.estaAdherido(usuario.documento, reclamo.numero));
+            contenedor.appendChild(boton);
+        } else {
+            const enlace = document.createElement('a');
+            enlace.className = 'btn-outline-sm';
+            enlace.href = 'login.html?next=reclamos2.html';
+            enlace.textContent = 'Sumarme';
+            contenedor.appendChild(enlace);
         }
 
-        badge.textContent = reclamo.estado || 'Recibido';
+        td.appendChild(contenedor);
+        return td;
+    }
 
-        tdEstado.appendChild(badge);
+    function crearFila(reclamo) {
+        const fila = document.createElement('tr');
+        const celdas = [
+            celda(reclamo.asunto || reclamo.categoria, 'item-title'),
+            celda(reclamo.categoria || 'Sin categoría'),
+            celda(P.formatearFecha(reclamo.fecha, { day: 'numeric', month: 'short' })),
+            celdaEstado(reclamo),
+        ];
 
-        const celdas = [tdReclamo, tdArea, tdFecha, tdEstado];
-
-        if (lista.dataset.publica === 'true') {
-            const tdSolicitante = document.createElement('td');
-            tdSolicitante.textContent = reclamo.solicitante || 'Vos';
-            celdas.push(tdSolicitante);
+        if (modo === 'mis') {
+            celdas.push(celdaParticipacion(reclamo));
+        } else {
+            celdas.push(celda(P.nombreSolicitante(reclamo)));
+            if (columnas >= 7) celdas.push(celdaApoyos(reclamo));
         }
 
-        // Acción
         const tdAccion = document.createElement('td');
         tdAccion.className = 'action';
-
         const enlace = document.createElement('a');
-
-        enlace.href = `detalles-reclamo.html?numero=${encodeURIComponent(reclamo.numero)}`;
         enlace.className = 'link-ver';
+        enlace.href = `detalles-reclamo.html?numero=${encodeURIComponent(reclamo.numero)}`;
         enlace.textContent = 'Ver ›';
-
         tdAccion.appendChild(enlace);
-
-        // Agregar celdas a la fila
         celdas.push(tdAccion);
-        fila.append(...celdas);
 
+        fila.append(...celdas);
         return fila;
     }
 
+    function filaVacia(hayReclamos) {
+        const fila = document.createElement('tr');
+        const td = document.createElement('td');
+        td.className = 'estado-vacio';
+        td.colSpan = columnas;
+
+        if (hayReclamos) {
+            td.innerHTML = '<p>Ningún reclamo coincide con los filtros elegidos.</p>' +
+                '<button type="button" class="btn o s" data-limpiar-filtros>Limpiar filtros</button>';
+        } else if (modo === 'mis') {
+            td.innerHTML = '<p>Todavía no hiciste ni te sumaste a ningún reclamo.</p>' +
+                '<a class="btn s" href="nuevo-reclamo2.html">Hacer un reclamo</a> ' +
+                '<a class="btn o s" href="reclamos2.html">Ver reclamos de otros vecinos</a>';
+        } else {
+            td.innerHTML = '<p>Todavía no hay reclamos para mostrar.</p>';
+        }
+
+        fila.appendChild(td);
+        return fila;
+    }
+
+    /* ---------- Filtrado y render ---------- */
+    function coincide(reclamo) {
+        const estado = (reclamo.estado || 'Recibido').toLowerCase();
+        const texto = `${reclamo.asunto || ''} ${reclamo.categoria || ''}`.toLowerCase();
+
+        if (filtros.participacion !== 'todos' && reclamo.participacion !== filtros.participacion) return false;
+        if (filtros.categoria !== 'todas' && (reclamo.categoria || '').toLowerCase() !== filtros.categoria) return false;
+        if (filtros.texto && !texto.includes(filtros.texto)) return false;
+
+        if (filtros.estado === 'activos') return estado !== 'resuelto';
+        if (filtros.estado === 'resueltos') return estado === 'resuelto';
+        if (filtros.estado !== 'todos') return estado === filtros.estado;
+        return true;
+    }
+
+    function render() {
+        const todos = obtenerReclamos();
+        const visibles = todos.filter(coincide);
+
+        lista.replaceChildren(...visibles.map(crearFila));
+        if (!visibles.length) lista.appendChild(filaVacia(todos.length > 0));
+
+        if (resumen) {
+            resumen.textContent = todos.length
+                ? `Mostrando ${visibles.length} de ${todos.length} ${todos.length === 1 ? 'reclamo' : 'reclamos'}`
+                : '';
+        }
+    }
+
+    function limpiarFiltros() {
+        Object.assign(filtros, { participacion: 'todos', estado: 'todos', categoria: 'todas', texto: '' });
+        if (selectEstado) selectEstado.value = 'todos';
+        if (selectCategoria) selectCategoria.value = 'todas';
+        if (buscador) buscador.value = '';
+        document.querySelectorAll('.filter-pills .pill').forEach((boton, i) => marcarPill(boton, i === 0));
+        render();
+    }
+
+    function marcarPill(boton, activo) {
+        const atributo = boton.hasAttribute('aria-pressed') ? 'aria-pressed' : 'aria-selected';
+        boton.classList.toggle('active', activo);
+        boton.setAttribute(atributo, String(activo));
+    }
+
+    /* ---------- Eventos ---------- */
+    document.querySelectorAll('.filter-pills .pill').forEach(boton => {
+        boton.addEventListener('click', () => {
+            boton.parentElement.querySelectorAll('.pill').forEach(otro => marcarPill(otro, otro === boton));
+            if (boton.dataset.participacion) filtros.participacion = boton.dataset.participacion;
+            else filtros.estado = boton.textContent.trim().toLowerCase();
+            render();
+        });
+    });
+
+    if (selectEstado) selectEstado.addEventListener('change', () => { filtros.estado = selectEstado.value; render(); });
+    if (selectCategoria) selectCategoria.addEventListener('change', () => { filtros.categoria = selectCategoria.value; render(); });
+    if (buscador) buscador.addEventListener('input', () => { filtros.texto = buscador.value.trim().toLowerCase(); render(); });
+
+    lista.addEventListener('click', evento => {
+        if (evento.target.closest('[data-limpiar-filtros]')) limpiarFiltros();
+    });
+
+    // Al sumarse o quitarse, solo se actualiza el contador (no se redibuja, para no perder el foco del botón)
+    document.addEventListener('portal:adhesion', evento => {
+        const reclamo = P.todosLosReclamos().find(r => r.numero === evento.detail.numero);
+        const contador = lista.querySelector(`[data-cant="${CSS.escape(evento.detail.numero)}"]`);
+        if (reclamo && contador) contador.textContent = P.cantidadApoyos(reclamo);
+    });
+
+    render();
 });

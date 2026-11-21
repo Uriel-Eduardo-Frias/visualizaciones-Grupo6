@@ -1,158 +1,85 @@
-
+/* Detalle de un reclamo: lee el número de la URL (?numero=...) y completa la página.
+   Usa los mismos datos que las listas (window.Portal), con foto incluida. */
 document.addEventListener('DOMContentLoaded', () => {
+    const P = window.Portal;
+    if (!P) return;
 
-    // Obtener el número desde la URL
-    const parametros = new URLSearchParams(window.location.search);
-    const numero = parametros.get('numero');
+    const $ = id => document.getElementById(id);
+    const numero = new URLSearchParams(location.search).get('numero');
+    const reclamo = P.todosLosReclamos().find(r => r.numero === numero);
 
-    // Reclamos de demostración
-    const reclamosDemo = [
-        {
-            numero: 'DEMO001',
-            asunto: 'Luminaria apagada',
-            categoria: 'Alumbrado',
-            fecha: '2026-10-28',
-            estado: 'En proceso',
-            direccion: 'Av. Crovara 1200, La Matanza',
-            detalle: 'La luminaria de la calle no funciona durante la noche.',
-            foto: ''
-        },
-        {
-            numero: 'DEMO002',
-            asunto: 'Bache en la calzada',
-            categoria: 'Calles y baches',
-            fecha: '2026-10-25',
-            estado: 'Derivado',
-            direccion: 'Av. General Paz 1500, La Matanza',
-            detalle: 'Hay un bache de gran tamaño que dificulta la circulación de vehículos.',
-            foto: ''
-        },
-        {
-            numero: 'DEMO003',
-            asunto: 'Poda de árbol',
-            categoria: 'Arbolado',
-            fecha: '2026-11-02',
-            estado: 'Recibido',
-            direccion: 'Calle San Martín 450, La Matanza',
-            detalle: 'Las ramas del árbol sobresalen sobre la vereda y dificultan el paso.',
-            foto: ''
-        },
-        {
-            numero: 'DEMO004',
-            asunto: 'Recolección de residuos',
-            categoria: 'Limpieza',
-            fecha: '2026-10-12',
-            estado: 'Resuelto',
-            direccion: 'Calle Belgrano 800, La Matanza',
-            detalle: 'Los residuos permanecieron varios días sin ser recolectados.',
-            foto: ''
-        }
-    ];
-
-    // Recuperar reclamos del usuario
-    const reclamosUsuario = JSON.parse(
-        localStorage.getItem('misReclamos') || '[]'
-    );
-
-    // Buscar primero en los reclamos del usuario y después en los de demostración
-    const reclamo =
-        reclamosUsuario.find(r => r.numero === numero) ||
-        reclamosDemo.find(r => r.numero === numero);
-
-    // Si no existe, mostrar un mensaje
     if (!reclamo) {
-        document.getElementById('contenido-principal').innerHTML = `
-            <section class="presentacin-del">
-                <h1 class="text-wrapper-3">Reclamo no encontrado</h1>
-                <p>No pudimos encontrar la información de este reclamo.</p>
-                <a href="mis-reclamos2.html">Volver a mis reclamos</a>
-            </section>
-        `;
+        $('detalle-numero').textContent = numero || '';
+        $('titulo-reclamo').textContent = 'No encontramos este reclamo';
+        $('detalle-fecha').textContent = '';
+        $('detalle-descripcion').textContent = 'Es posible que el número sea incorrecto. Volvé a la lista y elegí un reclamo.';
         return;
     }
 
-    // Formatear fecha
-    const fecha = new Date(reclamo.fecha);
+    const asunto = reclamo.asunto || reclamo.categoria || 'Reclamo';
+    const estado = reclamo.estado || 'Recibido';
 
-    const fechaFormateada = !isNaN(fecha)
-        ? fecha.toLocaleDateString('es-AR', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-            timeZone: 'UTC'
-        })
-        : 'Sin fecha';
+    $('detalle-numero').textContent = reclamo.numero;
+    $('titulo-reclamo').textContent = asunto;
+    $('detalle-fecha').textContent = `Presentado el ${P.formatearFechaHora(reclamo.fecha)}`;
+    document.title = `${asunto} | Portal Ciudadano`;
 
-    // Completar los datos
-    document.getElementById('detalle-numero').textContent =
-        reclamo.numero || 'Sin número';
+    $('detalle-estado').textContent = estado;
+    const contenedor = $('contenedor-estado');
+    contenedor.classList.remove('derivado', 'resuelto');
+    if (estado.toLowerCase() === 'derivado') contenedor.classList.add('derivado');
+    if (estado.toLowerCase() === 'resuelto') contenedor.classList.add('resuelto');
 
-    document.getElementById('titulo-reclamo').textContent =
-        reclamo.asunto || reclamo.categoria;
+    $('detalle-categoria').textContent = reclamo.categoria || 'Sin categoría';
+    $('detalle-area').textContent = P.areaDe(reclamo.categoria);
 
-    document.getElementById('detalle-fecha').textContent =
-        'Presentado el ' + fechaFormateada;
+    const ubicacion = [reclamo.direccion, reclamo.barrio, reclamo.localidad].filter(Boolean).join(', ');
+    $('detalle-direccion').textContent = ubicacion || 'Ubicación no especificada';
+    $('detalle-descripcion').textContent = reclamo.detalle || 'El vecino no agregó una descripción.';
 
-    actualizarEstadoVisual(reclamo.estado || 'Recibido');
+    // Foto del problema
+    const foto = reclamo.fotoData || reclamo.fotoUrl;
+    const textoFoto = $('detalle-foto');
 
-    document.getElementById('detalle-categoria').textContent =
-        reclamo.categoria || 'Sin categoría';
+    // Si el HTML no trae el recuadro de la foto, se crea acá (no depende de foto-reclamo.css)
+    let figura = $('detalle-foto-figura');
+    let imagen = $('detalle-foto-img');
+    if (!figura && textoFoto) {
+        figura = document.createElement('figure');
+        figura.id = 'detalle-foto-figura';
+        figura.hidden = true;
+        figura.style.cssText = 'width:100%;margin:0;';
+        imagen = document.createElement('img');
+        imagen.id = 'detalle-foto-img';
+        figura.appendChild(imagen);
+        textoFoto.insertAdjacentElement('afterend', figura);
+    }
+    if (imagen) {
+        imagen.style.cssText = 'display:block;width:100%;max-height:420px;object-fit:cover;' +
+            'border:1px solid #dfe7e2;border-radius:12px;background:#eaf1ec;';
+    }
 
-    document.getElementById('detalle-area').textContent =
-        reclamo.categoria || 'Sin asignar';
+    if (foto && figura && textoFoto) {
+        // Las fotos de ejemplo se buscan en img/reclamos/ y, si no están ahí, directamente en img/
+        const candidatas = [foto];
+        if (!reclamo.fotoData && foto.includes('/img/reclamos/')) candidatas.push(foto.replace('/img/reclamos/', '/img/'));
 
-    document.getElementById('detalle-direccion').textContent =
-        [reclamo.direccion, reclamo.barrio, reclamo.localidad || reclamo.ciudad]
-            .filter(Boolean)
-            .join(', ') || 'Sin ubicación';
-
-    document.getElementById('detalle-descripcion').textContent =
-        reclamo.detalle || 'No se agregó una descripción.';
-
-    document.getElementById('detalle-foto').textContent =
-        reclamo.foto
-            ? 'Archivo adjunto: ' + reclamo.foto
-            : 'No se adjuntó una fotografía a este reclamo.';
-
+        imagen.alt = `Foto del problema: ${asunto}`;
+        imagen.onload = () => { figura.hidden = false; textoFoto.hidden = true; };
+        imagen.onerror = () => {
+            candidatas.shift();
+            if (candidatas.length) {
+                imagen.src = candidatas[0];
+                return;
+            }
+            figura.hidden = true;
+            textoFoto.hidden = false;
+            textoFoto.textContent = reclamo.fotoData
+                ? 'No se pudo mostrar la foto de este reclamo.'
+                : `No se pudo cargar la imagen. Buscamos "${foto}" y "${foto.replace('/img/reclamos/', '/img/')}": revisá que el archivo esté en la carpeta img, junto a css, js y html.`;
+        };
+        imagen.src = candidatas[0];
+    } else if (reclamo.foto && textoFoto) {
+        textoFoto.textContent = `Se adjuntó el archivo "${reclamo.foto}", pero la imagen no quedó guardada. Los reclamos nuevos sí guardan la foto.`;
+    }
 });
-
-
-function actualizarEstadoVisual(estado) {
-
-    const contenedor = document.getElementById('contenedor-estado');
-    const texto = document.getElementById('detalle-estado');
-    const icono = contenedor?.querySelector('.icono-estado');
-
-    if (!contenedor || !texto || !icono) return;
-
-    const estados = {
-        'recibido': {
-            clase: 'recibido',
-            icono: '✓'
-        },
-        'derivado': {
-            clase: 'derivado',
-            icono: '◷'
-        },
-        'en proceso': {
-            clase: 'en-proceso',
-            icono: '◷'
-        },
-        'resuelto': {
-            clase: 'resuelto',
-            icono: '✓'
-        }
-    };
-
-    const normalizado = (estado || 'Recibido').trim().toLowerCase();
-    const configuracion = estados[normalizado];
-
-    if (!configuracion) return;
-
-    contenedor.className = 'estado-etiqueta ' + configuracion.clase;
-
-    texto.textContent = estado;
-    icono.textContent = configuracion.icono;
-
-    contenedor.setAttribute('aria-label', 'Estado actual: ' + estado);
-}

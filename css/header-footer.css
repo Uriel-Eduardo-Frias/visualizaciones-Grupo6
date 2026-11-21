@@ -282,3 +282,131 @@
         gap: 32px;
     }
 }
+
+/* ==========================================================================
+   Menú desplegable del usuario (lo arma auth.js dentro de .user-menu)
+   ========================================================================== */
+.user-menu.user-menu--dropdown {
+    position: relative;
+    padding: 0;
+    background: transparent;
+    border: 0;
+}
+
+.user-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 44px;
+    padding: 0 14px 0 12px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--verde-primario);
+    color: var(--blanco);
+    font: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.user-trigger:hover {
+    background: var(--verde-hover);
+}
+
+.user-trigger .chevron {
+    transition: transform 0.15s ease;
+}
+
+.user-trigger[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+}
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 50;
+    min-width: 260px;
+    padding: 6px;
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(5, 55, 43, 0.14);
+}
+
+.user-dropdown[hidden] {
+    display: none;
+}
+
+.user-dropdown-id {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 6px;
+    padding: 12px 12px 14px;
+    border-bottom: 1px solid var(--linea);
+}
+
+.user-dropdown-id strong {
+    font-size: 15px;
+    color: var(--tinta);
+}
+
+.user-dropdown-id span {
+    color: var(--gris-medio);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+}
+
+.user-dropdown a,
+.user-dropdown .item-salir {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--tinta);
+    font: inherit;
+    font-size: 14px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.user-dropdown a:hover,
+.user-dropdown .item-salir:hover {
+    background: var(--verde-hero);
+    text-decoration: none;
+}
+
+.user-dropdown a[aria-current="page"] {
+    color: var(--verde-primario);
+    font-weight: 700;
+}
+
+.user-dropdown .item-salir {
+    margin-top: 6px;
+    border-top: 1px solid var(--linea);
+    border-radius: 0 0 8px 8px;
+    color: #9B2C2C;
+}
+
+/* ==========================================================================
+   Botón "Sumarme" (reclamos públicos y "Reclamos cerca tuyo")
+   ========================================================================== */
+button.btn-outline-sm {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-outline-sm.is-sumado {
+    background: var(--verde-primario);
+    color: var(--blanco);
+}
+
+.btn-outline-sm.is-sumado:hover {
+    background: var(--verde-hover);
+}

@@ -1,0 +1,140 @@
+/* Listas de reclamos: filtros, participación y "Sumarme" */
+.filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.filtros-fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.filtro-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filtro-select {
+    min-width: 200px;
+    min-height: 40px;
+    font-size: 14px;
+}
+
+.filtro-buscar {
+    flex: 1 1 260px;
+}
+
+.filter-pills {
+    flex-wrap: wrap;
+}
+
+.resumen-resultados {
+    min-height: 20px;
+    margin: 0 0 10px;
+    color: var(--gris);
+    font-size: 13px;
+}
+
+/* Anchos de columnas (pisan los de styles.css, pensados para 5 columnas) */
+.claims-table--mis,
+.claims-table--publica {
+    min-width: 780px;
+}
+
+table.claims-table--mis th,
+table.claims-table--mis td,
+table.claims-table--publica th,
+table.claims-table--publica td {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+table.claims-table--mis th:nth-child(1), table.claims-table--mis td:nth-child(1) { width: 26%; }
+table.claims-table--mis th:nth-child(2), table.claims-table--mis td:nth-child(2) { width: 17%; }
+table.claims-table--mis th:nth-child(3), table.claims-table--mis td:nth-child(3) { width: 11%; }
+table.claims-table--mis th:nth-child(4), table.claims-table--mis td:nth-child(4) { width: 16%; }
+table.claims-table--mis th:nth-child(5), table.claims-table--mis td:nth-child(5) { width: 18%; }
+table.claims-table--mis th:nth-child(6), table.claims-table--mis td:nth-child(6) { width: 12%; }
+
+table.claims-table--publica th:nth-child(1), table.claims-table--publica td:nth-child(1) { width: 22%; }
+table.claims-table--publica th:nth-child(2), table.claims-table--publica td:nth-child(2) { width: 15%; }
+table.claims-table--publica th:nth-child(3), table.claims-table--publica td:nth-child(3) { width: 10%; }
+table.claims-table--publica th:nth-child(4), table.claims-table--publica td:nth-child(4) { width: 13%; }
+table.claims-table--publica th:nth-child(5), table.claims-table--publica td:nth-child(5) { width: 14%; }
+table.claims-table--publica th:nth-child(6), table.claims-table--publica td:nth-child(6) { width: 18%; }
+table.claims-table--publica th:nth-child(7), table.claims-table--publica td:nth-child(7) { width: 8%; }
+
+/* Etiqueta de participación (distinta de los badges de estado) */
+.tag-part {
+    display: inline-flex;
+    padding: 3px 10px;
+    border: 1px solid;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.tag-propio {
+    border-color: var(--verde-primario);
+    background: var(--blanco);
+    color: var(--verde-primario);
+}
+
+.tag-adherido {
+    border-color: var(--borde-input);
+    background: var(--fondo-alt);
+    color: var(--tinta);
+}
+
+/* Vecinos sumados + botón */
+.apoyos {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.apoyos-cant {
+    min-width: 2ch;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.apoyos-propio {
+    color: var(--gris);
+    font-size: 13px;
+}
+
+.apoyos .btn-outline-sm {
+    min-height: 32px;
+    padding: 0 12px;
+}
+
+/* Estado vacío */
+td.estado-vacio {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.estado-vacio p {
+    margin: 0 0 14px;
+    color: var(--gris);
+}
+
+/* Encabezado de la lista pública: el botón "Hacer un reclamo" queda arriba, a la vista */
+.encabezado-lista {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.encabezado-lista .section-subtitle {
+    flex: 1 1 320px;
+}

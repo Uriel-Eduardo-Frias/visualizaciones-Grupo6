@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Crear cuenta · Portal Ciudadano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
     <link rel="stylesheet" href="../css/acceso.css">
@@ -19,38 +20,92 @@
                 <a class="logo" href="index.html">Portal Ciudadano</a>
                 <span class="sublogo">MUNICIPIO DE LA MATANZA</span>
             </div>
-            <a class="auth-header-link" href="index.html">Volver al inicio</a>
         </div>
     </header>
 
     <main class="auth-main">
-        <section class="card auth-card" aria-labelledby="auth-title">
+        <section class="card auth-card auth-card--ancha" aria-labelledby="auth-title">
             <h1 id="auth-title">Creá tu cuenta</h1>
-            <p class="auth-intro">Registrate para hacer reclamos y consultar tus gestiones.</p>
+            <p class="auth-intro">Registrate para hacer reclamos y consultar tus gestiones. Completá los datos como
+                figuran en tu documento.</p>
 
-            <form class="auth-form" data-auth-form="register">
+            <form class="auth-form auth-form--grid" data-auth-form="register" novalidate>
+                <fieldset class="span-2 tipo-doc">
+                    <legend>¿Con qué documento te registrás?</legend>
+                    <div class="chips" role="radiogroup" aria-label="Tipo de documento">
+                        <input type="radio" name="tipoDocumento" id="td-dni" value="DNI" checked>
+                        <label for="td-dni">DNI</label>
+                        <input type="radio" name="tipoDocumento" id="td-cuil" value="CUIL">
+                        <label for="td-cuil">CUIL</label>
+                    </div>
+                </fieldset>
+
+                <div class="input-group span-2">
+                    <label class="lb" for="documento" data-documento-label>Número de DNI</label>
+                    <input class="in" id="documento" name="documento" inputmode="numeric" autocomplete="off"
+                        maxlength="8" aria-describedby="ayuda-documento error-documento" data-solo-numeros required>
+                    <p class="field-hint" id="ayuda-documento" data-documento-ayuda>Entre 7 y 8 números, sin puntos.</p>
+                    <p class="field-error" id="error-documento" data-error-for="documento" hidden></p>
+                </div>
+
                 <div class="input-group">
-                    <label class="lb" for="nombre">Nombre y apellido</label>
-                    <input class="in" id="nombre" name="nombre" autocomplete="name" required>
+                    <label class="lb" for="nombre">Nombre</label>
+                    <input class="in" id="nombre" name="nombre" autocomplete="given-name"
+                        aria-describedby="error-nombre" required>
+                    <p class="field-error" id="error-nombre" data-error-for="nombre" hidden></p>
                 </div>
                 <div class="input-group">
+                    <label class="lb" for="apellido">Apellido</label>
+                    <input class="in" id="apellido" name="apellido" autocomplete="family-name"
+                        aria-describedby="error-apellido" required>
+                    <p class="field-error" id="error-apellido" data-error-for="apellido" hidden></p>
+                </div>
+
+                <div class="input-group">
+                    <label class="lb" for="sexo">Sexo (según tu documento)</label>
+                    <select class="in" id="sexo" name="sexo" aria-describedby="error-sexo" required>
+                        <option value="">Elegí una opción</option>
+                        <option value="F">Femenino (F)</option>
+                        <option value="M">Masculino (M)</option>
+                        <option value="X">No binario (X)</option>
+                    </select>
+                    <p class="field-error" id="error-sexo" data-error-for="sexo" hidden></p>
+                </div>
+                <div class="input-group">
+                    <label class="lb" for="nacimiento">Fecha de nacimiento</label>
+                    <input class="in" id="nacimiento" name="nacimiento" type="date" autocomplete="bday"
+                        aria-describedby="error-nacimiento" required>
+                    <p class="field-error" id="error-nacimiento" data-error-for="nacimiento" hidden></p>
+                </div>
+
+                <div class="input-group span-2">
                     <label class="lb" for="email">Correo electrónico</label>
-                    <input class="in" id="email" name="email" type="email" autocomplete="email" required>
+                    <input class="in" id="email" name="email" type="email" autocomplete="email"
+                        aria-describedby="error-email" required>
+                    <p class="field-error" id="error-email" data-error-for="email" hidden></p>
                 </div>
+
                 <div class="input-group">
                     <label class="lb" for="password">Contraseña</label>
-                    <input class="in" id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+                    <input class="in" id="password" name="password" type="password" autocomplete="new-password"
+                        aria-describedby="ayuda-password error-password" required>
+                    <p class="field-hint" id="ayuda-password">Mínimo 8 caracteres.</p>
+                    <p class="field-error" id="error-password" data-error-for="password" hidden></p>
                 </div>
                 <div class="input-group">
                     <label class="lb" for="confirm-password">Confirmar contraseña</label>
-                    <input class="in" id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" required>
+                    <input class="in" id="confirm-password" name="confirm-password" type="password"
+                        autocomplete="new-password" aria-describedby="error-confirm-password" required>
+                    <p class="field-error" id="error-confirm-password" data-error-for="confirm-password" hidden></p>
                 </div>
-                <button class="btn" type="submit">Crear cuenta</button>
+
+                <button class="btn span-2" type="submit">Crear cuenta</button>
             </form>
 
-            <p class="auth-note">Este sitio es una demostración estática: los datos no se envían ni guardan en un servidor. No uses una contraseña real.</p>
+            <p class="auth-note">Este sitio es una demostración estática: los datos se guardan solo en este navegador,
+                no en un servidor. No uses una contraseña real.</p>
             <p class="auth-message" data-auth-message role="status" aria-live="polite" hidden></p>
-            <p class="auth-switch">¿Ya tenés cuenta? <a data-login-link href="login.html">Ingresá</a></p>
+            <p class="auth-switch">¿Ya tenés cuenta? <a data-login-link href="login.html">Inicia Sesión</a></p>
         </section>
     </main>
 

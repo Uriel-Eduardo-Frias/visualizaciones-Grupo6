@@ -75,3 +75,46 @@
         padding: 28px 20px;
     }
 }
+
+/* ---- Registro ampliado y errores de campo ---- */
+.auth-card--ancha {
+    width: min(100%, 640px);
+}
+
+.auth-form--grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.auth-form--grid .span-2 {
+    grid-column: 1 / -1;
+}
+
+.auth-form legend {
+    margin-bottom: 8px;
+    color: var(--tinta);
+    font-size: 14px;
+}
+
+.field-hint {
+    margin: 0;
+    color: var(--gris);
+    font-size: 13px;
+}
+
+.field-error {
+    margin: 0;
+    color: #9B2C2C;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.in[aria-invalid="true"] {
+    border-color: #B42318;
+    box-shadow: 0 0 0 1px #B42318;
+}
+
+@media (max-width: 600px) {
+    .auth-form--grid {
+        grid-template-columns: 1fr;
+    }
+}

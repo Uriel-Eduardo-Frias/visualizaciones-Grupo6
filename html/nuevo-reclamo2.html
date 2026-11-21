@@ -27,7 +27,6 @@
             <nav aria-label="Principal">
                 <a href="index2.html">Inicio</a>
                 <a href="reclamos2.html">Reclamos</a>
-                <a href="mis-reclamos2.html">Mis reclamos</a>
                 <a href="noticias_comunidad.html">Noticias</a>
                 <a href="informacion-util2.html">Información útil</a>
                 <a href="contacto2.html">Contacto</a>
@@ -147,10 +146,10 @@
                     <h2>Reclamos cerca tuyo</h2>
                     <div class="nearby-item">
                         <div class="nearby-info">
-                            <span class="nearby-title">Luminaria apagada</span>
+                            <span class="nearby-title">Tres luminarias apagadas en la cuadra</span>
                             <span class="nearby-dist">a 120 m</span>
                         </div>
-                        <a class="btn-outline-sm" href="#">Sumarme</a>
+                        <a class="btn-outline-sm" href="#" data-sumarme="RC-2026-004302">Sumarme</a>
                     </div>
                 </div>
             </aside>
@@ -319,7 +318,7 @@
             }, demora);
         });
 
-        f.addEventListener('submit', event => {
+        f.addEventListener('submit', async event => {
             event.preventDefault();
 
             if (!coordenadas || !localidadSeleccionada || !barrioSeleccionado) {
@@ -340,6 +339,7 @@
                 const asunto = f.asunto.value.trim();
                 const detalle = f.detalle.value.trim();
                 const archivo = f.foto.files[0];
+                const fotoData = archivo ? await window.Portal.redimensionarFoto(archivo) : '';
 
                 // Crear objeto del reclamo
                 const reclamo = {
@@ -353,8 +353,10 @@
                     asunto: asunto,
                     detalle: detalle,
                     foto: archivo ? archivo.name : '',
+                    fotoData: fotoData,
                     fecha: new Date().toISOString(),
-                    estado: 'Recibido'
+                    estado: 'Recibido',
+                    autor: (window.Portal.usuarioActual() || {}).documento
                 };
 
                 // Recuperar reclamos anteriores
@@ -366,10 +368,13 @@
                 reclamos.push(reclamo);
 
                 // Guardar en localStorage
-                localStorage.setItem(
-                    'misReclamos',
-                    JSON.stringify(reclamos)
-                );
+                try {
+                    localStorage.setItem('misReclamos', JSON.stringify(reclamos));
+                } catch (errorCuota) {
+                    // Si la foto no entra en el almacenamiento, se guarda el reclamo sin ella
+                    reclamo.fotoData = '';
+                    localStorage.setItem('misReclamos', JSON.stringify(reclamos));
+                }
 
                 // Mantener el control de autenticación
                 sessionStorage.setItem(
