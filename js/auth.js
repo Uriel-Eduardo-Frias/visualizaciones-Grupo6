@@ -23,6 +23,7 @@
         'mis-reclamos2.html',
         'perfil.html',
         'detalles-reclamo.html',
+        'preguntas-frecuentes2.html',
         'nuevo-reclamo2.html',
         'reclamo-registrado2.html',
         'noticias_comunidad.html',
@@ -408,6 +409,11 @@
 
     const usuario = usuarioActual();
 
+    if (paginaActual === 'preguntas-frecuentes.html' && usuario) {
+        location.replace('preguntas-frecuentes2.html');
+        return;
+    }
+
     if (body.dataset.authRequired !== undefined) {
         if (!usuario) {
             irAlLogin(body.dataset.authNext || 'index2.html', 'login');
@@ -467,6 +473,7 @@
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                     </svg>
+                    <span class="user-trigger-name"></span>
                     <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -481,13 +488,18 @@
                     <a href="mis-reclamos2.html">Mis reclamos</a>
                     <button class="item-salir" type="button" data-logout>Cerrar sesión</button>
                 </div>`;
+            menu.hidden = false;
 
-            menu.querySelector('[data-menu-nombre]').textContent = `${persona.nombre} ${persona.apellido}`;
+            const nombreCompleto = `${persona.nombre} ${persona.apellido}`.trim();
+            menu.querySelector('.user-trigger-name').textContent = nombreCompleto;
+            menu.querySelector('[data-menu-nombre]').textContent = nombreCompleto;
             menu.querySelector('[data-menu-doc]').textContent =
                 `${persona.tipoDocumento} ${formatearDocumento(persona.tipoDocumento, persona.documento)}`;
 
             const boton = menu.querySelector('.user-trigger');
             const panel = menu.querySelector('.user-dropdown');
+            boton.setAttribute('aria-label', `Abrir el menú de ${nombreCompleto}`);
+            boton.title = nombreCompleto;
 
             menu.querySelectorAll('.user-dropdown a').forEach(enlace => {
                 if (enlace.getAttribute('href') === paginaActual) enlace.setAttribute('aria-current', 'page');
