@@ -312,7 +312,7 @@
     position: relative;
     align-self: stretch;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .noticias-y-comunidad .div-2 {
@@ -725,4 +725,15 @@
     display: grid;
     grid-template-columns: 1.5fr 1.5fr 1fr;
     gap: 40px;
+}
+
+
+.noticias-y-comunidad .div-2 {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.noticias-y-comunidad .div-2:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    z-index: 2;
 }

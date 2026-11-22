@@ -36,7 +36,8 @@
         <div class="w">
             <div class="reclamos-hero-copy">
                 <nav class="bc" aria-label="Miga de pan">
-                    <a href="index2.html">Inicio</a> › <a href="reclamos2.html">Reclamos</a> › <span>Reclamo registrado</span>
+                    <a href="index2.html">Inicio</a> › <a href="reclamos2.html">Reclamos</a> › <span>Reclamo
+                        registrado</span>
                 </nav>
                 <h1>Reclamo registrado</h1>
             </div>
@@ -48,11 +49,7 @@
 
         <div class="ok-wrap">
             <section class="card ok-card" aria-labelledby="titulo">
-                <div class="ok-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" />
-                    </svg>
-                </div>
+                <div id="animacion-exito" class="ok-icon" aria-hidden="true"></div>
                 <h1 id="titulo">¡Recibimos tu reclamo!</h1>
                 <p class="mu">Guardá este número para consultar el estado cuando quieras.</p>
 
@@ -130,6 +127,19 @@
         document.getElementById('r-fecha').textContent =
             d.getDate() + ' ' + meses[d.getMonth()] + ', ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
+    <script>
+        lottie.loadAnimation({
+            container: document.getElementById('animacion-exito'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: true,
+            path: '../iconos/Success Check Animation.json'
+        });
+    </script>
+
 </body>
 
 </html>

@@ -565,6 +565,7 @@ legend {
 /* ==========================================================================
    Pantalla: Reclamo Registrado / Éxito
    ========================================================================== */
+
 .ok-wrap {
     max-width: 580px;
     margin: 28px auto 60px;
@@ -589,25 +590,17 @@ legend {
 }
 
 .ok-icon {
-    width: 64px;
-    height: 64px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto;
-    border-radius: 50%;
-    background: var(--verde-claro);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--verde-primario);
 }
 
 .ok-icon svg {
-    width: 34px;
-    height: 34px;
-    stroke: currentColor;
-    stroke-width: 2.5;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    width: 100%;
+    height: 100%;
 }
 
 .nro {
@@ -1260,3 +1253,5 @@ legend {
         flex: 1 1 auto;
     }
 }
+
+
