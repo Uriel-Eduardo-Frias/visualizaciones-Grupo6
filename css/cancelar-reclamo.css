@@ -1,0 +1,128 @@
+.badge-cancelado {
+    background: #F3E1E1;
+    color: #8A1F1F;
+}
+
+.detalle-del-reclamo #contenedor-estado.cancelado {
+    background-color: #F3E1E1;
+}
+
+.detalle-del-reclamo #contenedor-estado.cancelado .text-wrapper-2,
+.detalle-del-reclamo #contenedor-estado.cancelado .icono-estado {
+    color: #8A1F1F;
+}
+
+.detalle-del-reclamo .acciones-reclamo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-cancelar-reclamo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 20px;
+    border: 2px solid #A32626;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #A32626;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-cancelar-reclamo:hover {
+    background: #FBEDED;
+}
+
+.btn-cancelar-reclamo[hidden],
+.aviso-cancelado[hidden],
+.error-cancelar[hidden] {
+    display: none;
+}
+
+.aviso-cancelado {
+    align-self: stretch;
+    margin: 0;
+    padding: 14px 18px;
+    border: 1px solid #E3BFBF;
+    border-radius: 10px;
+    background: #FBF1F1;
+    color: #6E1A1A;
+    font-weight: 700;
+}
+
+.error-cancelar {
+    margin: 0;
+    color: #A32626;
+    font-weight: 700;
+}
+
+.dialogo {
+    width: min(480px, calc(100% - 32px));
+    padding: 28px;
+    border: 0;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(7, 62, 50, 0.35);
+    color: #12202F;
+}
+
+.dialogo::backdrop {
+    background: rgba(7, 30, 24, 0.55);
+}
+
+.dialogo h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    color: #073E32;
+}
+
+.dialogo p {
+    margin: 0 0 24px;
+    line-height: 1.5;
+}
+
+.dialogo-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.dialogo-btn {
+    min-height: 46px;
+    padding: 0 20px;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.dialogo-sec {
+    border: 2px solid #087451;
+    background: #FFFFFF;
+    color: #087451;
+}
+
+.dialogo-sec:hover {
+    background: #E4F2EC;
+}
+
+.dialogo-peligro {
+    border: 2px solid #A32626;
+    background: #A32626;
+    color: #FFFFFF;
+}
+
+.dialogo-peligro:hover {
+    background: #861D1D;
+    border-color: #861D1D;
+}
+
+.dialogo-btn:focus-visible {
+    outline: 3px solid #087451;
+    outline-offset: 2px;
+}

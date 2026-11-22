@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../css/gdetalles.css">
     <link rel="stylesheet" href="../css/detalles.css">
     <link rel="stylesheet" href="../css/foto-reclamo.css">
+    <link rel="stylesheet" href="../css/cancelar-reclamo.css">
 
 
     <script src="../js/auth.js" defer></script>
@@ -85,6 +86,8 @@
                     </article>
                 </section>
                 <section class="informacin-y" aria-label="Información y seguimiento del reclamo">
+                    <p class="aviso-cancelado" id="aviso-cancelado" role="status" hidden>Cancelaste este reclamo. Ya no
+                        se muestra en el listado público ni cuenta en tu perfil.</p>
                     <div class="datos-y-seguimiento">
                         <article class="informacin-del" aria-labelledby="informacion-reclamo">
                             <h2 class="text-wrapper-7" id="informacion-reclamo">Información del reclamo</h2>
@@ -135,14 +138,32 @@
                             </div>
                         </article>
                     </div>
-                    <a class="volver-a-mis-2" href="mis-reclamos2.html">
-                        <span class="div-2" aria-hidden="true">
-                            <img class="img" src="../iconos/arrow-left-white.svg" alt="">
-                        </span>
-                        <span class="text-wrapper-18">Volver a mis reclamos</span>
-                    </a>
+                    <div class="acciones-reclamo">
+                        <a class="volver-a-mis-2" href="mis-reclamos2.html">
+                            <span class="div-2" aria-hidden="true">
+                                <img class="img" src="../iconos/arrow-left-white.svg" alt="">
+                            </span>
+                            <span class="text-wrapper-18">Volver a mis reclamos</span>
+                        </a>
+                        <button type="button" class="btn-cancelar-reclamo" id="btn-cancelar-reclamo" hidden>Cancelar
+                            reclamo</button>
+                    </div>
+                    <p class="error-cancelar" id="cancelar-error" role="alert" hidden>No pudimos cancelar el reclamo.
+                        Intentá nuevamente.</p>
                 </section>
             </main>
+            <dialog class="dialogo" id="dialogo-cancelar" aria-labelledby="dialogo-titulo"
+                aria-describedby="dialogo-texto">
+                <h2 id="dialogo-titulo">¿Cancelar este reclamo?</h2>
+                <p id="dialogo-texto">Vas a cancelar el reclamo <strong id="dialogo-numero"></strong>. Esta acción no se
+                    puede deshacer y el municipio dejará de gestionarlo.</p>
+                <div class="dialogo-acciones">
+                    <button type="button" class="dialogo-btn dialogo-sec" id="cancelar-no">No, volver</button>
+                    <button type="button" class="dialogo-btn dialogo-peligro" id="cancelar-si">Sí, cancelar
+                        reclamo</button>
+                </div>
+            </dialog>
+
             <footer class="ft">
                 <div class="w footer-grid">
                     <div class="footer-col brand-col">

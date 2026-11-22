@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     texto('p-nacimiento', P.formatearFecha(usuario.nacimiento, { day: 'numeric', month: 'long', year: 'numeric' }));
 
 
-    const propios = P.todosLosReclamos().filter(r => r.autor === usuario.documento).length;
+    const propios = P.todosLosReclamos().filter(r => r.autor === usuario.documento && String(r.estado || '').toLowerCase() !== 'cancelado').length;
     const existentes = new Set(P.todosLosReclamos().map(r => r.numero));
     const adheridos = P.adhesionesDe(usuario.documento).filter(numero => existentes.has(numero)).length;
     texto('p-cant-propios', propios);

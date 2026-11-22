@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const etapas = [
+    let etapas = [
         { nombre: 'Recibido', descripcion: 'El municipio recibió tu reclamo.' },
         { nombre: 'Derivado', descripcion: 'El reclamo fue enviado al área responsable.' },
         { nombre: 'En proceso', descripcion: 'El área responsable está trabajando en el problema.' },
@@ -23,7 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const indices = { 'recibido': 0, 'derivado': 1, 'en proceso': 2, 'resuelto': 3 };
     const estadoActual = (reclamo.estado || 'Recibido').trim().toLowerCase();
-    const indiceActual = indices[estadoActual];
+    let indiceActual = indices[estadoActual];
+
+    if (estadoActual === 'cancelado') {
+        const previo = reclamo.historial || {};
+        etapas = etapas.filter((etapa, i) => i === 0 || previo[etapa.nombre.toLowerCase()]);
+        etapas.push({ nombre: 'Cancelado', descripcion: 'El vecino canceló este reclamo.' });
+        indiceActual = etapas.length - 1;
+    }
 
     if (indiceActual === undefined) {
         contenedor.innerHTML = '<p>Estado de seguimiento no disponible.</p>';

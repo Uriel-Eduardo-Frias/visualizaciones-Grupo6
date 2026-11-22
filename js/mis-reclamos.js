@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const obtenerReclamos = () => {
         if (modo === 'mis') return usuario ? P.reclamosDelUsuario(usuario.documento) : [];
-        return P.todosLosReclamos();
+        return P.todosLosReclamos().filter(r => String(r.estado || '').toLowerCase() !== 'cancelado');
     };
 
     /* ---------- Construcción de filas ---------- */
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const td = document.createElement('td');
         const badge = document.createElement('span');
         const nombre = reclamo.estado || 'Recibido';
-        const clases = { 'recibido': 'badge-recibido', 'en proceso': 'badge-proceso', 'derivado': 'badge-derivado', 'resuelto': 'badge-resuelto' };
+        const clases = { 'recibido': 'badge-recibido', 'en proceso': 'badge-proceso', 'derivado': 'badge-derivado', 'resuelto': 'badge-resuelto', 'cancelado': 'badge-cancelado' };
         badge.className = `badge ${clases[nombre.toLowerCase()] || ''}`.trim();
         badge.textContent = nombre;
         td.appendChild(badge);
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filtros.categoria !== 'todas' && (reclamo.categoria || '').toLowerCase() !== filtros.categoria) return false;
         if (filtros.texto && !texto.includes(filtros.texto)) return false;
 
-        if (filtros.estado === 'activos') return estado !== 'resuelto';
+        if (filtros.estado === 'activos') return estado !== 'resuelto' && estado !== 'cancelado';
         if (filtros.estado === 'resueltos') return estado === 'resuelto';
         if (filtros.estado !== 'todos') return estado === filtros.estado;
         return true;

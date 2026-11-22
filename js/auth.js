@@ -315,6 +315,18 @@
         return adherido;
     }
 
+    function cancelarReclamo(documento, numero) {
+        const lista = leerJSON(CLAVES.reclamos, []);
+        const reclamo = lista.find(r => r.numero === numero);
+        if (!reclamo || reclamo.autor !== documento) return false;
+        const estado = String(reclamo.estado || 'Recibido').toLowerCase();
+        if (estado === 'resuelto' || estado === 'cancelado') return false;
+        reclamo.estado = 'Cancelado';
+        reclamo.historial = { ...(reclamo.historial || {}), cancelado: new Date().toISOString() };
+        try { guardarJSON(CLAVES.reclamos, lista); } catch (error) { return false; }
+        return true;
+    }
+
     function cantidadApoyos(reclamo) {
         const sumados = Object.values(leerJSON(CLAVES.adhesiones, {})).filter(lista => lista.includes(reclamo.numero)).length;
         return (reclamo.apoyos || 0) + sumados;
@@ -395,7 +407,7 @@
     window.Portal = {
         EDAD_MINIMA, soloDigitos, formatearDocumento, validarDocumento, emailValido, edadDe,
         usuarioActual, guardarPerfil, reclamosDemo, todosLosReclamos, reclamosDelUsuario,
-        adhesionesDe, estaAdherido, alternarAdhesion, cantidadApoyos, nombreSolicitante,
+        adhesionesDe, estaAdherido, alternarAdhesion, cancelarReclamo, cantidadApoyos, nombreSolicitante,
         formatearFecha, formatearFechaHora, redimensionarFoto, areaDe, pintarSumarme, marcarError,
     };
 

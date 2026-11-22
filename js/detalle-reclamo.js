@@ -26,9 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('detalle-estado').textContent = estado;
     const contenedor = $('contenedor-estado');
-    contenedor.classList.remove('derivado', 'resuelto');
+    contenedor.classList.remove('derivado', 'resuelto', 'cancelado');
     if (estado.toLowerCase() === 'derivado') contenedor.classList.add('derivado');
     if (estado.toLowerCase() === 'resuelto') contenedor.classList.add('resuelto');
+    if (estado.toLowerCase() === 'cancelado') contenedor.classList.add('cancelado');
+    const iconoEstado = contenedor.querySelector('.icono-estado');
+    if (iconoEstado) iconoEstado.textContent = estado.toLowerCase() === 'cancelado' ? '✕' : '✓';
 
     $('detalle-categoria').textContent = reclamo.categoria || 'Sin categoría';
     $('detalle-area').textContent = P.areaDe(reclamo.categoria);
@@ -81,5 +84,32 @@ document.addEventListener('DOMContentLoaded', () => {
         imagen.src = candidatas[0];
     } else if (reclamo.foto && textoFoto) {
         textoFoto.textContent = `Se adjuntó el archivo "${reclamo.foto}", pero la imagen no quedó guardada. Los reclamos nuevos sí guardan la foto.`;
+    }
+
+    const usuario = P.usuarioActual();
+    const estadoMinusculas = estado.toLowerCase();
+    const botonCancelar = $('btn-cancelar-reclamo');
+    const dialogo = $('dialogo-cancelar');
+    const aviso = $('aviso-cancelado');
+    const puedeCancelar = Boolean(usuario) && reclamo.autor === usuario.documento &&
+        estadoMinusculas !== 'resuelto' && estadoMinusculas !== 'cancelado';
+
+    if (aviso && new URLSearchParams(location.search).get('cancelado') === '1' && estadoMinusculas === 'cancelado') {
+        aviso.hidden = false;
+    }
+
+    if (botonCancelar && dialogo && puedeCancelar) {
+        botonCancelar.hidden = false;
+        $('dialogo-numero').textContent = reclamo.numero;
+        botonCancelar.addEventListener('click', () => dialogo.showModal());
+        $('cancelar-no').addEventListener('click', () => dialogo.close());
+        $('cancelar-si').addEventListener('click', () => {
+            if (P.cancelarReclamo(usuario.documento, reclamo.numero)) {
+                location.href = `detalles-reclamo.html?numero=${encodeURIComponent(reclamo.numero)}&cancelado=1`;
+                return;
+            }
+            dialogo.close();
+            $('cancelar-error').hidden = false;
+        });
     }
 });
