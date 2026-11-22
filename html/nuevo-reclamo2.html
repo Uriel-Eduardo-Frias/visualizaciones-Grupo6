@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
     <link rel="stylesheet" href="../css/participacion.css">
+    <link rel="stylesheet" href="../css/mejoras.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="../js/auth.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
@@ -36,24 +37,17 @@
         </div>
     </header>
 
-    <section class="hero-bar reclamos-hero">
-        <div class="w">
-            <div class="reclamos-hero-copy">
-                <nav class="bc" aria-label="Miga de pan">
-                    <a href="index2.html">Inicio</a> › <a href="reclamos2.html">Reclamos</a> › <span>Nuevo reclamo</span>
-                </nav>
-                <h1>Nuevo reclamo</h1>
-            </div>
-            <div class="reclamos-hero-image" role="img" aria-label="Espacio público del municipio"></div>
-        </div>
-    </section>
 
     <!-- Contenedor principal -->
     <main class="w main-container">
 
+        <nav class="bc bc-form" aria-label="Miga de pan">
+            <a href="index2.html">Inicio</a> › <a href="reclamos2.html">Reclamos</a> › <span>Nuevo reclamo</span>
+        </nav>
+
         <div class="grid-layout">
             <!-- Formulario de reclamo -->
-            <form class="card form-stack" id="form-reclamo" action="reclamo-registrado2.html" method="get">
+            <form class="card form-stack" id="form-reclamo" action="reclamo-registrado2.html" method="get" novalidate>
 
                 <!-- Paso 1: Asunto -->
                 <fieldset>
@@ -62,6 +56,7 @@
                     <div class="input-with-action">
                         <input class="in" id="asunto" name="asunto" placeholder="Hay un bache" required>
                     </div>
+                    <p class="field-error" data-error-for="asunto" hidden></p>
 
                 </fieldset>
                 <fieldset>
@@ -69,6 +64,7 @@
                     <legend>2. ¿Dónde está el problema?</legend>
                     <div class="map" id="mapa-reclamo" aria-label="Mapa interactivo: seleccioná el lugar del reclamo"></div>
                     <p class="map-message" id="mapa-mensaje" role="status" aria-live="polite">Hacé clic en el mapa para marcar el lugar del problema.</p>
+                    <p class="field-error" data-error-for="ubicacion" hidden></p>
 
                     <div class="input-group">
                         <label class="lb" for="direccion">Dirección</label>
@@ -76,6 +72,7 @@
                             <input class="in" id="direccion" name="direccion" placeholder="Av. [Calle] 1234" required>
                             <button type="button" class="link-location" id="btn-ubicacion">Usar mi ubicación</button>
                         </div>
+                        <p class="field-error" data-error-for="direccion" hidden></p>
                     </div>
                     <div class="input-group">
                         <label class="lb" for="ubicacion-localidad">Localidad y barrio</label>
@@ -102,6 +99,7 @@
                         <input type="radio" name="categoria" id="c5" value="Calles y baches">
                         <label for="c5">Calles y baches</label>
                     </div>
+                    <p class="field-error" data-error-for="categoria" hidden></p>
                 </fieldset>
 
                 <!-- Paso 3: Foto y detalle -->
@@ -308,13 +306,65 @@
             }, demora);
         });
 
+        const camposValidados = ['asunto', 'direccion', 'ubicacion', 'categoria'];
+
+        const mostrarError = (campo, mensaje) => {
+            const aviso = f.querySelector(`[data-error-for="${campo}"]`);
+            if (aviso) {
+                aviso.textContent = mensaje || '';
+                aviso.hidden = !mensaje;
+            }
+            const marcado = campo === 'categoria' ? f.querySelector('.chips') : f.elements.namedItem(campo);
+            if (marcado && marcado.classList) marcado.classList.toggle('invalido', Boolean(mensaje));
+        };
+
+        f.addEventListener('input', evento => {
+            const nombre = evento.target.name;
+            if (nombre === 'direccion') {
+                mostrarError('direccion', '');
+                mostrarError('ubicacion', '');
+            } else if (camposValidados.includes(nombre)) {
+                mostrarError(nombre, '');
+            }
+            document.getElementById('submit-message').hidden = true;
+        });
+
+        window.addEventListener('portal:ubicacion-reclamo', () => mostrarError('ubicacion', ''));
+
         f.addEventListener('submit', async event => {
             event.preventDefault();
 
+            const errores = {};
+            if (f.asunto.value.trim().length < 5) {
+                errores.asunto = 'Escribí un asunto de al menos 5 caracteres.';
+            }
+            if (!f.direccion.value.trim()) {
+                errores.direccion = 'Ingresá la dirección del problema.';
+            }
             if (!coordenadas || !localidadSeleccionada || !barrioSeleccionado) {
-                document.getElementById('mapa-mensaje').textContent =
-                    'Seleccioná en el mapa un punto con localidad y barrio identificables.';
-                document.getElementById('mapa-reclamo').focus();
+                errores.ubicacion = 'Marcá el punto en el mapa o ingresá una dirección que podamos ubicar.';
+            }
+            if (!f.categoria.value) {
+                errores.categoria = 'Elegí una categoría.';
+            }
+
+            camposValidados.forEach(campo => mostrarError(campo, errores[campo]));
+            const primero = camposValidados.find(campo => errores[campo]);
+
+            if (primero) {
+                const mensaje = document.getElementById('submit-message');
+                mensaje.textContent = 'Revisá los campos marcados en rojo para enviar tu reclamo.';
+                mensaje.className = 'auth-message mensaje-error';
+                mensaje.hidden = false;
+                const destino = primero === 'ubicacion'
+                    ? document.getElementById('mapa-reclamo')
+                    : primero === 'categoria'
+                        ? f.querySelector('.chips input')
+                        : f.elements.namedItem(primero);
+                if (destino) {
+                    destino.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    destino.focus({ preventScroll: true });
+                }
                 return;
             }
 

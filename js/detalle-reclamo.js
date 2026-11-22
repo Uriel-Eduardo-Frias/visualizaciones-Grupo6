@@ -105,11 +105,44 @@ document.addEventListener('DOMContentLoaded', () => {
         $('cancelar-no').addEventListener('click', () => dialogo.close());
         $('cancelar-si').addEventListener('click', () => {
             if (P.cancelarReclamo(usuario.documento, reclamo.numero)) {
-                location.href = `detalles-reclamo.html?numero=${encodeURIComponent(reclamo.numero)}&cancelado=1`;
+                const destino = new URL(location.href);
+                destino.searchParams.set('cancelado', '1');
+                location.href = destino.href;
                 return;
             }
             dialogo.close();
             $('cancelar-error').hidden = false;
         });
     }
+    const botonApoyar = $('btn-apoyar');
+    const textoApoyos = $('apoyos-detalle');
+    const esPropio = Boolean(usuario) && reclamo.autor === usuario.documento;
+    const estaAbierto = estadoMinusculas !== 'resuelto' && estadoMinusculas !== 'cancelado';
+
+    const actualizarApoyos = () => {
+        if (!textoApoyos) return;
+        const cantidad = P.cantidadApoyos(reclamo);
+        textoApoyos.textContent = `${cantidad} ${cantidad === 1 ? 'vecino apoya' : 'vecinos apoyan'} este reclamo`;
+    };
+    actualizarApoyos();
+    document.addEventListener('portal:adhesion', actualizarApoyos);
+
+    if (botonApoyar && usuario && !esPropio && estaAbierto) {
+        botonApoyar.dataset.sumarme = reclamo.numero;
+        P.pintarSumarme(botonApoyar, P.estaAdherido(usuario.documento, reclamo.numero));
+        botonApoyar.hidden = false;
+    }
+
+    if (new URLSearchParams(location.search).get('desde') === 'reclamos') {
+        const volver = document.querySelector('.volver-a-mis-2');
+        if (volver) {
+            volver.href = 'reclamos2.html';
+            const texto = volver.querySelector('.text-wrapper-18');
+            if (texto) texto.textContent = 'Volver a reclamos';
+        }
+    }
+
+    window.addEventListener('pageshow', evento => {
+        if (evento.persisted) location.reload();
+    });
 });

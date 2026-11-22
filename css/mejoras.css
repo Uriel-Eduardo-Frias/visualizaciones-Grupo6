@@ -1,0 +1,107 @@
+.hero-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.bc-form {
+    padding: 20px 0 16px;
+}
+
+.field-error {
+    margin: 6px 0 0;
+    color: #A32626;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.field-error[hidden] {
+    display: none;
+}
+
+.in.invalido {
+    border-color: #A32626;
+    box-shadow: 0 0 0 1px #A32626;
+}
+
+.chips.invalido label {
+    border-color: #A32626;
+}
+
+.mensaje-error {
+    padding: 12px 16px;
+    border: 1px solid #E3BFBF;
+    border-radius: 10px;
+    background: #FBF1F1;
+    color: #6E1A1A;
+    font-weight: 700;
+}
+
+.mensaje-error[hidden] {
+    display: none;
+}
+
+.apoyos-detalle {
+    margin: 0;
+    color: #073E32;
+    font-weight: 700;
+}
+
+.apoyos-detalle:empty {
+    display: none;
+}
+
+.btn-apoyar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 22px;
+    border: 2px solid #087451;
+    border-radius: 8px;
+    background: #087451;
+    color: #FFFFFF;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-apoyar:hover {
+    background: #06604A;
+    border-color: #06604A;
+}
+
+.btn-apoyar.is-sumado {
+    background: #FFFFFF;
+    color: #087451;
+}
+
+.btn-apoyar.is-sumado:hover {
+    background: #E4F2EC;
+}
+
+.btn-apoyar[hidden] {
+    display: none;
+}
+
+.btn-apoyar:focus-visible {
+    outline: 3px solid #087451;
+    outline-offset: 2px;
+}
+
+.zona-peligro .btn-eliminar-cuenta {
+    min-height: 44px;
+    padding: 0 16px;
+    border: 2px solid #A32626;
+    border-radius: 10px;
+    background: #fff;
+    color: #A32626;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.zona-peligro .btn-eliminar-cuenta:hover {
+    background: #A32626;
+    color: #fff;
+}

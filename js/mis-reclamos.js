@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tdAccion.className = 'action';
         const enlace = document.createElement('a');
         enlace.className = 'link-ver';
-        enlace.href = `detalles-reclamo.html?numero=${encodeURIComponent(reclamo.numero)}`;
+        enlace.href = `detalles-reclamo.html?numero=${encodeURIComponent(reclamo.numero)}&desde=${modo === 'mis' ? 'mis' : 'reclamos'}`;
         enlace.textContent = 'Ver ›';
         tdAccion.appendChild(enlace);
         celdas.push(tdAccion);
@@ -242,4 +242,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     render();
+
+    window.addEventListener('pageshow', evento => {
+        if (evento.persisted) location.reload();
+    });
 });

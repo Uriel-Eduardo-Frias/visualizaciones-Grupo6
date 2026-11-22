@@ -408,7 +408,7 @@
         EDAD_MINIMA, soloDigitos, formatearDocumento, validarDocumento, emailValido, edadDe,
         usuarioActual, guardarPerfil, reclamosDemo, todosLosReclamos, reclamosDelUsuario,
         adhesionesDe, estaAdherido, alternarAdhesion, cancelarReclamo, cantidadApoyos, nombreSolicitante,
-        formatearFecha, formatearFechaHora, redimensionarFoto, areaDe, pintarSumarme, marcarError,
+        formatearFecha, formatearFechaHora, redimensionarFoto, areaDe, pintarSumarme, marcarError, eliminarCuenta,
     };
 
     /* ======================================================================
@@ -530,7 +530,6 @@
                     </div>
                     <a href="perfil.html">Mi perfil</a>
                     <a href="mis-reclamos2.html">Mis reclamos</a>
-                    <button class="item-eliminar" type="button" data-delete-account>Eliminar cuenta</button>
                     <button class="item-salir" type="button" data-logout>Cerrar sesión</button>
                 </div>`;
             menu.hidden = false;
@@ -556,20 +555,6 @@
             };
 
             boton.addEventListener('click', () => alternar(panel.hidden));
-            menu.querySelector('[data-delete-account]').addEventListener('click', () => {
-                const confirmar = window.confirm(
-                    '¿Eliminar tu cuenta? También se borrarán tus reclamos y adhesiones. Esta acción no se puede deshacer.'
-                );
-                if (!confirmar) return;
-
-                try {
-                    eliminarCuenta(persona.documento);
-                    location.replace('index.html');
-                } catch (error) {
-                    console.error('No se pudo eliminar la cuenta:', error);
-                    window.alert('No se pudo eliminar tu cuenta. Intentá nuevamente.');
-                }
-            });
             document.addEventListener('click', evento => {
                 if (!menu.contains(evento.target)) alternar(false);
             });

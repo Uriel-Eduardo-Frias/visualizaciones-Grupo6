@@ -106,4 +106,21 @@ document.addEventListener('DOMContentLoaded', () => {
             mostrarEstado('No se pudieron guardar los cambios en este navegador. Intentá nuevamente.', 'error');
         }
     });
+
+    const botonEliminar = document.getElementById('btn-eliminar-cuenta');
+    if (botonEliminar) {
+        botonEliminar.addEventListener('click', () => {
+            const confirmar = window.confirm(
+                '¿Eliminar tu cuenta? También se borrarán tus reclamos y adhesiones. Esta acción no se puede deshacer.'
+            );
+            if (!confirmar) return;
+            try {
+                P.eliminarCuenta(usuario.documento);
+                location.replace('index.html');
+            } catch (error) {
+                console.error('No se pudo eliminar la cuenta:', error);
+                window.alert('No se pudo eliminar tu cuenta. Intentá nuevamente.');
+            }
+        });
+    }
 });
