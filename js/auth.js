@@ -201,7 +201,6 @@
         'Limpieza': 'Higiene Urbana',
         'Tránsito': 'Tránsito y Transporte',
     };
-    const areaDe = categoria => AREAS[categoria] || 'Área a determinar';
     const FOTOS_POR_CATEGORIA = {
         'Alumbrado': '../img/reclamos/luminarias.jpg',
         'Calles y baches': '../img/reclamos/bache-escuela.jpg',
@@ -209,7 +208,42 @@
         'Limpieza': '../img/reclamos/basura.jpg',
         'Tránsito': '../img/reclamos/semaforo.jpg',
     };
-    const fotoAreaDe = categoria => FOTOS_POR_CATEGORIA[categoria] || '';
+
+    const normalizarCategoria = valor => String(valor || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+
+    function areaDe(categoria) {
+        if (!categoria) return 'Área a determinar';
+        if (AREAS[categoria]) return AREAS[categoria];
+        const normal = normalizarCategoria(categoria);
+        for (const [k, v] of Object.entries(AREAS)) {
+            if (normalizarCategoria(k) === normal) return v;
+        }
+        if (normal.includes('bache') || normal.includes('calle')) return AREAS['Calles y baches'];
+        if (normal.includes('luz') || normal.includes('luminaria') || normal.includes('alumbr')) return AREAS['Alumbrado'];
+        if (normal.includes('arbol') || normal.includes('rama') || normal.includes('verde')) return AREAS['Arbolado'];
+        if (normal.includes('basura') || normal.includes('limp') || normal.includes('residu')) return AREAS['Limpieza'];
+        if (normal.includes('transit') || normal.includes('semafor') || normal.includes('cartel')) return AREAS['Tránsito'];
+        return 'Área a determinar';
+    }
+
+    function fotoAreaDe(categoria) {
+        if (!categoria) return '../img/reclamos/luminarias.jpg';
+        if (FOTOS_POR_CATEGORIA[categoria]) return FOTOS_POR_CATEGORIA[categoria];
+        const normal = normalizarCategoria(categoria);
+        for (const [k, v] of Object.entries(FOTOS_POR_CATEGORIA)) {
+            if (normalizarCategoria(k) === normal) return v;
+        }
+        if (normal.includes('bache') || normal.includes('calle')) return FOTOS_POR_CATEGORIA['Calles y baches'];
+        if (normal.includes('luz') || normal.includes('luminaria') || normal.includes('alumbr')) return FOTOS_POR_CATEGORIA['Alumbrado'];
+        if (normal.includes('arbol') || normal.includes('rama') || normal.includes('verde')) return FOTOS_POR_CATEGORIA['Arbolado'];
+        if (normal.includes('basura') || normal.includes('limp') || normal.includes('residu')) return FOTOS_POR_CATEGORIA['Limpieza'];
+        if (normal.includes('transit') || normal.includes('semafor') || normal.includes('cartel')) return FOTOS_POR_CATEGORIA['Tránsito'];
+        return '../img/reclamos/luminarias.jpg';
+    }
 
     // Para usar fotos reales, reemplazá los archivos de ../img/reclamos/ (o cambiá fotoUrl).
     const reclamosDemo = [
@@ -287,9 +321,18 @@
         });
         let huboCambios = false;
         if (lista.length !== listaGuardada.length) huboCambios = true;
+        const yo = usuarioActual();
         lista.forEach((reclamo, i) => {
             if (!reclamo.numero) { reclamo.numero = `RC-${Date.now()}-${i}`; huboCambios = true; }
             if (!reclamo.estado) { reclamo.estado = 'Recibido'; huboCambios = true; }
+            if (!reclamo.fotoUrl) {
+                reclamo.fotoUrl = fotoAreaDe(reclamo.categoria);
+                huboCambios = true;
+            }
+            if (!reclamo.autor && yo) {
+                reclamo.autor = yo.documento;
+                huboCambios = true;
+            }
         });
         if (huboCambios) {
             try { guardarJSON(CLAVES.reclamos, lista); } catch (error) { /* se ignora */ }

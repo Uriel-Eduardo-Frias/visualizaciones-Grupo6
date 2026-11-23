@@ -57,11 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const icono = document.createElement('span');
         icono.className = 'area-icon';
-        if (reclamo.fotoUrl) {
+        const foto = reclamo.fotoUrl || (P.fotoAreaDe ? P.fotoAreaDe(reclamo.categoria) : '');
+        if (foto) {
             const imagen = document.createElement('img');
-            imagen.src = reclamo.fotoUrl;
-            imagen.alt = '';
-            imagen.addEventListener('error', () => icono.removeChild(imagen));
+            imagen.src = foto;
+            imagen.alt = P.areaDe ? P.areaDe(reclamo.categoria) : '';
+            imagen.addEventListener('error', () => {
+                const fallback = P.fotoAreaDe ? P.fotoAreaDe(reclamo.categoria) : '';
+                if (fallback && imagen.src !== fallback) {
+                    imagen.src = fallback;
+                } else if (imagen.parentNode === icono) {
+                    icono.removeChild(imagen);
+                }
+            });
             icono.appendChild(imagen);
         }
 
