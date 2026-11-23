@@ -12,7 +12,7 @@ Proyecto académico de visualización web: un prototipo de portal municipal para
 - Listado de reclamos con filtros y búsqueda.
 - Diseño adaptable a distintos tamaños de pantalla.
 
-La ubicación y las direcciones se consultan con Nominatim de OpenStreetMap. Al seleccionar un punto válido en el mapa se completan la dirección, la localidad y el barrio; al buscar una dirección, el mapa y esos datos se actualizan si el resultado pertenece a La Matanza. Las imágenes fijas por categoría están en `img/reclamos/`.
+La ubicación y las direcciones se consultan con Nominatim de OpenStreetMap. El mapa encuadra el municipio completo y resalta en azul su límite cuando se intenta seleccionar un punto externo. Al seleccionar un punto válido se completan la dirección, la localidad y el barrio; al buscar una dirección, el mapa y esos datos se actualizan si el resultado pertenece a La Matanza. Las imágenes fijas por categoría están en `img/reclamos/`.
 
 ## Estructura
 
