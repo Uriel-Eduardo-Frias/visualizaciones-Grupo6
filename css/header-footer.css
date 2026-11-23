@@ -437,3 +437,19 @@ button.btn-outline-sm {
 .btn-outline-sm.is-sumado:hover {
     background: var(--verde-hover);
 }
+.encabezado-link {
+    display: block;
+    line-height: 0;
+}
+
+.footer-link-logo {
+    display: block;
+    width: 64px;
+    margin-bottom: 12px;
+}
+
+.footer-img {
+    display: block;
+    width: 64px;
+    height: auto;
+}
