@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="../js/auth.js" defer></script>
+    <script src="../js/telefonos.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script src="../js/carrusel.js" defer></script>
@@ -42,6 +43,17 @@
             <div class="user-menu" hidden></div>
         </div>
     </header>
+
+    <div class="franja-emergencias" role="region" aria-label="Teléfonos de emergencia">
+        <div class="w">
+            <span class="franja-titulo">TELÉFONOS DE EMERGENCIA:</span>
+                <a class="franja-tel" href="tel:911" data-numero="911" data-nombre="Emergencias" aria-label="Llamar al 911, Emergencias"><b>911</b> Emergencias</a>
+                <a class="franja-tel" href="tel:100" data-numero="100" data-nombre="Bomberos" aria-label="Llamar al 100, Bomberos"><b>100</b> Bomberos</a>
+                <a class="franja-tel" href="tel:107" data-numero="107" data-nombre="Emergencias médicas" aria-label="Llamar al 107, Emergencias médicas"><b>107</b> Emergencias médicas</a>
+                <a class="franja-tel" href="tel:144" data-numero="144" data-nombre="Violencia de género" aria-label="Llamar al 144, Violencia de género"><b>144</b> Violencia de género</a>
+            <a class="franja-todos" href="informacion-util2.html">Ver todos →</a>
+        </div>
+    </div>
 
     <main>
         <!-- Hero: Bienvenida (Arriba) -->
@@ -164,14 +176,12 @@
                                 <span class="actualidad-etiqueta">Comunidad</span>
                                 <h4>Nuevas actividades deportivas y recreativas para los vecinos.</h4>
                                 <p>Propuestas para moverse, compartir y disfrutar de los espacios deportivos del
-                                    municipio.
-                                </p>
+                                    municipio.</p>
+                                <a href="noticias_comunidad.html" class="actualidad-enlace">
+                                    Ver todas las noticias →
+                                </a>
                             </div>
                         </article>
-
-                        <a href="noticias_comunidad.html" class="actualidad-enlace">
-                            Ver todas las noticias →
-                        </a>
                     </section>
 
                     <!-- Información útil destacada -->
@@ -185,14 +195,12 @@
                                 <span class="actualidad-etiqueta">Emergencias</span>
                                 <h4>911, Bomberos, emergencias médicas y más líneas de ayuda</h4>
                                 <p>Consultá los números para pedir ayuda ante una urgencia y llamá con un solo toque
-                                    desde tu celular.
-                                </p>
+                                    desde tu celular.</p>
+                                <a href="informacion-util2.html" class="actualidad-enlace">
+                                    Ver todos los teléfonos →
+                                </a>
                             </div>
                         </article>
-
-                        <a href="informacion-util2.html" class="actualidad-enlace">
-                            Ver todos los teléfonos →
-                        </a>
                     </section>
 
                 </div>

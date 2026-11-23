@@ -261,3 +261,89 @@
 .tel-aviso[hidden] {
     display: none;
 }
+
+.franja-emergencias {
+    background: #087451;
+    color: #FFFFFF;
+}
+
+.franja-emergencias .w {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: clamp(14px, 2.4vw, 32px);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.franja-emergencias .w::-webkit-scrollbar {
+    display: none;
+}
+
+.franja-titulo,
+.franja-tel,
+.franja-todos {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.franja-titulo {
+    letter-spacing: 0.4px;
+}
+
+.franja-tel {
+    text-decoration: none;
+}
+
+.franja-tel b {
+    font-size: 17px;
+}
+
+.franja-tel:hover,
+.franja-todos:hover {
+    text-decoration: underline;
+}
+
+.franja-tel:focus-visible,
+.franja-todos:focus-visible {
+    outline: 3px solid #FFFFFF;
+    outline-offset: 3px;
+}
+
+.franja-todos {
+    margin-left: auto;
+}
+
+@media (max-width: 700px) {
+    .franja-titulo {
+        display: none;
+    }
+
+    .franja-emergencias .w {
+        gap: 18px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .franja-tel,
+    .franja-todos {
+        font-size: 13px;
+    }
+
+    .franja-tel b {
+        font-size: 15px;
+    }
+
+    .franja-tel:nth-of-type(n+3) {
+        display: none;
+    }
+
+    .franja-todos {
+        margin-left: auto;
+    }
+}
