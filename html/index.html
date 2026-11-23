@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/mejoras.css">
     <link rel="stylesheet" href="../css/header-footer.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="../js/auth.js" defer></script>
@@ -33,7 +34,6 @@
                 <a href="index.html" aria-current="page">Inicio</a>
                 <a href="reclamos.html">Reclamos</a>
                 <a href="noticias_comunidad2.html">Noticias</a>
-                <a href="informacion-util.html">Información útil</a>
                 <a href="contacto.html">Contacto</a>
             </nav>
 
@@ -97,14 +97,12 @@
                     <article class="service-card">
                         <div class="service-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
                         </div>
-                        <h3>Guía de servicios</h3>
-                        <p>Encontrá información municipal por tema, según lo que necesitás.</p>
-                        <a href="informacion-util.html" class="service-link">Explorar información útil →</a>
+                        <h3>Teléfonos de emergencia</h3>
+                        <p>Números para pedir ayuda ante una urgencia, a un toque de distancia.</p>
+                        <a href="informacion-util.html" class="service-link">Ver teléfonos →</a>
                     </article>
                 </div>
 
@@ -129,11 +127,11 @@
 
         <!-- Sección: Noticias y comunidad -->
        
-        <!-- Sección: Noticias e información útil -->
+        <!-- Sección: Noticias y teléfonos de emergencia -->
         <section class="section-padding bg-alt">
             <div class="w">
                 <header class="section-header">
-                    <h2>Noticias e información útil</h2>
+                    <h2>Noticias y teléfonos de emergencia</h2>
                 </header>
 
                 <div class="actualidad-grid">
@@ -160,21 +158,20 @@
 
                     <!-- Información útil destacada -->
                     <section class="actualidad-informacion" aria-labelledby="titulo-informacion">
-                        <h3 id="titulo-informacion">Información útil</h3>
+                        <h3 id="titulo-informacion">Teléfonos de emergencia</h3>
 
                         <article class="actualidad-tema">
-                            <img src="../img/centro-salud.webp" alt="Centro de Salud">
+                            <img src="../img/centro-operaciones-monitoreo.jpg" alt="Operadores del Centro de Operaciones y Monitoreo de La Matanza">
                             <div class="actualidad-tema-contenido">
-                                <span class="actualidad-etiqueta">Salud y bienestar</span>
-                                <h4>Hospitales y Centros de Atención Primaria (CAPS)</h4>
-                                <p>Encontrá centros de salud cercanos, hospitales municipales, horarios y
-                                    especialidades.
+                                <span class="actualidad-etiqueta">Emergencias</span>
+                                <h4>911, Bomberos, emergencias médicas y más líneas de ayuda</h4>
+                                <p>Consultá los números para pedir ayuda ante una urgencia y llamá con un solo toque desde tu celular.
                                 </p>
                             </div>
                         </article>
 
-                        <a href="informacion-util2.html" class="actualidad-enlace">
-                            Ver toda la información útil →
+                        <a href="informacion-util.html" class="actualidad-enlace">
+                            Ver todos los teléfonos →
                         </a>
                     </section>
 
@@ -312,7 +309,7 @@
                     </ul>
                     <ul class="clean-list">
                         <li><a href="noticias_comunidad2.html">Noticias</a></li>
-                        <li><a href="informacion-util.html">Información útil</a></li>
+                        <li><a href="informacion-util.html">Teléfonos de emergencia</a></li>
                         <li><a href="contacto.html">Contacto</a></li>
                     </ul>
                 </div>

@@ -130,3 +130,134 @@
     height: 100%;
     object-fit: cover;
 }
+
+.tel-destacados {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.tel-lista {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.tel-lista-home {
+    grid-template-columns: 1fr;
+    flex: 1;
+    align-content: start;
+}
+
+.tel-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 64px;
+    padding: 0 20px;
+    border: 1px solid #DFE7E2;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #073E32;
+    text-decoration: none;
+}
+
+.tel-item:hover {
+    border-color: #087451;
+    background: #E4F2EC;
+    text-decoration: none;
+}
+
+.tel-item:focus-visible {
+    outline: 3px solid #087451;
+    outline-offset: 2px;
+}
+
+.tel-num {
+    min-width: 48px;
+    padding-right: 16px;
+    border-right: 1px solid #C9D8CF;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: #087451;
+}
+
+.tel-nombre {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.tel-icono {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    color: #087451;
+}
+
+.tel-item-destacado {
+    min-height: 80px;
+}
+
+.tel-item-destacado .tel-num {
+    min-width: 64px;
+    font-size: 40px;
+}
+
+.tel-item-destacado:first-child {
+    border-color: #073E32;
+    background: #073E32;
+}
+
+.tel-item-destacado:first-child:hover {
+    background: #06604A;
+}
+
+.tel-item-destacado:first-child .tel-num,
+.tel-item-destacado:first-child .tel-nombre,
+.tel-item-destacado:first-child .tel-icono {
+    color: #FFFFFF;
+}
+
+.tel-item-destacado:first-child .tel-num {
+    border-right-color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 900px) {
+    .tel-lista {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .tel-destacados,
+    .tel-lista {
+        grid-template-columns: 1fr;
+    }
+}
+
+.info-util .iu-emergencias {
+    padding: 32px 0 56px;
+}
+
+.tel-aviso {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    z-index: 50;
+    max-width: min(560px, calc(100vw - 32px));
+    padding: 14px 20px;
+    border-radius: 12px;
+    background: #073E32;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(7, 62, 50, 0.3);
+}
+
+.tel-aviso[hidden] {
+    display: none;
+}
