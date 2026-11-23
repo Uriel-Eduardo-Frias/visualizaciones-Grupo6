@@ -14,12 +14,21 @@
     min-height: 70px;
     flex-wrap: wrap;
 }
+.encabezado-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
 .brand {
     display: flex;
     flex-direction: column;
 }
-
+.logo-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
 .logo {
     color: var(--tinta);
     font-size: 19px;
