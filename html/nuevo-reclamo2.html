@@ -211,6 +211,38 @@
                 direccion.quarter || direccion.residential || direccion.hamlet
         });
 
+        const esDeLaMatanza = direccion => {
+            const normalizar = valor => String(valor || '')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replace(/^partido de\s+/, '')
+                .trim();
+            const camposMunicipio = [
+                direccion.county,
+                direccion.municipality,
+                direccion.city,
+                direccion.town,
+                direccion.village,
+                direccion.city_district,
+                direccion.state_district,
+                direccion.district
+            ];
+            return camposMunicipio.some(valor => normalizar(valor) === 'la matanza');
+        };
+
+        const obtenerDireccion = resultado => {
+            const direccion = resultado.address || {};
+            const calle = direccion.road || direccion.pedestrian ||
+                direccion.footway || direccion.path || direccion.residential ||
+                direccion.square || direccion.building || direccion.amenity ||
+                resultado.name;
+            if (calle) {
+                return calle + (direccion.house_number ? ' ' + direccion.house_number : '');
+            }
+            return String(resultado.display_name || '').split(',').slice(0, 2).join(',').trim();
+        };
+
         f.addEventListener('input', () => {
             document.getElementById('r-cat').textContent =
                 f.categoria.value || '—';
@@ -281,6 +313,13 @@
                     }
 
                     const resultado = resultados[0];
+                    if (!esDeLaMatanza(resultado.address || {})) {
+                        document.getElementById('mapa-mensaje').textContent =
+                            'La dirección debe estar dentro del Municipio de La Matanza.';
+                        document.getElementById('r-localidad').textContent = 'Sin seleccionar';
+                        return;
+                    }
+
                     const { localidad, barrio } =
                         obtenerLocalidadYBarrio(resultado.address || {});
                     const lat = Number(resultado.lat);
@@ -454,9 +493,12 @@
         });
 
         window.addEventListener('portal:ubicacion-reclamo', async event => {
-            coordenadas = event.detail;
+            const puntoSeleccionado = event.detail;
+            coordenadas = null;
             localidadSeleccionada = '';
             barrioSeleccionado = '';
+            direccionInput.value = '';
+            document.getElementById('r-dir').textContent = '—';
             busquedaDireccionId++;
             window.clearTimeout(temporizadorDireccion);
             if (solicitudDireccion) solicitudDireccion.abort();
@@ -479,8 +521,8 @@
                     const url = new URL('https://nominatim.openstreetmap.org/reverse');
                     url.search = new URLSearchParams({
                         format: 'jsonv2',
-                        lat: coordenadas.lat,
-                        lon: coordenadas.lng,
+                        lat: puntoSeleccionado.lat,
+                        lon: puntoSeleccionado.lng,
                         zoom: '14',
                         addressdetails: '1'
                     }).toString();
@@ -496,6 +538,15 @@
                     const resultado = await response.json();
                     if (idActual !== busquedaId) return;
 
+                    if (!esDeLaMatanza(resultado.address || {})) {
+                        coordenadas = null;
+                        window.dispatchEvent(new CustomEvent('portal:limpiar-ubicacion-reclamo'));
+                        document.getElementById('mapa-mensaje').textContent =
+                            'El punto seleccionado está fuera del Municipio de La Matanza. Elegí una ubicación dentro del municipio.';
+                        document.getElementById('r-localidad').textContent = 'Sin seleccionar';
+                        return;
+                    }
+
                     const { localidad, barrio } =
                         obtenerLocalidadYBarrio(resultado.address || {});
 
@@ -503,16 +554,27 @@
                         throw new Error('No se encontraron localidad y barrio para el punto.');
                     }
 
+                    const direccion = obtenerDireccion(resultado);
+                    if (!direccion) {
+                        throw new Error('No se encontró una dirección para el punto.');
+                    }
+
+                    coordenadas = puntoSeleccionado;
                     localidadSeleccionada = localidad;
                     barrioSeleccionado = barrio;
                     localidadInput.value = barrio + ', ' + localidad;
                     document.getElementById('r-localidad').textContent =
                         localidadInput.value;
+                    direccionInput.value = direccion;
+                    document.getElementById('r-dir').textContent = direccion;
                     document.getElementById('mapa-mensaje').textContent =
                         'Ubicación seleccionada. Podés mover el marcador para ajustarla.';
                 } catch (error) {
                     if (error.name === 'AbortError' || idActual !== busquedaId) return;
                     console.error('Error al identificar la localidad y el barrio:', error);
+                    coordenadas = null;
+                    window.dispatchEvent(new CustomEvent('portal:limpiar-ubicacion-reclamo'));
+                    localidadInput.value = '';
                     document.getElementById('mapa-mensaje').textContent =
                         'No se pudo identificar la localidad y el barrio. Probá seleccionando otro punto del mapa.';
                 }
