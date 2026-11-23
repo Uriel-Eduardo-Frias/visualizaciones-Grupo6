@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         textoFoto.insertAdjacentElement('afterend', figura);
     }
     if (imagen) {
-        imagen.style.cssText = 'display:block;width:100%;max-height:420px;object-fit:cover;' +
+        imagen.style.cssText = 'display:block;width:auto;height:auto;max-width:100%;max-height:480px;' +
             'border:1px solid #dfe7e2;border-radius:12px;background:#eaf1ec;';
     }
 

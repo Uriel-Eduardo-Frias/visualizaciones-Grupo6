@@ -105,3 +105,9 @@
     background: #A32626;
     color: #fff;
 }
+
+.area-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

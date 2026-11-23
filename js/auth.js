@@ -194,14 +194,6 @@
     }
 
     /* ---------- Reclamos y adhesiones ---------- */
-    const FOTOS = {
-        alumbrado: '../img/luminaria.svg',
-        calles: '../img/bache.svg',
-        arbolado: '../img/arbol.svg',
-        limpieza: '../img/basural.svg',
-        transito: '../img/semaforo.svg',
-    };
-
     const AREAS = {
         'Alumbrado': 'Alumbrado Público',
         'Calles y baches': 'Obras Públicas',
@@ -217,63 +209,63 @@
             numero: 'RC-2026-004390', asunto: 'Rama quebrada a punto de caer', categoria: 'Arbolado',
             direccion: 'Calle Arieta 2480', localidad: 'San Justo', barrio: 'Barrio Centro',
             detalle: 'Con el viento de ayer quedó una rama muy grande colgando sobre la vereda, justo por donde pasan los chicos para ir a la escuela.',
-            fecha: '2026-11-19T10:05:00', estado: 'Recibido', solicitante: 'Gustavo P.', apoyos: 3, fotoUrl: FOTOS.arbolado,
+            fecha: '2026-11-19T10:05:00', estado: 'Recibido', solicitante: 'Gustavo P.', apoyos: 3, fotoUrl: '../img/reclamos/rama-quebrada.jpg',
             historial: { 'recibido': '2026-11-19T10:05:00' },
         },
         {
-            numero: 'RC-2026-004351', asunto: 'Cartel de PARE caído en la esquina', categoria: 'Tránsito',
+            numero: 'RC-2026-004351', asunto: 'Cartel caído sobre la vereda', categoria: 'Tránsito',
             direccion: 'Calle Italia y Calle Brasil', localidad: 'Isidro Casanova', barrio: 'Barrio San Alberto',
-            detalle: 'El poste del cartel de PARE está tirado desde el fin de semana. Los autos cruzan sin frenar y ya hubo dos choques leves.',
-            fecha: '2026-11-17T18:32:00', estado: 'Recibido', solicitante: 'Lucía M.', apoyos: 11, fotoUrl: FOTOS.transito,
+            detalle: 'El cartel se cayó sobre la vereda y quedó tirado junto al cordón desde el fin de semana. Los peatones tienen que bajar a la calle para esquivarlo y puede lastimar a alguien.',
+            fecha: '2026-11-17T18:32:00', estado: 'Recibido', solicitante: 'Lucía M.', apoyos: 11, fotoUrl: '../img/reclamos/cartel-caido.jpg',
             historial: { 'recibido': '2026-11-17T18:32:00' },
         },
         {
             numero: 'RC-2026-004302', asunto: 'Tres luminarias apagadas en la cuadra', categoria: 'Alumbrado',
             direccion: 'Av. Brig. Gral. Juan Manuel de Rosas 3250', localidad: 'San Justo', barrio: 'Barrio Centro',
             detalle: 'Hace una semana que no funcionan las luminarias de toda la cuadra. De noche no se ve nada y ya hubo intentos de robo.',
-            fecha: '2026-11-12T09:14:00', estado: 'En proceso', solicitante: 'Marcela R.', apoyos: 17, fotoUrl: FOTOS.alumbrado,
+            fecha: '2026-11-12T09:14:00', estado: 'En proceso', solicitante: 'Marcela R.', apoyos: 17, fotoUrl: '../img/reclamos/luminarias.jpg',
             historial: { 'recibido': '2026-11-12T09:14:00', 'derivado': '2026-11-13T11:20:00', 'en proceso': '2026-11-17T08:45:00' },
         },
         {
             numero: 'RC-2026-004266', asunto: 'Calle intransitable después de la lluvia', categoria: 'Calles y baches',
             direccion: 'Calle Güemes 2210', localidad: 'González Catán', barrio: 'Barrio Los Tilos',
             detalle: 'Con las últimas lluvias se hizo un pozo enorme y el agua no escurre. Los vecinos no podemos sacar los autos y no entra la ambulancia.',
-            fecha: '2026-11-09T07:50:00', estado: 'En proceso', solicitante: 'Roberto D.', apoyos: 31, fotoUrl: FOTOS.calles,
+            fecha: '2026-11-09T07:50:00', estado: 'En proceso', solicitante: 'Roberto D.', apoyos: 31, fotoUrl: '../img/reclamos/calle-inundada.jpg',
             historial: { 'recibido': '2026-11-09T07:50:00', 'derivado': '2026-11-10T10:00:00', 'en proceso': '2026-11-16T09:30:00' },
         },
         {
             numero: 'RC-2026-004198', asunto: 'Basura acumulada hace una semana', categoria: 'Limpieza',
             direccion: 'Calle Ombú 1540', localidad: 'Gregorio de Laferrere', barrio: 'Barrio Néstor Kirchner',
             detalle: 'No pasó el camión de recolección y las bolsas se juntaron en la esquina. Hay olor fuerte y empezaron a aparecer ratas.',
-            fecha: '2026-11-05T16:10:00', estado: 'Derivado', solicitante: 'Natalia S.', apoyos: 8, fotoUrl: FOTOS.limpieza,
+            fecha: '2026-11-05T16:10:00', estado: 'Derivado', solicitante: 'Natalia S.', apoyos: 8, fotoUrl: '../img/reclamos/basura.jpg',
             historial: { 'recibido': '2026-11-05T16:10:00', 'derivado': '2026-11-06T09:05:00' },
         },
         {
             numero: 'RC-2026-004127', asunto: 'Bache profundo frente a la escuela', categoria: 'Calles y baches',
             direccion: 'Calle Alvear 1120', localidad: 'Ramos Mejía', barrio: 'Barrio Parque',
             detalle: 'El bache tiene más de medio metro de ancho y está justo en la entrada de la escuela. Los autos frenan de golpe y los chicos cruzan por el costado.',
-            fecha: '2026-10-30T12:25:00', estado: 'Derivado', solicitante: 'Silvia A.', apoyos: 24, fotoUrl: FOTOS.calles,
+            fecha: '2026-10-30T12:25:00', estado: 'Derivado', solicitante: 'Silvia A.', apoyos: 24, fotoUrl: '../img/reclamos/bache-escuela.jpg',
             historial: { 'recibido': '2026-10-30T12:25:00', 'derivado': '2026-10-31T09:40:00' },
         },
         {
             numero: 'RC-2026-004075', asunto: 'Semáforo apagado en el cruce', categoria: 'Tránsito',
             direccion: 'Av. de Mayo y Rivadavia', localidad: 'Ramos Mejía', barrio: 'Centro',
             detalle: 'El semáforo no enciende desde el jueves y en horas pico se forma un embotellamiento. Cruzar a pie es peligroso.',
-            fecha: '2026-10-27T19:03:00', estado: 'En proceso', solicitante: 'Martín C.', apoyos: 12, fotoUrl: FOTOS.transito,
+            fecha: '2026-10-27T19:03:00', estado: 'En proceso', solicitante: 'Martín C.', apoyos: 12, fotoUrl: '../img/reclamos/semaforo.jpg',
             historial: { 'recibido': '2026-10-27T19:03:00', 'derivado': '2026-10-28T10:15:00', 'en proceso': '2026-11-04T08:20:00' },
         },
         {
             numero: 'RC-2026-003981', asunto: 'Contenedor desbordado sin retirar', categoria: 'Limpieza',
             direccion: 'Calle Pergamino 3120', localidad: 'Villa Luzuriaga', barrio: 'Barrio Jardín',
             detalle: 'El contenedor de la esquina está desbordado y la basura invade la vereda y parte de la calle.',
-            fecha: '2026-10-20T08:30:00', estado: 'Resuelto', solicitante: 'Héctor F.', apoyos: 8, fotoUrl: FOTOS.limpieza,
+            fecha: '2026-10-20T08:30:00', estado: 'Resuelto', solicitante: 'Héctor F.', apoyos: 8, fotoUrl: '../img/reclamos/contenedor.jpg',
             historial: { 'recibido': '2026-10-20T08:30:00', 'derivado': '2026-10-20T14:00:00', 'en proceso': '2026-10-21T09:00:00', 'resuelto': '2026-10-23T12:10:00' },
         },
         {
             numero: 'RC-2026-003904', asunto: 'Cables sueltos en un poste de luz', categoria: 'Alumbrado',
             direccion: 'Calle Lamadrid 980', localidad: 'Lomas del Mirador', barrio: 'Barrio Las Rosas',
             detalle: 'Hay cables colgando a la altura de la vereda y el poste hace chispas cuando llueve. Es un riesgo para quienes pasan.',
-            fecha: '2026-10-15T21:40:00', estado: 'Resuelto', solicitante: 'Paula G.', apoyos: 6, fotoUrl: FOTOS.alumbrado,
+            fecha: '2026-10-15T21:40:00', estado: 'Resuelto', solicitante: 'Paula G.', apoyos: 6, fotoUrl: '../img/reclamos/cables.jpg',
             historial: { 'recibido': '2026-10-15T21:40:00', 'derivado': '2026-10-16T09:10:00', 'en proceso': '2026-10-19T10:30:00', 'resuelto': '2026-10-22T17:45:00' },
         },
     ];
