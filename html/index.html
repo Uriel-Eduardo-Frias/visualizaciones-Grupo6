@@ -97,7 +97,9 @@
                     <article class="service-card">
                         <div class="service-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
                             </svg>
                         </div>
                         <h3>Teléfonos de emergencia</h3>
@@ -105,34 +107,13 @@
                         <a href="informacion-util.html" class="service-link">Ver teléfonos →</a>
                     </article>
                 </div>
-
-                <!-- Buscador de servicios -->
-                <div class="search-section-box">
-                    <label for="search-tramite" class="search-label">¿Qué necesitás hacer hoy?</label>
-                    <div class="search-bar-inline">
-                        <div class="search-input-icon-wrap">
-                            <svg class="search-lens-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                            <input type="search" id="search-tramite" class="in-search"
-                                placeholder="Buscá un trámite, una noticia o un servicio...">
-                        </div>
-                        <button type="submit" class="btn btn-search">Buscar</button>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <!-- Sección: Noticias y comunidad -->
-       
         <!-- Sección: Noticias y teléfonos de emergencia -->
         <section class="section-padding bg-alt">
             <div class="w">
-                <header class="section-header">
-                    <h2>Noticias y teléfonos de emergencia</h2>
-                </header>
+
 
                 <div class="actualidad-grid">
 
@@ -161,11 +142,13 @@
                         <h3 id="titulo-informacion">Teléfonos de emergencia</h3>
 
                         <article class="actualidad-tema">
-                            <img src="../img/centro-operaciones-monitoreo.jpg" alt="Operadores del Centro de Operaciones y Monitoreo de La Matanza">
+                            <img src="../img/centro-operaciones-monitoreo.jpg"
+                                alt="Operadores del Centro de Operaciones y Monitoreo de La Matanza">
                             <div class="actualidad-tema-contenido">
                                 <span class="actualidad-etiqueta">Emergencias</span>
                                 <h4>911, Bomberos, emergencias médicas y más líneas de ayuda</h4>
-                                <p>Consultá los números para pedir ayuda ante una urgencia y llamá con un solo toque desde tu celular.
+                                <p>Consultá los números para pedir ayuda ante una urgencia y llamá con un solo toque
+                                    desde tu celular.
                                 </p>
                             </div>
                         </article>
@@ -233,7 +216,7 @@
         </section>
 
         <!-- Sección: Información para tu día a día -->
-        
+
 
         <section class="section-padding">
             <div class="w faq-grid-layout">
@@ -260,6 +243,7 @@
                         </summary>
                         <div class="faq-answer">
                             <p>Completá el formulario digital con la ubicación y una descripción del problema.</p>
+                            <a href="login.html?next=nuevo-reclamo2.html" class="service-link">Hacer un reclamo →</a>
                         </div>
                     </details>
                     <details class="faq-item">
@@ -269,15 +253,16 @@
                         </summary>
                         <div class="faq-answer">
                             <p>Ingresá a «Mis reclamos» con tu cuenta para consultar su seguimiento.</p>
+                            <a href="login.html?next=mis-reclamos2.html" class="service-link">Ir a Mis reclamos →</a>
                         </div>
                     </details>
                     <details class="faq-item">
                         <summary class="faq-question">
-                            <span>¿Tiene costo realizar un trámite o reclamo?</span>
+                            <span>¿Tiene costo realizar un reclamo?</span>
                             <span class="faq-toggle-icon" aria-hidden="true"></span>
                         </summary>
                         <div class="faq-answer">
-                            <p>Los trámites son gratuitos, salvo aquellos que indiquen un sellado o tasa especial.</p>
+                            <p>Los reclamos son gratuitos sin importar su categoría.</p>
                         </div>
                     </details>
                     <div class="section-footer-link">
