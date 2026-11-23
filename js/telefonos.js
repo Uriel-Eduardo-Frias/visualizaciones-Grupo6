@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.tel-item');
+    const items = document.querySelectorAll('.tel-item, .franja-tel');
     if (!items.length) return;
 
     const esTactil = window.matchMedia('(pointer: coarse)').matches;
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     items.forEach(item => {
         item.addEventListener('click', evento => {
             evento.preventDefault();
-            const numero = item.querySelector('.tel-num').textContent.trim();
-            const nombre = item.querySelector('.tel-nombre').textContent.trim();
+            const numero = item.dataset.numero || item.querySelector('.tel-num').textContent.trim();
+            const nombre = item.dataset.nombre || item.querySelector('.tel-nombre').textContent.trim();
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(numero)
                     .then(() => mostrar(numero, nombre, true))
