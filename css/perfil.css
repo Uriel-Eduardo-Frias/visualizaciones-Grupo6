@@ -114,16 +114,34 @@
     font-variant-numeric: tabular-nums;
 }
 
+/* En pantallas chicas: "Tus reclamos" arriba, formulario en el medio y "Eliminar cuenta" al final */
+@media (max-width: 900px) {
+    .aside-stack {
+        display: contents;
+    }
+
+    .perfil-reclamos {
+        order: -1;
+    }
+
+    .perfil-form {
+        order: 0;
+    }
+
+    .zona-peligro {
+        order: 1;
+    }
+}
+
 @media (max-width: 600px) {
+
     .datos-lista,
     .campos {
         grid-template-columns: 1fr;
     }
-}
 
-/* En pantallas chicas la tarjeta de reclamos va primero, para que se vea sin hacer scroll */
-@media (max-width: 900px) {
-    .aside-stack {
-        order: -1;
+    .perfil-acciones .btn,
+    .zona-peligro .btn-eliminar-cuenta {
+        width: 100%;
     }
 }

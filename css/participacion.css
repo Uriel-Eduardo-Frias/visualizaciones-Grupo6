@@ -41,8 +41,13 @@
 }
 
 /* Anchos de columnas (pisan los de styles.css, pensados para 5 columnas) */
-.claims-table--mis { min-width: 960px; }
-.claims-table--publica { min-width: 780px; }
+.claims-table--mis {
+    min-width: 960px;
+}
+
+.claims-table--publica {
+    min-width: 780px;
+}
 
 table.claims-table--mis th,
 table.claims-table--mis td,
@@ -52,22 +57,80 @@ table.claims-table--publica td {
     padding-right: 16px;
 }
 
-table.claims-table--mis th:nth-child(1), table.claims-table--mis td:nth-child(1) { width: 22%; }
-table.claims-table--mis th:nth-child(2), table.claims-table--mis td:nth-child(2) { width: 21%; }
-table.claims-table--mis th:nth-child(3), table.claims-table--mis td:nth-child(3) { width: 14%; }
-table.claims-table--mis th:nth-child(4), table.claims-table--mis td:nth-child(4) { width: 9%; }
-table.claims-table--mis th:nth-child(5), table.claims-table--mis td:nth-child(5) { width: 12%; }
-table.claims-table--mis th:nth-child(6), table.claims-table--mis td:nth-child(6) { width: 16%; }
-table.claims-table--mis th:nth-child(7), table.claims-table--mis td:nth-child(7) { width: 6%; }
+table.claims-table--mis th:nth-child(1),
+table.claims-table--mis td:nth-child(1) {
+    width: 22%;
+}
 
-table.claims-table--publica th:nth-child(1), table.claims-table--publica td:nth-child(1) { width: 21%; }
-table.claims-table--publica th:nth-child(2), table.claims-table--publica td:nth-child(2) { width: 14%; }
-table.claims-table--publica th:nth-child(3), table.claims-table--publica td:nth-child(3) { width: 11%; }
-table.claims-table--publica th:nth-child(4), table.claims-table--publica td:nth-child(4) { width: 9%; }
-table.claims-table--publica th:nth-child(5), table.claims-table--publica td:nth-child(5) { width: 11%; }
-table.claims-table--publica th:nth-child(6), table.claims-table--publica td:nth-child(6) { width: 12%; }
-table.claims-table--publica th:nth-child(7), table.claims-table--publica td:nth-child(7) { width: 16%; }
-table.claims-table--publica th:nth-child(8), table.claims-table--publica td:nth-child(8) { width: 6%; }
+table.claims-table--mis th:nth-child(2),
+table.claims-table--mis td:nth-child(2) {
+    width: 21%;
+}
+
+table.claims-table--mis th:nth-child(3),
+table.claims-table--mis td:nth-child(3) {
+    width: 14%;
+}
+
+table.claims-table--mis th:nth-child(4),
+table.claims-table--mis td:nth-child(4) {
+    width: 9%;
+}
+
+table.claims-table--mis th:nth-child(5),
+table.claims-table--mis td:nth-child(5) {
+    width: 12%;
+}
+
+table.claims-table--mis th:nth-child(6),
+table.claims-table--mis td:nth-child(6) {
+    width: 16%;
+}
+
+table.claims-table--mis th:nth-child(7),
+table.claims-table--mis td:nth-child(7) {
+    width: 6%;
+}
+
+table.claims-table--publica th:nth-child(1),
+table.claims-table--publica td:nth-child(1) {
+    width: 21%;
+}
+
+table.claims-table--publica th:nth-child(2),
+table.claims-table--publica td:nth-child(2) {
+    width: 14%;
+}
+
+table.claims-table--publica th:nth-child(3),
+table.claims-table--publica td:nth-child(3) {
+    width: 11%;
+}
+
+table.claims-table--publica th:nth-child(4),
+table.claims-table--publica td:nth-child(4) {
+    width: 9%;
+}
+
+table.claims-table--publica th:nth-child(5),
+table.claims-table--publica td:nth-child(5) {
+    width: 11%;
+}
+
+table.claims-table--publica th:nth-child(6),
+table.claims-table--publica td:nth-child(6) {
+    width: 12%;
+}
+
+table.claims-table--publica th:nth-child(7),
+table.claims-table--publica td:nth-child(7) {
+    width: 16%;
+}
+
+table.claims-table--publica th:nth-child(8),
+table.claims-table--publica td:nth-child(8) {
+    width: 6%;
+}
 
 /* Etiqueta de participación (distinta de los badges de estado) */
 .tag-part {
@@ -161,8 +224,30 @@ td.estado-vacio {
 }
 
 .reclamos-hero-copy h1 {
-    margin: 4px 0 18px;
+    margin: 4px 0 8px;
     color: var(--tinta);
+}
+
+.hero-subtitle {
+    margin: 8px 0 18px;
+    max-width: 600px;
+    color: var(--gris-medio);
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.reclamos-hero-copy .hero-subtitle {
+    margin-top: 0;
+}
+
+.hero-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hero-acciones .btn {
+    white-space: nowrap;
 }
 
 .reclamos-hero-image {
@@ -246,6 +331,9 @@ td.estado-vacio {
     color: var(--verde-primario);
 }
 
+/* ==========================================================================
+   Responsive: Tablet y Celular (tabla -> tarjetas sin scroll horizontal)
+   ========================================================================== */
 @media (max-width: 900px) {
     .reclamos-hero .w {
         grid-template-columns: 1fr;
@@ -257,7 +345,179 @@ td.estado-vacio {
     }
 
     .reclamos-hero-image {
-        min-height: 210px;
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 820px) {
+    .table-card {
+        border: 0;
+        background: transparent;
+        overflow: visible;
+    }
+
+    .claims-table--publica,
+    .claims-table--mis {
+        min-width: 0;
+        width: 100%;
+        display: block;
+    }
+
+    .claims-table--publica thead,
+    .claims-table--mis thead {
+        display: none;
+    }
+
+    .claims-table--publica tbody,
+    .claims-table--mis tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .claims-table--publica tbody tr,
+    .claims-table--mis tbody tr {
+        display: flex;
+        flex-direction: column;
+        background: var(--blanco);
+        border: 1px solid var(--linea);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 2px 8px rgba(5, 55, 43, 0.04);
+    }
+
+    table.claims-table--publica td,
+    table.claims-table--mis td {
+        width: 100% !important;
+        height: auto;
+        padding: 8px 0;
+        border-bottom: 1px solid #eef3f0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        text-align: right;
+    }
+
+    table.claims-table--publica td:last-child,
+    table.claims-table--mis td:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+        padding-top: 12px;
+    }
+
+    /* Primera celda: Asunto / Reclamo como título de la tarjeta */
+    table.claims-table--publica td:nth-child(1):not(.estado-vacio),
+    table.claims-table--mis td:nth-child(1):not(.estado-vacio) {
+        display: block;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 700;
+        padding-top: 0;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--linea);
+    }
+
+    /* Etiquetas automáticas para cada dato */
+    table.claims-table--publica td:not(.estado-vacio)::before,
+    table.claims-table--mis td:not(.estado-vacio)::before {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--gris-medio);
+        text-align: left;
+        flex-shrink: 0;
+    }
+
+    /* Tabla pública (reclamos2.html) */
+    table.claims-table--publica td:nth-child(2):not(.estado-vacio)::before {
+        content: "Área";
+    }
+
+    table.claims-table--publica td:nth-child(3):not(.estado-vacio)::before {
+        content: "Categoría";
+    }
+
+    table.claims-table--publica td:nth-child(4):not(.estado-vacio)::before {
+        content: "Enviado";
+    }
+
+    table.claims-table--publica td:nth-child(5):not(.estado-vacio)::before {
+        content: "Estado";
+    }
+
+    table.claims-table--publica td:nth-child(6):not(.estado-vacio)::before {
+        content: "Solicitante";
+    }
+
+    table.claims-table--publica td:nth-child(7):not(.estado-vacio)::before {
+        content: "Vecinos sumados";
+    }
+
+    /* Tabla personal (mis-reclamos2.html) */
+    table.claims-table--mis td:nth-child(2):not(.estado-vacio)::before {
+        content: "Área";
+    }
+
+    table.claims-table--mis td:nth-child(3):not(.estado-vacio)::before {
+        content: "Categoría";
+    }
+
+    table.claims-table--mis td:nth-child(4):not(.estado-vacio)::before {
+        content: "Enviado";
+    }
+
+    table.claims-table--mis td:nth-child(5):not(.estado-vacio)::before {
+        content: "Estado";
+    }
+
+    table.claims-table--mis td:nth-child(6):not(.estado-vacio)::before {
+        content: "Participación";
+    }
+
+    /* Área más compacta en celular */
+    .area-cell {
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .area-icon {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 34px;
+    }
+
+    .area-icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* Botón Ver detalle a todo el ancho abajo */
+    table.claims-table--publica td:nth-child(8):not(.estado-vacio),
+    table.claims-table--mis td:nth-child(7):not(.estado-vacio) {
+        justify-content: stretch;
+        text-align: center;
+    }
+
+    table.claims-table--publica td:nth-child(8) .link-ver,
+    table.claims-table--mis td:nth-child(7) .link-ver {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 40px;
+        border-radius: 8px;
+        background: var(--verde-hero);
+        color: var(--verde-primario);
+        font-weight: 700;
+    }
+
+    /* Estado vacío centrado */
+    table.claims-table--publica td.estado-vacio,
+    table.claims-table--mis td.estado-vacio {
+        display: block;
+        text-align: center;
+        border-bottom: 0;
+        padding: 24px 12px;
     }
 }
 
@@ -266,11 +526,53 @@ td.estado-vacio {
         min-height: 150px;
     }
 
+    .hero-acciones .btn {
+        flex: 1 1 auto;
+        white-space: nowrap;
+    }
+
     .encabezado-lista {
         align-items: stretch;
     }
 
     .encabezado-lista .btn {
         width: 100%;
+    }
+
+    /* Los 3 filtros de "Mostrar" en una sola línea */
+    .filtros .filter-pills {
+        flex-wrap: nowrap;
+        gap: 6px;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .filtros .filter-pills::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filtros .filter-pills .pill {
+        flex: 1 0 auto;
+        padding: 7px 9px;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    /* Estado y Categoría en 2 columnas, Buscar abajo a ancho completo */
+    .filtros-fila {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .filtros-fila .filtro-select {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .filtros-fila .filtro-buscar {
+        grid-column: 1 / -1;
     }
 }
