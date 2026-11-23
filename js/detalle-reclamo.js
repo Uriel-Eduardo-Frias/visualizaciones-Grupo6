@@ -98,13 +98,51 @@ document.addEventListener('DOMContentLoaded', () => {
         aviso.hidden = false;
     }
 
+    const motivoGuardado = $('motivo-cancelacion');
+    if (motivoGuardado && estadoMinusculas === 'cancelado' && reclamo.motivoCancelacion) {
+        const detalleCancelacion = reclamo.detalleCancelacion ? `. ${reclamo.detalleCancelacion}` : '';
+        motivoGuardado.textContent = `Motivo de la cancelación: ${reclamo.motivoCancelacion}${detalleCancelacion}`;
+        motivoGuardado.hidden = false;
+    }
+
     if (botonCancelar && dialogo && puedeCancelar) {
+        const formCancelar = $('form-cancelar');
+        const campoDetalle = $('motivo-detalle');
+        const contador = $('motivo-contador');
+        const errorMotivo = $('motivo-error');
+
+        const reiniciar = () => {
+            formCancelar.reset();
+            errorMotivo.hidden = true;
+            contador.textContent = '0 / 200';
+        };
+
         botonCancelar.hidden = false;
         $('dialogo-numero').textContent = reclamo.numero;
-        botonCancelar.addEventListener('click', () => dialogo.showModal());
+        botonCancelar.addEventListener('click', () => {
+            if (!P.usuarioActual()) {
+                location.replace(`login.html?next=${encodeURIComponent(location.pathname.split('/').pop() + location.search)}&required=login`);
+                return;
+            }
+            reiniciar();
+            dialogo.showModal();
+        });
         $('cancelar-no').addEventListener('click', () => dialogo.close());
-        $('cancelar-si').addEventListener('click', () => {
-            if (P.cancelarReclamo(usuario.documento, reclamo.numero)) {
+        formCancelar.addEventListener('change', () => { errorMotivo.hidden = true; });
+        campoDetalle.addEventListener('input', () => { contador.textContent = `${campoDetalle.value.length} / 200`; });
+        formCancelar.addEventListener('submit', evento => {
+            evento.preventDefault();
+            const elegido = formCancelar.querySelector('input[name="motivo"]:checked');
+            if (!elegido) {
+                errorMotivo.hidden = false;
+                return;
+            }
+            const actual = P.usuarioActual();
+            if (!actual) {
+                location.replace(`login.html?next=${encodeURIComponent(location.pathname.split('/').pop() + location.search)}&required=login`);
+                return;
+            }
+            if (P.cancelarReclamo(actual.documento, reclamo.numero, elegido.value, campoDetalle.value)) {
                 const destino = new URL(location.href);
                 destino.searchParams.set('cancelado', '1');
                 location.href = destino.href;

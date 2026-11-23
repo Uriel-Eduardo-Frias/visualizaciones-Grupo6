@@ -142,6 +142,7 @@
                         </article>
                     </div>
                     <p class="apoyos-detalle" id="apoyos-detalle" role="status"></p>
+                    <p class="motivo-cancelacion" id="motivo-cancelacion" hidden></p>
                     <div class="acciones-reclamo">
                         <a class="volver-a-mis-2" href="mis-reclamos2.html">
                             <span class="div-2" aria-hidden="true">
@@ -159,14 +160,29 @@
             </main>
             <dialog class="dialogo" id="dialogo-cancelar" aria-labelledby="dialogo-titulo"
                 aria-describedby="dialogo-texto">
-                <h2 id="dialogo-titulo">¿Cancelar este reclamo?</h2>
-                <p id="dialogo-texto">Vas a cancelar el reclamo <strong id="dialogo-numero"></strong>. Esta acción no se
-                    puede deshacer y el municipio dejará de gestionarlo.</p>
-                <div class="dialogo-acciones">
-                    <button type="button" class="dialogo-btn dialogo-sec" id="cancelar-no">No, volver</button>
-                    <button type="button" class="dialogo-btn dialogo-peligro" id="cancelar-si">Sí, cancelar
-                        reclamo</button>
-                </div>
+                <form id="form-cancelar" novalidate>
+                    <h2 id="dialogo-titulo">¿Cancelar este reclamo?</h2>
+                    <p id="dialogo-texto">Vas a cancelar el reclamo <strong id="dialogo-numero"></strong>. Esta acción no se
+                        puede deshacer y el municipio dejará de gestionarlo.</p>
+                    <fieldset class="motivos">
+                        <legend>¿Por qué lo cancelás?</legend>
+                        <label class="motivo-opcion"><input type="radio" name="motivo" value="Ya se solucionó"><span>Ya se solucionó</span></label>
+                        <label class="motivo-opcion"><input type="radio" name="motivo" value="Lo cargué por error"><span>Lo cargué por error</span></label>
+                        <label class="motivo-opcion"><input type="radio" name="motivo" value="Está duplicado"><span>Está duplicado, ya existe otro reclamo</span></label>
+                        <label class="motivo-opcion"><input type="radio" name="motivo" value="Otro"><span>Otro motivo</span></label>
+                    </fieldset>
+                    <p class="motivo-error" id="motivo-error" role="alert" hidden>Elegí un motivo para continuar.</p>
+                    <div class="motivo-detalle" id="motivo-detalle-caja">
+                        <label for="motivo-detalle">Contanos más <span>(opcional)</span></label>
+                        <textarea id="motivo-detalle" name="detalle" rows="3" maxlength="200"></textarea>
+                        <span class="motivo-contador" id="motivo-contador" aria-hidden="true">0 / 200</span>
+                    </div>
+                    <div class="dialogo-acciones">
+                        <button type="button" class="dialogo-btn dialogo-sec" id="cancelar-no">No, volver</button>
+                        <button type="submit" class="dialogo-btn dialogo-peligro" id="cancelar-si">Sí, cancelar
+                            reclamo</button>
+                    </div>
+                </form>
             </dialog>
 
             <footer class="ft">

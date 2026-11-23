@@ -581,7 +581,7 @@
                         format: 'jsonv2',
                         lat: puntoSeleccionado.lat,
                         lon: puntoSeleccionado.lng,
-                        zoom: '14',
+                        zoom: '18',
                         addressdetails: '1'
                     }).toString();
 
@@ -628,7 +628,9 @@
                     direccionInput.value = direccion;
                     document.getElementById('r-dir').textContent = direccion;
                     document.getElementById('mapa-mensaje').textContent =
-                        'Ubicación seleccionada. Podés mover el marcador para ajustarla.';
+                        (resultado.address || {}).house_number
+                            ? 'Ubicación seleccionada. Podés mover el marcador para ajustarla.'
+                            : 'Ubicación seleccionada. No encontramos el número exacto: completalo en el campo Dirección si lo sabés.';
                 } catch (error) {
                     if (error.name === 'AbortError' || idActual !== busquedaId) return;
                     console.error('Error al identificar la localidad y el barrio:', error);

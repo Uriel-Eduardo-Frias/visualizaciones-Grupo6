@@ -306,6 +306,8 @@
     const estaAdherido = (documento, numero) => adhesionesDe(documento).includes(numero);
 
     function alternarAdhesion(documento, numero) {
+        const yo = usuarioActual();
+        if (!yo || yo.documento !== documento) throw new Error('sin sesión');
         const todas = leerJSON(CLAVES.adhesiones, {});
         const actuales = new Set(todas[documento] || []);
         const adherido = !actuales.has(numero);
@@ -315,13 +317,21 @@
         return adherido;
     }
 
-    function cancelarReclamo(documento, numero) {
+    const MOTIVOS_CANCELACION = ['Ya se solucionó', 'Lo cargué por error', 'Está duplicado', 'Otro'];
+
+    function cancelarReclamo(documento, numero, motivo, detalle) {
+        const yo = usuarioActual();
+        if (!yo || yo.documento !== documento) return false;
+        if (!MOTIVOS_CANCELACION.includes(motivo)) return false;
         const lista = leerJSON(CLAVES.reclamos, []);
         const reclamo = lista.find(r => r.numero === numero);
         if (!reclamo || reclamo.autor !== documento) return false;
         const estado = String(reclamo.estado || 'Recibido').toLowerCase();
         if (estado === 'resuelto' || estado === 'cancelado') return false;
         reclamo.estado = 'Cancelado';
+        reclamo.motivoCancelacion = motivo;
+        const nota = String(detalle || '').trim().slice(0, 200);
+        if (nota) reclamo.detalleCancelacion = nota; else delete reclamo.detalleCancelacion;
         reclamo.historial = { ...(reclamo.historial || {}), cancelado: new Date().toISOString() };
         try { guardarJSON(CLAVES.reclamos, lista); } catch (error) { return false; }
         return true;
@@ -453,10 +463,25 @@
 
     const usuario = usuarioActual();
 
-    if (paginaActual === 'preguntas-frecuentes.html' && usuario) {
-        location.replace('preguntas-frecuentes2.html');
+    const equivalenteConSesion = {
+        'index.html': 'index2.html',
+        'reclamos.html': 'reclamos2.html',
+        'contacto.html': 'contacto2.html',
+        'informacion-util.html': 'informacion-util2.html',
+        'preguntas-frecuentes.html': 'preguntas-frecuentes2.html',
+        'noticias_comunidad2.html': 'noticias_comunidad.html',
+        'mis-reclamos.html': 'mis-reclamos2.html',
+    };
+
+    if (usuario && equivalenteConSesion[paginaActual]) {
+        location.replace(`${equivalenteConSesion[paginaActual]}${location.search}${location.hash}`);
         return;
     }
+
+    window.addEventListener('pageshow', evento => {
+        const ahora = usuarioActual();
+        if (evento.persisted && (ahora ? ahora.documento : null) !== (usuario ? usuario.documento : null)) location.reload();
+    });
 
     if (body.dataset.authRequired !== undefined) {
         if (!usuario) {
@@ -591,15 +616,16 @@
         const boton = evento.target.closest('[data-sumarme]');
         if (!boton) return;
         evento.preventDefault();
-        if (!usuario) {
+        const actual = usuarioActual();
+        if (!actual) {
             location.assign('login.html?next=reclamos2.html');
             return;
         }
         const numero = boton.dataset.sumarme;
         const reclamo = todosLosReclamos().find(r => r.numero === numero);
-        if (reclamo && reclamo.autor === usuario.documento) return;
+        if (reclamo && (reclamo.autor === actual.documento || String(reclamo.estado).toLowerCase() === 'cancelado')) return;
         try {
-            const adherido = alternarAdhesion(usuario.documento, numero);
+            const adherido = alternarAdhesion(actual.documento, numero);
             pintarSumarme(boton, adherido);
             document.dispatchEvent(new CustomEvent('portal:adhesion', { detail: { numero, adherido } }));
         } catch (error) {
