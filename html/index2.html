@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="../css/mejoras.css">
     <link rel="stylesheet" href="../css/header-footer.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="../js/auth.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="../js/carrusel.js" defer></script>
     <script src="../js/mapas.js" defer></script>
 </head>
 
@@ -41,17 +44,52 @@
     </header>
 
     <main>
-        <!-- Hero: Bienvenida -->
+        <!-- Hero: Bienvenida (Arriba) -->
         <section class="hero-welcome">
-            <div class="w hero-welcome-grid">
+            <div class="w">
                 <div class="hero-content">
                     <span class="eyebrow">MÁS CERCA, MÁS SIMPLE</span>
                     <h1>Bienvenido a La Matanza</h1>
                     <p class="hero-desc">Realizá tus trámites, hacé tus reclamos y encontrá toda la información
                         municipal en un solo lugar.</p>
                 </div>
-                <div class="hero-image-wrap">
-                    <img src="../img/plaza-sanjusto.jpg" alt="Plaza y monumento de La Matanza" class="hero-img">
+            </div>
+        </section>
+
+        <!-- Carrusel Institucional (Por debajo) -->
+        <section class="carrusel-section">
+            <div class="w">
+                <div class="carrusel-wrap">
+                    <div class="swiper hero-swiper" aria-label="Carrusel de imágenes institucionales de La Matanza">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="../img/carrusel-imagen1.jpeg" alt="Centro de Operaciones y Monitoreo (COM) de La Matanza" class="carousel-img">
+                                <div class="carousel-caption">
+                                    <span class="carousel-badge">Seguridad y Prevención</span>
+                                    <p class="carousel-title">Centro de Operaciones y Monitoreo (COM)</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="../img/carrusel-imagen2.jpg" alt="Videowall de monitoreo urbano y prevención" class="carousel-img">
+                                <div class="carousel-caption">
+                                    <span class="carousel-badge">Tecnología Urbana</span>
+                                    <p class="carousel-title">Monitoreo Urbano y Tránsito 24 hs</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="../img/carrusel-imagen3.jpg" alt="Guardia Urbana de La Matanza en tareas de prevención" class="carousel-img">
+                                <div class="carousel-caption">
+                                    <span class="carousel-badge">Cuidado Comunitario</span>
+                                    <p class="carousel-title">Guardia Urbana en Acción</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Paginación -->
+                        <div class="swiper-pagination"></div>
+                        <!-- Flechas de navegación -->
+                        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Imagen anterior"></div>
+                        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Imagen siguiente"></div>
+                    </div>
                 </div>
             </div>
         </section>

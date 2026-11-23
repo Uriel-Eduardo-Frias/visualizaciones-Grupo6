@@ -730,33 +730,187 @@ legend {
     margin-top: 20px;
 }
 
-/* Hero Index */
+/* ==========================================================================
+   Hero: Bienvenida (Arriba)
+   ========================================================================== */
 .hero-welcome {
     background: var(--verde-hero);
-    padding: 38px 0 44px;
+    padding: 36px 0 40px;
     border-bottom: 1px solid var(--linea);
 }
 
-.hero-welcome-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 36px;
-    align-items: center;
+.hero-welcome .hero-content {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-welcome .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: var(--verde-primario);
+    text-transform: uppercase;
+    margin-bottom: 4px;
 }
 
 .hero-welcome h1 {
     font-size: 34px;
     line-height: 1.15;
-    margin: 4px 0 14px;
+    margin: 2px 0 10px;
     color: var(--verde-hover);
 }
 
 .hero-desc {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--tinta);
-    max-width: 520px;
+    max-width: 660px;
     margin: 0;
     line-height: 1.5;
+}
+
+/* ==========================================================================
+   Carrusel Principal (Por debajo)
+   ========================================================================== */
+.carrusel-section {
+    padding: 30px 0 16px;
+    background: var(--fondo);
+}
+
+.carrusel-wrap,
+.hero-carousel-wrap {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+}
+
+.hero-swiper {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    height: 360px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.hero-swiper .swiper-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-swiper .swiper-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0d1b16;
+}
+
+.hero-swiper .carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px 24px 20px;
+    background: linear-gradient(180deg, transparent 0%, rgba(5, 55, 43, 0.4) 30%, rgba(5, 55, 43, 0.92) 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.carousel-badge {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    background: var(--verde-primario);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    line-height: 1.3;
+}
+
+/* Controles Swiper personalizados */
+.hero-swiper .swiper-button-prev,
+.hero-swiper .swiper-button-next {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: var(--verde-hover);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.hero-swiper .swiper-button-prev:after,
+.hero-swiper .swiper-button-next:after {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.hero-swiper .swiper-button-prev:hover,
+.hero-swiper .swiper-button-next:hover {
+    background: #ffffff;
+    color: var(--verde-primario);
+    transform: scale(1.08);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.hero-swiper .swiper-button-prev {
+    left: 16px;
+}
+
+.hero-swiper .swiper-button-next {
+    right: 16px;
+}
+
+.hero-swiper .swiper-pagination {
+    bottom: 14px !important;
+    z-index: 3;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+    width: 26px;
+    border-radius: 4px;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-image-wrap {
@@ -1181,6 +1335,10 @@ legend {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .hero-swiper {
+        height: 280px;
+    }
 }
 
 @media (max-width: 820px) {
@@ -1199,6 +1357,35 @@ legend {
 }
 
 @media (max-width: 600px) {
+    .carrusel-section {
+        padding: 16px 0 10px;
+    }
+
+    .hero-swiper {
+        height: 220px;
+    }
+
+    .hero-swiper .swiper-button-prev,
+    .hero-swiper .swiper-button-next {
+        display: none;
+    }
+
+    .carousel-caption {
+        padding: 24px 16px 12px;
+    }
+
+    .carousel-title {
+        font-size: 15px;
+    }
+
+    .hero-welcome {
+        padding: 22px 0 24px;
+    }
+
+    .hero-welcome h1 {
+        font-size: 26px;
+    }
+
     .services-grid,
     .news-grid,
     .topics-grid {
