@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const botones = document.querySelectorAll('.filtros-por-categora button');
     const noticias = document.querySelectorAll('.noticia');
-    const filas = document.querySelectorAll('.noticias-fila');
+    
 
     botones.forEach(boton => {
 
@@ -39,18 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             });
 
-            // Ocultar filas vacías
-            filas.forEach(fila => {
-
-                const noticiasVisibles = fila.querySelectorAll(
-                    '.noticia:not([style*="display: none"])'
-                );
-
-                fila.style.display =
-                    noticiasVisibles.length > 0 ? '' : 'none';
-
-            });
-
+            
+        
         });
 
     });

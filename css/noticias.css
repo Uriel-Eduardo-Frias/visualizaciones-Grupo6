@@ -306,11 +306,9 @@
 .noticias-y-comunidad .noticias-fila {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    height: 466px;
     align-items: stretch;
     gap: 24px;
     position: relative;
-    align-self: stretch;
     width: 100%;
     overflow: visible;
 }
