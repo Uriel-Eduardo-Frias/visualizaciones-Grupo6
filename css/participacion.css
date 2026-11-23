@@ -263,6 +263,106 @@ td.estado-vacio {
     object-fit: cover;
 }
 
+/* ==========================================================================
+   Apartado informativo: Estados del reclamo
+   ========================================================================== */
+.seccion-estados-reclamo {
+    margin: 28px 0 28px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #d8e4de;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.estados-header {
+    margin-bottom: 20px;
+}
+
+.estados-header h2 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    color: var(--tinta, #1d2521);
+    font-weight: 700;
+}
+
+.estados-bajada {
+    margin: 0;
+    color: #5c6e65;
+    font-size: 14.5px;
+    line-height: 1.45;
+}
+
+.estados-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.estado-card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background: #fcfdfc;
+    border: 1px solid #e1ece5;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.estado-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: #b8d4c5;
+}
+
+.estado-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.estado-paso {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6a7c73;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.estado-card h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    color: var(--tinta, #1d2521);
+    font-weight: 700;
+}
+
+.estado-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #55675e;
+    flex: 1;
+}
+
+.estado-nota-cancelado {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 12px 16px;
+    background: #faf6f6;
+    border: 1px solid #ebdada;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #6b4e4e;
+    line-height: 1.4;
+}
+
+.estado-nota-cancelado .badge-cancelado {
+    flex-shrink: 0;
+}
+
 /* Lista pública con aspecto más compacto y visual */
 .claims-table--publica th,
 .claims-table--mis th {
@@ -522,9 +622,30 @@ td.estado-vacio {
         border-bottom: 0;
         padding: 24px 12px;
     }
+
+    .estados-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 600px) {
+    .seccion-estados-reclamo {
+        margin: 20px 0 20px;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .estados-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .estado-nota-cancelado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
     .reclamos-hero-image {
         min-height: 150px;
     }
