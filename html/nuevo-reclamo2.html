@@ -108,10 +108,14 @@
 
                 <!-- Paso 3: Foto y detalle -->
                 <fieldset>
-                    <legend>4. Sumá una foto y un detalle</legend>
+                    <legend>4. Imagen del área y detalle</legend>
+                    <figure class="foto-area-preview" id="foto-area-preview" hidden>
+                        <img id="foto-area-img" alt="">
+                        <figcaption id="foto-area-caption"></figcaption>
+                    </figure>
                     <label class="foto" for="foto">
                         <input type="file" name="foto" id="foto" accept="image/*">
-                        <span id="foto-txt">+ Agregar foto</span>
+                        <span id="foto-txt">+ Agregar foto del problema (opcional)</span>
                     </label>
 
                     <div class="input-group">
@@ -242,6 +246,25 @@
             }
             return String(resultado.display_name || '').split(',').slice(0, 2).join(',').trim();
         };
+
+        const actualizarFotoArea = () => {
+            const categoria = f.categoria.value;
+            const foto = categoria && window.Portal.fotoAreaDe(categoria);
+            const vistaPrevia = document.getElementById('foto-area-preview');
+            vistaPrevia.hidden = !foto;
+            if (!foto) return;
+
+            const area = window.Portal.areaDe(categoria);
+            const imagen = document.getElementById('foto-area-img');
+            imagen.src = foto;
+            imagen.alt = `Imagen fija de referencia del área: ${area}`;
+            document.getElementById('foto-area-caption').textContent =
+                `Imagen fija de ${area}. Podés adjuntar una foto propia del problema.`;
+        };
+
+        f.querySelectorAll('input[name="categoria"]').forEach(opcion => {
+            opcion.addEventListener('change', actualizarFotoArea);
+        });
 
         f.addEventListener('input', () => {
             document.getElementById('r-cat').textContent =
@@ -419,6 +442,10 @@
 
                 // Obtener datos del formulario
                 const categoria = f.categoria.value;
+                const fotoUrl = window.Portal.fotoAreaDe(categoria);
+                if (!fotoUrl) {
+                    throw new Error('No hay una imagen de referencia para la categoría seleccionada.');
+                }
                 const direccion = f.direccion.value.trim();
                 const asunto = f.asunto.value.trim();
                 const detalle = f.detalle.value.trim();
@@ -438,6 +465,7 @@
                     detalle: detalle,
                     foto: archivo ? archivo.name : '',
                     fotoData: fotoData,
+                    fotoUrl: fotoUrl,
                     fecha: new Date().toISOString(),
                     estado: 'Recibido',
                     autor: (window.Portal.usuarioActual() || {}).documento

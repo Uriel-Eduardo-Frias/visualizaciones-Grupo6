@@ -202,6 +202,14 @@
         'Tránsito': 'Tránsito y Transporte',
     };
     const areaDe = categoria => AREAS[categoria] || 'Área a determinar';
+    const FOTOS_POR_CATEGORIA = {
+        'Alumbrado': '../img/reclamos/luminarias.jpg',
+        'Calles y baches': '../img/reclamos/bache-escuela.jpg',
+        'Arbolado': '../img/reclamos/rama-quebrada.jpg',
+        'Limpieza': '../img/reclamos/basura.jpg',
+        'Tránsito': '../img/reclamos/semaforo.jpg',
+    };
+    const fotoAreaDe = categoria => FOTOS_POR_CATEGORIA[categoria] || '';
 
     // Para usar fotos reales, reemplazá los archivos de ../img/reclamos/ (o cambiá fotoUrl).
     const reclamosDemo = [
@@ -400,7 +408,7 @@
         EDAD_MINIMA, soloDigitos, formatearDocumento, validarDocumento, emailValido, edadDe,
         usuarioActual, guardarPerfil, reclamosDemo, todosLosReclamos, reclamosDelUsuario,
         adhesionesDe, estaAdherido, alternarAdhesion, cancelarReclamo, cantidadApoyos, nombreSolicitante,
-        formatearFecha, formatearFechaHora, redimensionarFoto, areaDe, pintarSumarme, marcarError, eliminarCuenta,
+        formatearFecha, formatearFechaHora, redimensionarFoto, areaDe, fotoAreaDe, pintarSumarme, marcarError, eliminarCuenta,
     };
 
     /* ======================================================================
