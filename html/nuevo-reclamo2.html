@@ -207,6 +207,12 @@
         let solicitudDireccion = null;
         let ultimaBusqueda = 0;
 
+        window.addEventListener('portal:limite-la-matanza-solicitado', () => {
+            ultimaBusqueda = Date.now();
+            document.getElementById('mapa-mensaje').textContent =
+                'Cargando el límite de La Matanza para mostrar el municipio completo...';
+        });
+
         const obtenerLocalidadYBarrio = direccion => ({
             localidad: direccion.city || direccion.town || direccion.village ||
                 direccion.municipality || direccion.city_district ||
@@ -295,6 +301,7 @@
             document.getElementById('r-localidad').textContent =
                 consulta ? 'Buscando...' : 'Sin seleccionar';
             window.dispatchEvent(new CustomEvent('portal:limpiar-ubicacion-reclamo'));
+            window.dispatchEvent(new CustomEvent('portal:limpiar-destacado-municipio-reclamo'));
 
             if (consulta.length < 5) {
                 document.getElementById('mapa-mensaje').textContent =
@@ -340,6 +347,8 @@
                         document.getElementById('mapa-mensaje').textContent =
                             'La dirección debe estar dentro del Municipio de La Matanza.';
                         document.getElementById('r-localidad').textContent = 'Sin seleccionar';
+                        window.dispatchEvent(new CustomEvent('portal:destacar-municipio-reclamo'));
+                        mostrarError('direccion', 'Ingresá una dirección dentro de La Matanza.');
                         return;
                     }
 
@@ -358,11 +367,11 @@
                     localidadInput.value = barrio + ', ' + localidad;
                     document.getElementById('r-localidad').textContent =
                         localidadInput.value;
+                    document.getElementById('mapa-mensaje').textContent =
+                        'Dirección localizada. Podés mover el marcador para ajustarla.';
                     window.dispatchEvent(new CustomEvent('portal:centrar-ubicacion-reclamo', {
                         detail: coordenadas
                     }));
-                    document.getElementById('mapa-mensaje').textContent =
-                        'Dirección localizada. Podés mover el marcador para ajustarla.';
                 } catch (error) {
                     if (error.name === 'AbortError' || idActual !== busquedaDireccionId) return;
                     console.error('Error al identificar la localidad y el barrio:', error);
@@ -384,6 +393,28 @@
             const marcado = campo === 'categoria' ? f.querySelector('.chips') : f.elements.namedItem(campo);
             if (marcado && marcado.classList) marcado.classList.toggle('invalido', Boolean(mensaje));
         };
+
+        window.addEventListener('portal:ubicacion-fuera-de-matanza', () => {
+            busquedaId++;
+            busquedaDireccionId++;
+            window.clearTimeout(temporizadorBusqueda);
+            window.clearTimeout(temporizadorDireccion);
+            if (solicitudActiva) solicitudActiva.abort();
+            if (solicitudDireccion) solicitudDireccion.abort();
+
+            coordenadas = null;
+            localidadSeleccionada = '';
+            barrioSeleccionado = '';
+            direccionInput.value = '';
+            localidadInput.value = '';
+            document.getElementById('r-dir').textContent = '—';
+            document.getElementById('r-localidad').textContent = 'Sin seleccionar';
+            document.getElementById('mapa-mensaje').textContent =
+                'Ese punto está fuera de La Matanza. El área azul muestra el límite municipal; elegí un punto dentro.';
+            window.dispatchEvent(new CustomEvent('portal:destacar-municipio-reclamo'));
+            mostrarError('direccion', '');
+            mostrarError('ubicacion', 'Seleccioná un punto dentro del área azul de La Matanza.');
+        });
 
         f.addEventListener('input', evento => {
             const nombre = evento.target.name;
@@ -569,9 +600,11 @@
                     if (!esDeLaMatanza(resultado.address || {})) {
                         coordenadas = null;
                         window.dispatchEvent(new CustomEvent('portal:limpiar-ubicacion-reclamo'));
+                        window.dispatchEvent(new CustomEvent('portal:destacar-municipio-reclamo'));
                         document.getElementById('mapa-mensaje').textContent =
                             'El punto seleccionado está fuera del Municipio de La Matanza. Elegí una ubicación dentro del municipio.';
                         document.getElementById('r-localidad').textContent = 'Sin seleccionar';
+                        mostrarError('ubicacion', 'Seleccioná un punto dentro del área azul de La Matanza.');
                         return;
                     }
 
