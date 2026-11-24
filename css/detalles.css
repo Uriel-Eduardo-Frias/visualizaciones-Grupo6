@@ -166,13 +166,22 @@
   white-space: nowrap;
 }
 
+.detalle-del-reclamo #contenedor-estado,
 .detalle-del-reclamo .en-proceso {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background-color: #ddf0e6;
+  background-color: #0891B2;
+  color: #ffffff;
   border-radius: 30px;
+}
+
+.detalle-del-reclamo #contenedor-estado .text-wrapper-2,
+.detalle-del-reclamo #contenedor-estado .icono-estado,
+.detalle-del-reclamo .en-proceso .text-wrapper-2,
+.detalle-del-reclamo .en-proceso .icono-estado {
+  color: #ffffff;
 }
 
 .detalle-del-reclamo .informacin-y {
@@ -435,6 +444,77 @@
   white-space: nowrap;
 }
 
+/* Colores por etapa en la línea de seguimiento */
+.detalle-del-reclamo .div-6.estado-recibido .estado-complete {
+  background-color: #2563EB;
+}
+.detalle-del-reclamo .div-6.estado-recibido .detalle-de-en {
+  background-color: #EFF6FF;
+}
+.detalle-del-reclamo .div-6.estado-recibido .text-wrapper-16,
+.detalle-del-reclamo .div-6.estado-recibido .text-wrapper-17 {
+  color: #1D4ED8;
+}
+.detalle-del-reclamo .div-6.estado-recibido .etapa-actual {
+  background-color: #DBEAFE;
+}
+
+.detalle-del-reclamo .div-6.estado-derivado .estado-complete {
+  background-color: #EA580C;
+}
+.detalle-del-reclamo .div-6.estado-derivado .detalle-de-en {
+  background-color: #FFF7ED;
+}
+.detalle-del-reclamo .div-6.estado-derivado .text-wrapper-16,
+.detalle-del-reclamo .div-6.estado-derivado .text-wrapper-17 {
+  color: #C2410C;
+}
+.detalle-del-reclamo .div-6.estado-derivado .etapa-actual {
+  background-color: #FFEDD5;
+}
+
+.detalle-del-reclamo .div-6.estado-en-proceso .estado-complete {
+  background-color: #0891B2;
+}
+.detalle-del-reclamo .div-6.estado-en-proceso .detalle-de-en {
+  background-color: #ECFEFF;
+}
+.detalle-del-reclamo .div-6.estado-en-proceso .text-wrapper-16,
+.detalle-del-reclamo .div-6.estado-en-proceso .text-wrapper-17 {
+  color: #0E7490;
+}
+.detalle-del-reclamo .div-6.estado-en-proceso .etapa-actual {
+  background-color: #CFFAFE;
+}
+
+.detalle-del-reclamo .div-6.estado-resuelto .estado-complete {
+  background-color: #16A34A;
+}
+.detalle-del-reclamo .div-6.estado-resuelto .detalle-de-en {
+  background-color: #F0FDF4;
+}
+.detalle-del-reclamo .div-6.estado-resuelto .text-wrapper-16,
+.detalle-del-reclamo .div-6.estado-resuelto .text-wrapper-17 {
+  color: #15803D;
+}
+.detalle-del-reclamo .div-6.estado-resuelto .etapa-actual {
+  background-color: #DCFCE7;
+}
+
+.detalle-del-reclamo .div-6.estado-cancelado .estado-complete {
+  background-color: #DC2626;
+}
+.detalle-del-reclamo .div-6.estado-cancelado .detalle-de-en {
+  background-color: #FEF2F2;
+}
+.detalle-del-reclamo .div-6.estado-cancelado .text-wrapper-16,
+.detalle-del-reclamo .div-6.estado-cancelado .text-wrapper-17 {
+  color: #B91C1C;
+}
+.detalle-del-reclamo .div-6.estado-cancelado .etapa-actual {
+  background-color: #FEE2E2;
+}
+
 .detalle-del-reclamo .estado-pending {
   width: 24px;
   height: 24px;
@@ -504,19 +584,23 @@
   font-weight: 600;
 }
 
-.estado-etiqueta.recibido,
+.estado-etiqueta.recibido {
+  background-color: #2563EB;
+  color: #ffffff;
+}
+
 .estado-etiqueta.en-proceso {
-  background-color: #ddf0e6;
-  color: #087451;
+  background-color: #0891B2;
+  color: #ffffff;
 }
 
 .estado-etiqueta.derivado {
-  background-color: #fff2cc;
-  color: #76520B;
+  background-color: #EA580C;
+  color: #ffffff;
 }
 
 .estado-etiqueta.resuelto {
-  background-color: #087451;
+  background-color: #16A34A;
   color: #ffffff;
 }
 
@@ -525,14 +609,28 @@
   font-weight: 700;
 }
 
+#contenedor-estado.recibido {
+  background-color: #2563EB;
+  color: #ffffff;
+}
+
+#contenedor-estado.recibido .text-wrapper-2,
+#contenedor-estado.recibido .icono-estado {
+  color: #ffffff;
+}
+
 #contenedor-estado.derivado {
-  background-color: #fff2cc;
-  color: #76520B;
+  background-color: #EA580C;
+  color: #ffffff;
 }
 
 #contenedor-estado.derivado .text-wrapper-2,
 #contenedor-estado.derivado .icono-estado {
-  color: #76520B;
+  color: #ffffff;
+}
+
+#contenedor-estado.resuelto {
+  background-color: #16A34A;
 }
 
 #contenedor-estado.resuelto,

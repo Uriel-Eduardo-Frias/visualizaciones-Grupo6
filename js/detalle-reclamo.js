@@ -26,10 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('detalle-estado').textContent = estado;
     const contenedor = $('contenedor-estado');
-    contenedor.classList.remove('derivado', 'resuelto', 'cancelado');
-    if (estado.toLowerCase() === 'derivado') contenedor.classList.add('derivado');
-    if (estado.toLowerCase() === 'resuelto') contenedor.classList.add('resuelto');
-    if (estado.toLowerCase() === 'cancelado') contenedor.classList.add('cancelado');
+    const clasesEstado = {
+        'recibido': 'recibido',
+        'derivado': 'derivado',
+        'en proceso': 'en-proceso',
+        'resuelto': 'resuelto',
+        'cancelado': 'cancelado'
+    };
+    contenedor.classList.remove('recibido', 'derivado', 'en-proceso', 'resuelto', 'cancelado');
+    contenedor.classList.add(clasesEstado[estado.toLowerCase()] || 'recibido');
     const iconoEstado = contenedor.querySelector('.icono-estado');
     if (iconoEstado) iconoEstado.textContent = estado.toLowerCase() === 'cancelado' ? '✕' : '✓';
 

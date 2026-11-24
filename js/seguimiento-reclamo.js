@@ -53,15 +53,24 @@ document.addEventListener('DOMContentLoaded', () => {
             fechaEtapa = iso ? P.formatearFechaHora(iso) : (actual ? 'Estado actual' : 'Etapa completada');
         }
 
+        const claseEtapa = {
+            'recibido': 'estado-recibido',
+            'derivado': 'estado-derivado',
+            'en proceso': 'estado-en-proceso',
+            'resuelto': 'estado-resuelto',
+            'cancelado': 'estado-cancelado'
+        }[etapa.nombre.toLowerCase()] || 'estado-recibido';
+
+        const icono = etapa.nombre.toLowerCase() === 'cancelado' ? '✕' : '✓';
         const indicador = (completada || actual)
-            ? `<div class="indicador-y" aria-hidden="true"><span class="estado-complete"><span aria-hidden="true">✓</span></span>${conector}</div>`
+            ? `<div class="indicador-y" aria-hidden="true"><span class="estado-complete"><span aria-hidden="true">${icono}</span></span>${conector}</div>`
             : `<div class="indicador-y" aria-hidden="true"><span class="estado-pending"></span>${conector}</div>`;
 
         const clase = completada ? 'div-8' : actual ? 'detalle-de-en' : 'detalle-de-resuelto';
         const etiqueta = actual ? '<span class="etapa-actual"><span class="text-wrapper-17">Actual</span></span>' : '';
 
         return `
-            <div class="div-6" role="listitem">
+            <div class="div-6 ${claseEtapa}" role="listitem">
                 ${indicador}
                 <div class="${clase}">
                     <div class="etapa">

@@ -24,13 +24,13 @@
     --blanco: #FFFFFF;
 
     /* Estados / Badges */
-    --badge-proceso-bg: #D4EFE2;
-    --badge-proceso-txt: #0A633F;
-    --badge-derivado-bg: #FEE8B6;
-    --badge-derivado-txt: #8F5503;
-    --badge-recibido-bg: #E7ECE8;
-    --badge-recibido-txt: #43544D;
-    --badge-resuelto-bg: #086F4B;
+    --badge-proceso-bg: #0891B2;
+    --badge-proceso-txt: #FFFFFF;
+    --badge-derivado-bg: #EA580C;
+    --badge-derivado-txt: #FFFFFF;
+    --badge-recibido-bg: #2563EB;
+    --badge-recibido-txt: #FFFFFF;
+    --badge-resuelto-bg: #16A34A;
     --badge-resuelto-txt: #FFFFFF;
 }
 

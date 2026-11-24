@@ -1,15 +1,15 @@
 .badge-cancelado {
-    background: #F3E1E1;
-    color: #8A1F1F;
+    background: #DC2626;
+    color: #FFFFFF;
 }
 
 .detalle-del-reclamo #contenedor-estado.cancelado {
-    background-color: #F3E1E1;
+    background-color: #DC2626;
 }
 
 .detalle-del-reclamo #contenedor-estado.cancelado .text-wrapper-2,
 .detalle-del-reclamo #contenedor-estado.cancelado .icono-estado {
-    color: #8A1F1F;
+    color: #FFFFFF;
 }
 
 .detalle-del-reclamo .acciones-reclamo {
