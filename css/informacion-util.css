@@ -68,9 +68,10 @@
 .info-util .iu-migas {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 32px;
-    font-size: 1rem;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.4;
     color: var(--iu-texto-suave);
 }
 
