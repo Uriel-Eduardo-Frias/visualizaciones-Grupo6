@@ -56,9 +56,53 @@
     </section>
 
     <main class="w main-content">
-        <header class="section-header encabezado-lista">
-            <p class="section-subtitle">Mirá los reclamos de otros vecinos y sumate a los que también te afectan.</p>
-        </header>
+        <section class="seccion-estados-reclamo" aria-labelledby="titulo-estados-reclamo">
+            <div class="estados-header">
+                <h2 id="titulo-estados-reclamo">Estados del reclamo</h2>
+                <p class="estados-bajada">Conocé qué significa cada estado del proceso desde que el reclamo ingresa hasta su resolución.</p>
+            </div>
+            <div class="estados-grid">
+                <article class="estado-card">
+                    <div class="estado-card-top">
+                        <span class="badge badge-recibido">Recibido</span>
+                        <span class="estado-paso" aria-hidden="true">Paso 1</span>
+                    </div>
+                    <h3>Solicitud registrada</h3>
+                    <p>El reclamo ingresó correctamente al sistema y está a la espera de ser evaluado por el equipo de atención.</p>
+                </article>
+
+                <article class="estado-card">
+                    <div class="estado-card-top">
+                        <span class="badge badge-derivado">Derivado</span>
+                        <span class="estado-paso" aria-hidden="true">Paso 2</span>
+                    </div>
+                    <h3>Enviado al área</h3>
+                    <p>La solicitud fue analizada y asignada al área operativa correspondiente para coordinar las cuadrillas.</p>
+                </article>
+
+                <article class="estado-card">
+                    <div class="estado-card-top">
+                        <span class="badge badge-proceso">En proceso</span>
+                        <span class="estado-paso" aria-hidden="true">Paso 3</span>
+                    </div>
+                    <h3>Cuadrilla trabajando</h3>
+                    <p>El equipo técnico o cuadrilla municipal se encuentra interviniendo activamente en el lugar para solucionar el problema.</p>
+                </article>
+
+                <article class="estado-card">
+                    <div class="estado-card-top">
+                        <span class="badge badge-resuelto">Resuelto</span>
+                        <span class="estado-paso" aria-hidden="true">Paso 4</span>
+                    </div>
+                    <h3>Problema solucionado</h3>
+                    <p>Los trabajos fueron completados exitosamente por el municipio y la situación reportada quedó solucionada.</p>
+                </article>
+            </div>
+            <div class="estado-nota-cancelado">
+                <span class="badge badge-cancelado">Cancelado</span>
+                <span>Aplica cuando el reclamo se da de baja por solicitud del vecino, por duplicación o si ya fue resuelto previamente.</span>
+            </div>
+        </section>
 
         <div class="toolbar">
             <div class="filter-pills" role="tablist" aria-label="Filtrar reclamos">
