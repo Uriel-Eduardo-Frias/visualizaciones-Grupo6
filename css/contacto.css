@@ -302,3 +302,80 @@ body {
         font-size: 18px;
     }
 }
+
+.consulta-enviada {
+    max-width: 560px;
+    margin: 24px auto 8px;
+    padding: 40px 32px;
+    text-align: center;
+    background-color: #e4f2ec;
+    border: 1px solid #b9dccb;
+    border-radius: 12px;
+}
+
+.consulta-enviada[hidden] {
+    display: none;
+}
+
+.consulta-enviada-icono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background-color: #087451;
+    color: #ffffff;
+}
+
+.consulta-enviada h2 {
+    margin: 0 0 8px;
+    font-size: 26px;
+    color: #073e32;
+}
+
+.consulta-enviada h2:focus {
+    outline: none;
+}
+
+.consulta-enviada p {
+    margin: 0 0 24px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #1f2933;
+    overflow-wrap: anywhere;
+}
+
+.consulta-enviada-otra {
+    min-height: 48px;
+    padding: 12px 28px;
+    background-color: #ffffff;
+    color: #087451;
+    border: 2px solid #087451;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.consulta-enviada-otra:hover {
+    background-color: #087451;
+    color: #ffffff;
+}
+
+.consulta-enviada-otra:focus-visible {
+    outline: 3px solid #073e32;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .consulta-enviada {
+        padding: 32px 20px;
+    }
+
+    .consulta-enviada-otra {
+        width: 100%;
+    }
+}
