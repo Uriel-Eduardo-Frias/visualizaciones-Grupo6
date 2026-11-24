@@ -100,11 +100,17 @@ document.addEventListener('DOMContentLoaded', () => {
         cantidad.textContent = P.cantidadApoyos(reclamo);
         contenedor.appendChild(cantidad);
 
+        const estadoReclamo = String(reclamo.estado).toLowerCase();
         if (usuario && reclamo.autor === usuario.documento) {
             const propio = document.createElement('span');
             propio.className = 'apoyos-propio';
             propio.textContent = 'Tu reclamo';
             contenedor.appendChild(propio);
+        } else if (estadoReclamo === 'resuelto' || estadoReclamo === 'cancelado') {
+            const cerrado = document.createElement('span');
+            cerrado.className = 'apoyos-propio';
+            cerrado.textContent = estadoReclamo === 'resuelto' ? 'Resuelto' : 'Cancelado';
+            contenedor.appendChild(cerrado);
         } else if (usuario) {
             const boton = document.createElement('button');
             boton.type = 'button';

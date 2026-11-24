@@ -666,7 +666,7 @@
         }
         const numero = boton.dataset.sumarme;
         const reclamo = todosLosReclamos().find(r => r.numero === numero);
-        if (reclamo && (reclamo.autor === actual.documento || String(reclamo.estado).toLowerCase() === 'cancelado')) return;
+        if (reclamo && (reclamo.autor === actual.documento || ['cancelado', 'resuelto'].includes(String(reclamo.estado).toLowerCase()))) return;
         try {
             const adherido = alternarAdhesion(actual.documento, numero);
             pintarSumarme(boton, adherido);
