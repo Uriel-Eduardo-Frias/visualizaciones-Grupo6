@@ -52,7 +52,7 @@ body {
     margin: 0;
     font-weight: 700;
     color: #152520;
-    font-size: 40px;
+    font-size: 30px; /* Igual a Reclamos */
     line-height: 1.2;
 }
 
@@ -61,8 +61,8 @@ body {
     max-width: 780px;
     font-weight: 400;
     color: #52665e;
-    font-size: 18px;
-    line-height: 1.5;
+    font-size: 15px; /* Igual a Reclamos */
+    line-height: 1.45;
 }
 
 /* ==========================================================================
@@ -78,9 +78,9 @@ body {
 }
 
 .descripcion {
-    margin: 0 0 28px;
-    font-size: 16px;
-    line-height: 1.5;
+    margin: 0 0 24px;
+    font-size: 15px; /* Igual a Reclamos */
+    line-height: 1.45;
     color: #152520;
 }
 
@@ -278,12 +278,16 @@ body {
     }
 
     .t-tulo-principal {
-        font-size: 26px;
+        font-size: 24px;
+    }
+
+    .descripci-n {
+        font-size: 14px;
     }
 
     .descripcion {
-        font-size: 15px;
-        margin-bottom: 22px;
+        font-size: 14px;
+        margin-bottom: 20px;
     }
 
     .consulta textarea {

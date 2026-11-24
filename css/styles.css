@@ -166,17 +166,26 @@ a:hover {
 }
 
 .bc {
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.4;
     color: var(--gris-medio);
     margin-bottom: 16px;
 }
 
 .bc a {
-    color: var(--gris-medio);
+    font-weight: 700;
+    color: var(--verde-primario);
+    text-decoration: none;
 }
 
 .bc a:hover {
     color: var(--verde-primario);
+    text-decoration: underline;
+}
+
+.bc span {
+    font-weight: 400;
+    color: var(--gris-medio);
 }
 
 .main-container {

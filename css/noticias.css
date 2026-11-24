@@ -24,14 +24,18 @@
    Cabecera de sección (Hero + Migas de pan)
    ========================================================================== */
 .noticias-y-comunidad .presentacin-de {
+    width: 100%;
+    padding: 28px 0 32px;
+    background-color: var(--verde-hero, #eaf4ee);
+    border-bottom: 1px solid rgba(8, 111, 75, 0.08);
+}
+
+.noticias-y-comunidad .presentacin-de .w {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 10px;
     width: 100%;
-    padding: 36px 80px 44px;
-    background-color: #eaf4ee;
-    border-bottom: 1px solid rgba(8, 111, 75, 0.08);
 }
 
 .noticias-y-comunidad .ruta-de-navegacin {
@@ -43,7 +47,7 @@
 
 .noticias-y-comunidad .text-wrapper-3 {
     font-weight: 700;
-    color: #086f4b;
+    color: var(--verde-primario, #086f4b);
     font-size: 14px;
     line-height: 1.4;
     text-decoration: none;
@@ -55,7 +59,7 @@
 
 .noticias-y-comunidad .text-wrapper-4 {
     font-weight: 400;
-    color: #52665e;
+    color: var(--gris-medio, #52665e);
     font-size: 14px;
     line-height: 1.4;
 }
@@ -64,38 +68,42 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 6px;
     width: 100%;
 }
 
 .noticias-y-comunidad .t-tulo-principal {
     margin: 0;
     font-weight: 700;
-    color: #152520;
-    font-size: 40px;
+    color: var(--tinta, #152520);
+    font-size: 30px; /* Igual a Reclamos */
     line-height: 1.2;
 }
 
 .noticias-y-comunidad .descripci-n {
     margin: 0;
-    max-width: 760px;
+    max-width: 680px;
     font-weight: 400;
-    color: #52665e;
-    font-size: 18px;
-    line-height: 1.5;
+    color: var(--gris-medio, #52665e);
+    font-size: 15px; /* Igual a Reclamos */
+    line-height: 1.45;
 }
 
 /* ==========================================================================
    Filtros y listado de noticias
    ========================================================================== */
 .noticias-y-comunidad .categoras-y-listado {
+    width: 100%;
+    padding: 32px 0 56px;
+    background-color: #ffffff;
+}
+
+.noticias-y-comunidad .categoras-y-listado .w {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
     width: 100%;
-    padding: 36px 80px 56px;
-    background-color: #ffffff;
 }
 
 .noticias-y-comunidad .filtros-por-categora {
@@ -117,10 +125,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 9px 18px;
-    background-color: #086f4b;
+    padding: 8px 16px;
+    background-color: var(--verde-primario, #086f4b);
     border-radius: 999px;
-    border: 1px solid #086f4b;
+    border: 1px solid var(--verde-primario, #086f4b);
     transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -132,7 +140,7 @@
 
 .noticias-y-comunidad .categor-a {
     color: #ffffff;
-    font-size: 15px;
+    font-size: 13.5px;
     font-weight: 700;
     line-height: 1.4;
     white-space: nowrap;
@@ -142,7 +150,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 9px 18px;
+    padding: 8px 16px;
     background-color: #ffffff;
     border-radius: 999px;
     border: 1px solid #dce7df;
@@ -156,8 +164,8 @@
 }
 
 .noticias-y-comunidad .categor-a-2 {
-    color: #086f4b;
-    font-size: 15px;
+    color: var(--verde-primario, #086f4b);
+    font-size: 13.5px;
     font-weight: 400;
     line-height: 1.4;
     white-space: nowrap;
@@ -175,15 +183,15 @@
 .noticias-y-comunidad .text-wrapper-5 {
     margin: 0;
     font-weight: 700;
-    color: #152520;
-    font-size: 24px;
+    color: var(--tinta, #152520);
+    font-size: 20px; /* Igual a Reclamos */
     line-height: 1.3;
 }
 
 .noticias-y-comunidad .cantidad {
     font-weight: 400;
-    color: #52665e;
-    font-size: 15px;
+    color: var(--gris-medio, #52665e);
+    font-size: 14px;
     line-height: 1.4;
 }
 
@@ -218,13 +226,13 @@
 
 .noticias-y-comunidad .div-2:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .noticias-y-comunidad .foto-ilustrativa {
     display: block;
     width: 100%;
-    height: 200px;
+    height: 190px;
     object-fit: cover;
 }
 
@@ -232,8 +240,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
-    padding: 20px;
+    gap: 10px;
+    padding: 18px;
     flex: 1;
     width: 100%;
 }
@@ -247,14 +255,16 @@
 }
 
 .noticias-y-comunidad .categor-a-3 {
-    color: #086f4b;
-    font-size: 13px;
+    color: var(--verde-primario, #086f4b);
+    font-size: 12.5px;
     font-weight: 700;
     line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .noticias-y-comunidad .fecha-de-publicaci-n {
-    color: #52665e;
+    color: var(--gris-medio, #52665e);
     font-size: 13px;
     font-weight: 400;
     line-height: 1.4;
@@ -264,25 +274,25 @@
 .noticias-y-comunidad .t-tulo-de-noticia {
     margin: 0;
     font-weight: 700;
-    color: #152520;
-    font-size: 18px;
+    color: var(--tinta, #152520);
+    font-size: 16px; /* Igual a Reclamos */
     line-height: 1.35;
 }
 
 .noticias-y-comunidad .descripci-n-breve {
     margin: 0;
     font-weight: 400;
-    color: #52665e;
-    font-size: 15px;
-    line-height: 1.5;
+    color: var(--gris-medio, #52665e);
+    font-size: 14px; /* Igual a Reclamos */
+    line-height: 1.45;
 }
 
 .noticias-y-comunidad .leer-noticia {
     margin-top: auto;
-    padding-top: 8px;
+    padding-top: 6px;
     font-weight: 700;
-    color: #086f4b;
-    font-size: 15px;
+    color: var(--verde-primario, #086f4b);
+    font-size: 14px;
     line-height: 1.4;
     text-decoration: none;
     white-space: nowrap;
@@ -296,7 +306,7 @@
 
 .noticias-y-comunidad a:focus-visible,
 .noticias-y-comunidad button:focus-visible {
-    outline: 2px solid #086f4b;
+    outline: 2px solid var(--verde-primario, #086f4b);
     outline-offset: 2px;
 }
 
@@ -305,11 +315,11 @@
    ========================================================================== */
 @media (max-width: 960px) {
     .noticias-y-comunidad .presentacin-de {
-        padding: 28px 32px 32px;
+        padding: 24px 0 28px;
     }
 
     .noticias-y-comunidad .categoras-y-listado {
-        padding: 28px 32px 44px;
+        padding: 24px 0 40px;
     }
 
     .noticias-y-comunidad .noticias-fila {
@@ -318,31 +328,42 @@
     }
 
     .noticias-y-comunidad .t-tulo-principal {
-        font-size: 32px;
-    }
-
-    .noticias-y-comunidad .descripci-n {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 640px) {
-    .noticias-y-comunidad .presentacin-de {
-        padding: 24px 16px 28px;
-        gap: 12px;
-    }
-
-    .noticias-y-comunidad .categoras-y-listado {
-        padding: 24px 16px 40px;
-        gap: 20px;
-    }
-
-    .noticias-y-comunidad .t-tulo-principal {
         font-size: 26px;
     }
 
     .noticias-y-comunidad .descripci-n {
-        font-size: 15px;
+        font-size: 14.5px;
+    }
+}
+
+@media (max-width: 640px) {
+    .noticias-y-comunidad .w {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .noticias-y-comunidad .presentacin-de {
+        padding: 20px 0 24px;
+    }
+
+    .noticias-y-comunidad .presentacin-de .w {
+        gap: 8px;
+    }
+
+    .noticias-y-comunidad .categoras-y-listado {
+        padding: 20px 0 36px;
+    }
+
+    .noticias-y-comunidad .categoras-y-listado .w {
+        gap: 18px;
+    }
+
+    .noticias-y-comunidad .t-tulo-principal {
+        font-size: 24px;
+    }
+
+    .noticias-y-comunidad .descripci-n {
+        font-size: 14px;
     }
 
     .noticias-y-comunidad .filtros-por-categora {
@@ -351,29 +372,29 @@
 
     .noticias-y-comunidad .todas-seleccionado,
     .noticias-y-comunidad .categor-a-wrapper {
-        padding: 8px 14px;
+        padding: 7px 12px;
     }
 
     .noticias-y-comunidad .categor-a,
     .noticias-y-comunidad .categor-a-2 {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .noticias-y-comunidad .text-wrapper-5 {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .noticias-y-comunidad .noticias-fila {
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 16px;
     }
 
     .noticias-y-comunidad .foto-ilustrativa {
-        height: 190px;
+        height: 180px;
     }
 
     .noticias-y-comunidad .detalle-de-noticia {
-        padding: 18px 16px;
+        padding: 16px 14px;
     }
 }
 
