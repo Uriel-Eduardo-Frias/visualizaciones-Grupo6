@@ -701,6 +701,30 @@ legend {
     margin: 0 0 6px;
 }
 
+.section-heading-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.heading-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: rgba(8, 111, 75, 0.1);
+    color: var(--verde-primario);
+    flex-shrink: 0;
+}
+
+.heading-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
 .section-subtitle {
     margin: 0;
     font-size: 14px;
