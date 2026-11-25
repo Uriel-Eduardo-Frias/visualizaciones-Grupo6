@@ -323,7 +323,7 @@ td.estado-vacio {
 .estados-grid .estado-card:nth-child(2) {
     background: #FFF7ED;
     border-color: #FED7AA;
-    border-top-color: #EA580C;
+    border-top-color: #F97316;
 }
 
 .estados-grid .estado-card:nth-child(2) .estado-paso {
@@ -331,13 +331,13 @@ td.estado-vacio {
 }
 
 .estados-grid .estado-card:nth-child(3) {
-    background: #ECFEFF;
-    border-color: #A5F3FC;
-    border-top-color: #0891B2;
+    background: #FEFCE8;
+    border-color: #FEF08A;
+    border-top-color: #FACC15;
 }
 
 .estados-grid .estado-card:nth-child(3) .estado-paso {
-    color: #0E7490;
+    color: #854D0E;
 }
 
 .estados-grid .estado-card:nth-child(4) {

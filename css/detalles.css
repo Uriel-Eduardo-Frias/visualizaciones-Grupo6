@@ -172,7 +172,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background-color: #0891B2;
+  background-color: #FACC15;
   color: #ffffff;
   border-radius: 30px;
 }
@@ -460,7 +460,7 @@
 }
 
 .detalle-del-reclamo .div-6.estado-derivado .estado-complete {
-  background-color: #EA580C;
+  background-color: #F97316;
 }
 .detalle-del-reclamo .div-6.estado-derivado .detalle-de-en {
   background-color: #FFF7ED;
@@ -474,17 +474,18 @@
 }
 
 .detalle-del-reclamo .div-6.estado-en-proceso .estado-complete {
-  background-color: #0891B2;
+  background-color: #FACC15;
+  color: #ffffff;
 }
 .detalle-del-reclamo .div-6.estado-en-proceso .detalle-de-en {
-  background-color: #ECFEFF;
+  background-color: #FEFCE8;
 }
 .detalle-del-reclamo .div-6.estado-en-proceso .text-wrapper-16,
 .detalle-del-reclamo .div-6.estado-en-proceso .text-wrapper-17 {
-  color: #0E7490;
+  color: #854D0E;
 }
 .detalle-del-reclamo .div-6.estado-en-proceso .etapa-actual {
-  background-color: #CFFAFE;
+  background-color: #FEF08A;
 }
 
 .detalle-del-reclamo .div-6.estado-resuelto .estado-complete {
@@ -589,13 +590,13 @@
   color: #ffffff;
 }
 
-.estado-etiqueta.en-proceso {
-  background-color: #0891B2;
+.estado-etiqueta.derivado {
+  background-color: #F97316;
   color: #ffffff;
 }
 
-.estado-etiqueta.derivado {
-  background-color: #EA580C;
+.estado-etiqueta.en-proceso {
+  background-color: #FACC15;
   color: #ffffff;
 }
 
@@ -620,12 +621,22 @@
 }
 
 #contenedor-estado.derivado {
-  background-color: #EA580C;
+  background-color: #F97316;
   color: #ffffff;
 }
 
 #contenedor-estado.derivado .text-wrapper-2,
 #contenedor-estado.derivado .icono-estado {
+  color: #ffffff;
+}
+
+#contenedor-estado.en-proceso {
+  background-color: #FACC15;
+  color: #ffffff;
+}
+
+#contenedor-estado.en-proceso .text-wrapper-2,
+#contenedor-estado.en-proceso .icono-estado {
   color: #ffffff;
 }
 
