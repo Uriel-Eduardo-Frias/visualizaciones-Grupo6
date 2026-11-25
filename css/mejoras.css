@@ -348,3 +348,130 @@
         margin-left: auto;
     }
 }
+
+/* ==========================================================================
+   Modales de Apoyo y Cancelación de Apoyo
+   ========================================================================== */
+.dialogo {
+    width: min(480px, calc(100% - 32px));
+    padding: 28px;
+    border: 0;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(7, 62, 50, 0.35);
+    color: #12202F;
+    background: #FFFFFF;
+}
+
+.dialogo::backdrop {
+    background: rgba(7, 30, 24, 0.55);
+}
+
+.dialogo h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    color: #073E32;
+    font-weight: 700;
+}
+
+.dialogo p {
+    margin: 0 0 20px;
+    line-height: 1.5;
+    color: #152520;
+}
+
+.dialogo-campo {
+    margin-bottom: 16px;
+}
+
+.dialogo-label {
+    display: block;
+    font-weight: 700;
+    color: #073E32;
+    margin-bottom: 8px;
+    font-size: 14.5px;
+}
+
+.dialogo-select {
+    display: block;
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #6B7A89;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 14.5px;
+    color: #152520;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.dialogo-select:focus {
+    outline: 2px solid #087451;
+    outline-offset: 1px;
+    border-color: #087451;
+}
+
+.dialogo-error {
+    margin: -8px 0 16px;
+    color: #A32626;
+    font-size: 13.5px;
+    font-weight: 700;
+}
+
+.dialogo-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.dialogo-btn {
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialogo-pri {
+    border: 2px solid #087451;
+    background: #087451;
+    color: #FFFFFF;
+}
+
+.dialogo-pri:hover {
+    background: #06604A;
+    border-color: #06604A;
+}
+
+.dialogo-sec {
+    border: 2px solid #087451;
+    background: #FFFFFF;
+    color: #087451;
+}
+
+.dialogo-sec:hover {
+    background: #E4F2EC;
+}
+
+.dialogo-peligro {
+    border: 2px solid #A32626;
+    background: #A32626;
+    color: #FFFFFF;
+}
+
+.dialogo-peligro:hover {
+    background: #861D1D;
+    border-color: #861D1D;
+}
+
+.dialogo-btn:focus-visible {
+    outline: 3px solid #087451;
+    outline-offset: 2px;
+}

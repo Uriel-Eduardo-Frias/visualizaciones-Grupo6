@@ -650,6 +650,143 @@
         });
     });
 
+    /* ---------- Modales y lógica para apoyar / dejar de apoyar ---------- */
+    let botonObjetivoApoyo = null;
+    let numeroObjetivoApoyo = null;
+    let modalesApoyoVinculados = false;
+
+    function asegurarModalesApoyo() {
+        if (!document.getElementById('dialogo-confirmar-apoyo')) {
+            const contenedor = document.createElement('div');
+            contenedor.id = 'contenedor-modales-apoyo';
+            contenedor.innerHTML = `
+                <dialog class="dialogo" id="dialogo-confirmar-apoyo" aria-labelledby="dialogo-apoyar-titulo" aria-describedby="dialogo-apoyar-texto">
+                    <form id="form-confirmar-apoyo" method="dialog">
+                        <h2 id="dialogo-apoyar-titulo">¿Sumar tu apoyo a este reclamo?</h2>
+                        <p id="dialogo-apoyar-texto">
+                            Vas a sumar tu apoyo al reclamo <strong id="dialogo-apoyar-numero"></strong><span id="dialogo-apoyar-asunto"></span>.
+                            Tu adhesión ayuda a que el municipio conozca la importancia de este problema para los vecinos.
+                        </p>
+                        <div class="dialogo-acciones">
+                            <button type="button" class="dialogo-btn dialogo-sec" id="btn-cerrar-apoyar">Cancelar</button>
+                            <button type="submit" class="dialogo-btn dialogo-pri" id="btn-confirmar-apoyar">Sí, apoyar reclamo</button>
+                        </div>
+                    </form>
+                </dialog>
+
+                <dialog class="dialogo" id="dialogo-dejar-apoyo" aria-labelledby="dialogo-dejar-titulo" aria-describedby="dialogo-dejar-texto">
+                    <form id="form-dejar-apoyo" novalidate>
+                        <h2 id="dialogo-dejar-titulo">¿Dejar de apoyar este reclamo?</h2>
+                        <p id="dialogo-dejar-texto">
+                            Vas a retirar tu apoyo al reclamo <strong id="dialogo-dejar-numero"></strong>.
+                        </p>
+                        <div class="dialogo-campo">
+                            <label for="select-motivo-desapoyo" class="dialogo-label">
+                                Seleccioná el motivo para cancelar tu apoyo:
+                            </label>
+                            <select id="select-motivo-desapoyo" name="motivo" class="dialogo-select" required>
+                                <option value="" disabled selected>Elegí una opción...</option>
+                                <option value="El problema ya fue solucionado">El problema ya fue solucionado</option>
+                                <option value="Ya no me afecta o cambié de recorrido">Ya no me afecta o cambié de recorrido</option>
+                                <option value="Apoyé por error">Apoyé por error</option>
+                                <option value="La información del reclamo no es correcta">La información del reclamo no es correcta</option>
+                                <option value="Otro motivo">Otro motivo</option>
+                            </select>
+                        </div>
+                        <p class="dialogo-error" id="error-motivo-desapoyo" role="alert" hidden>Por favor, seleccioná un motivo para continuar.</p>
+                        <div class="dialogo-acciones">
+                            <button type="button" class="dialogo-btn dialogo-sec" id="btn-cerrar-dejar">No, mantener apoyo</button>
+                            <button type="submit" class="dialogo-btn dialogo-peligro" id="btn-confirmar-dejar">Confirmar y dejar de apoyar</button>
+                        </div>
+                    </form>
+                </dialog>
+            `;
+            document.body.appendChild(contenedor);
+        }
+        vincularEventosModalesApoyo();
+    }
+
+    function vincularEventosModalesApoyo() {
+        if (modalesApoyoVinculados) return;
+        const dlgApoyar = document.getElementById('dialogo-confirmar-apoyo');
+        const formApoyar = document.getElementById('form-confirmar-apoyo');
+        const btnCerrarApoyar = document.getElementById('btn-cerrar-apoyar');
+
+        const dlgDejar = document.getElementById('dialogo-dejar-apoyo');
+        const formDejar = document.getElementById('form-dejar-apoyo');
+        const selectMotivo = document.getElementById('select-motivo-desapoyo');
+        const errorMotivo = document.getElementById('error-motivo-desapoyo');
+        const btnCerrarDejar = document.getElementById('btn-cerrar-dejar');
+
+        if (!dlgApoyar || !dlgDejar) return;
+
+        modalesApoyoVinculados = true;
+
+        if (btnCerrarApoyar) {
+            btnCerrarApoyar.addEventListener('click', () => dlgApoyar.close());
+        }
+
+        if (formApoyar) {
+            formApoyar.addEventListener('submit', evento => {
+                evento.preventDefault();
+                const actual = usuarioActual();
+                if (!actual || !numeroObjetivoApoyo || !botonObjetivoApoyo) {
+                    dlgApoyar.close();
+                    return;
+                }
+                try {
+                    const adherido = alternarAdhesion(actual.documento, numeroObjetivoApoyo);
+                    pintarSumarme(botonObjetivoApoyo, adherido);
+                    document.dispatchEvent(new CustomEvent('portal:adhesion', { detail: { numero: numeroObjetivoApoyo, adherido } }));
+                } catch (error) {
+                    window.alert('No se pudo guardar tu adhesión en este navegador.');
+                }
+                dlgApoyar.close();
+            });
+        }
+
+        if (btnCerrarDejar) {
+            btnCerrarDejar.addEventListener('click', () => dlgDejar.close());
+        }
+
+        if (selectMotivo && errorMotivo) {
+            selectMotivo.addEventListener('change', () => {
+                if (selectMotivo.value) errorMotivo.hidden = true;
+            });
+        }
+
+        if (formDejar) {
+            formDejar.addEventListener('submit', evento => {
+                evento.preventDefault();
+                if (!selectMotivo || !selectMotivo.value) {
+                    if (errorMotivo) errorMotivo.hidden = false;
+                    if (selectMotivo) selectMotivo.focus();
+                    return;
+                }
+                const actual = usuarioActual();
+                if (!actual || !numeroObjetivoApoyo || !botonObjetivoApoyo) {
+                    dlgDejar.close();
+                    return;
+                }
+                try {
+                    const motivo = selectMotivo.value;
+                    const adherido = alternarAdhesion(actual.documento, numeroObjetivoApoyo);
+                    pintarSumarme(botonObjetivoApoyo, adherido);
+                    document.dispatchEvent(new CustomEvent('portal:adhesion', { detail: { numero: numeroObjetivoApoyo, adherido, motivo } }));
+                } catch (error) {
+                    window.alert('No se pudo retirar tu adhesión en este navegador.');
+                }
+                dlgDejar.close();
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', asegurarModalesApoyo);
+    } else {
+        asegurarModalesApoyo();
+    }
+
     /* ---------- Botones "Sumarme" (cualquier elemento con data-sumarme) ---------- */
     document.querySelectorAll('[data-sumarme]').forEach(boton => {
         if (usuario) pintarSumarme(boton, estaAdherido(usuario.documento, boton.dataset.sumarme));
@@ -661,18 +798,59 @@
         evento.preventDefault();
         const actual = usuarioActual();
         if (!actual) {
-            location.assign('login.html?next=reclamos2.html');
+            const next = encodeURIComponent(location.pathname.split('/').pop() + location.search);
+            location.assign(`login.html?next=${next || 'reclamos2.html'}`);
             return;
         }
         const numero = boton.dataset.sumarme;
         const reclamo = todosLosReclamos().find(r => r.numero === numero);
         if (reclamo && (reclamo.autor === actual.documento || ['cancelado', 'resuelto'].includes(String(reclamo.estado).toLowerCase()))) return;
-        try {
-            const adherido = alternarAdhesion(actual.documento, numero);
-            pintarSumarme(boton, adherido);
-            document.dispatchEvent(new CustomEvent('portal:adhesion', { detail: { numero, adherido } }));
-        } catch (error) {
-            window.alert('No se pudo guardar tu adhesión en este navegador.');
+
+        asegurarModalesApoyo();
+
+        botonObjetivoApoyo = boton;
+        numeroObjetivoApoyo = numero;
+
+        const yaAdherido = estaAdherido(actual.documento, numero);
+
+        if (!yaAdherido) {
+            // Abrir modal de confirmación para apoyar
+            const dlg = document.getElementById('dialogo-confirmar-apoyo');
+            const numEl = document.getElementById('dialogo-apoyar-numero');
+            const asuntoEl = document.getElementById('dialogo-apoyar-asunto');
+            if (numEl) numEl.textContent = numero;
+            if (asuntoEl) {
+                const desc = reclamo ? (reclamo.asunto || reclamo.categoria || '') : '';
+                asuntoEl.textContent = desc ? ` (${desc})` : '';
+            }
+            if (dlg && typeof dlg.showModal === 'function') {
+                dlg.showModal();
+            } else {
+                if (window.confirm(`¿Confirmás que querés apoyar el reclamo ${numero}?`)) {
+                    const adherido = alternarAdhesion(actual.documento, numero);
+                    pintarSumarme(boton, adherido);
+                    document.dispatchEvent(new CustomEvent('portal:adhesion', { detail: { numero, adherido } }));
+                }
+            }
+        } else {
+            // Abrir modal con select de motivos para dejar de apoyar
+            const dlg = document.getElementById('dialogo-dejar-apoyo');
+            const numEl = document.getElementById('dialogo-dejar-numero');
+            const selectMotivo = document.getElementById('select-motivo-desapoyo');
+            const errorMotivo = document.getElementById('error-motivo-desapoyo');
+            if (numEl) numEl.textContent = numero;
+            if (selectMotivo) selectMotivo.value = '';
+            if (errorMotivo) errorMotivo.hidden = true;
+            if (dlg && typeof dlg.showModal === 'function') {
+                dlg.showModal();
+            } else {
+                const motivo = window.prompt('Indicá el motivo por el cual dejás de apoyar este reclamo:');
+                if (motivo) {
+                    const adherido = alternarAdhesion(actual.documento, numero);
+                    pintarSumarme(boton, adherido);
+                    document.dispatchEvent(new CustomEvent('portal:adhesion', { detail: { numero, adherido, motivo } }));
+                }
+            }
         }
     });
 

@@ -191,6 +191,51 @@
                 </form>
             </dialog>
 
+            <!-- Modal para confirmar apoyo al reclamo -->
+            <dialog class="dialogo" id="dialogo-confirmar-apoyo" aria-labelledby="dialogo-apoyar-titulo"
+                aria-describedby="dialogo-apoyar-texto">
+                <form id="form-confirmar-apoyo" method="dialog">
+                    <h2 id="dialogo-apoyar-titulo">¿Sumar tu apoyo a este reclamo?</h2>
+                    <p id="dialogo-apoyar-texto">
+                        Vas a sumar tu apoyo al reclamo <strong id="dialogo-apoyar-numero"></strong><span id="dialogo-apoyar-asunto"></span>.
+                        Tu adhesión ayuda a que el municipio conozca la importancia de este problema para los vecinos.
+                    </p>
+                    <div class="dialogo-acciones">
+                        <button type="button" class="dialogo-btn dialogo-sec" id="btn-cerrar-apoyar">Cancelar</button>
+                        <button type="submit" class="dialogo-btn dialogo-pri" id="btn-confirmar-apoyar">Sí, apoyar reclamo</button>
+                    </div>
+                </form>
+            </dialog>
+
+            <!-- Modal para dejar de apoyar el reclamo con select de motivos -->
+            <dialog class="dialogo" id="dialogo-dejar-apoyo" aria-labelledby="dialogo-dejar-titulo"
+                aria-describedby="dialogo-dejar-texto">
+                <form id="form-dejar-apoyo" novalidate>
+                    <h2 id="dialogo-dejar-titulo">¿Dejar de apoyar este reclamo?</h2>
+                    <p id="dialogo-dejar-texto">
+                        Vas a retirar tu apoyo al reclamo <strong id="dialogo-dejar-numero"></strong>.
+                    </p>
+                    <div class="dialogo-campo">
+                        <label for="select-motivo-desapoyo" class="dialogo-label">
+                            Seleccioná el motivo para cancelar tu apoyo:
+                        </label>
+                        <select id="select-motivo-desapoyo" name="motivo" class="dialogo-select" required>
+                            <option value="" disabled selected>Elegí una opción...</option>
+                            <option value="El problema ya fue solucionado">El problema ya fue solucionado</option>
+                            <option value="Ya no me afecta o cambié de recorrido">Ya no me afecta o cambié de recorrido</option>
+                            <option value="Apoyé por error">Apoyé por error</option>
+                            <option value="La información del reclamo no es correcta">La información del reclamo no es correcta</option>
+                            <option value="Otro motivo">Otro motivo</option>
+                        </select>
+                    </div>
+                    <p class="dialogo-error" id="error-motivo-desapoyo" role="alert" hidden>Por favor, seleccioná un motivo para continuar.</p>
+                    <div class="dialogo-acciones">
+                        <button type="button" class="dialogo-btn dialogo-sec" id="btn-cerrar-dejar">No, mantener apoyo</button>
+                        <button type="submit" class="dialogo-btn dialogo-peligro" id="btn-confirmar-dejar">Confirmar y dejar de apoyar</button>
+                    </div>
+                </form>
+            </dialog>
+
             <footer class="ft">
                 <div class="w footer-grid">
                     <div class="footer-col brand-col">
